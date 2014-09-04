@@ -7,15 +7,14 @@ require 'rake'
 Gem::Specification.new do |spec|
   spec.name          = "poms"
   spec.version       = Poms::VERSION
-  spec.authors       = ["Niels Hamaker"]
-  spec.email         = ["niels@brightin.nl"]
+  spec.authors       = ["Tom Kruijsen", "Stijn Meurkens", "Tijn Schuurmans"]
+  spec.email         = ["tom@brightin.nl", "stijn@brightin.nl", "tijn@brightin.nl"]
   spec.description   = %q{Interface to POMS CouchDB API}
   spec.summary       = %q{Interfcae to POMS CouchDB API}
-  spec.homepage      = "https://github.com/hamaker/poms"
+  spec.homepage      = "https://github.com/brightin/poms"
   spec.license       = "MIT"
 
   spec.files         = FileList['lib/**/*.rb',  '[A-Z]*', 'spec/**/*'].to_a
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 

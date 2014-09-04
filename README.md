@@ -1,6 +1,7 @@
 # Poms
 
-TODO: Write a gem description
+The Poms gem provides an interface to the Dutch public broadcaster API: POMS. It
+is a couchdb service that is publicly available.
 
 ## Installation
 
@@ -15,10 +16,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install poms
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
