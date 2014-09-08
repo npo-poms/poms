@@ -11,24 +11,24 @@ describe Poms do
     end
 
     it "fetches a broadcast" do
-       Poms.fetch_raw_json('KRO_1614405').should eq(JSON.parse response)
+       expect(Poms.fetch_raw_json('KRO_1614405')).to eq(JSON.parse response)
     end
 
     it "fetches a broadcast and parses it correctly" do
-      Poms::Builder.should_receive(:process_hash).with(JSON.parse response)
+      expect(Poms::Builder).to receive(:process_hash).with(JSON.parse response)
       Poms.fetch('KRO_1614405')
     end
 
     it 'returns nil when a broadcast does not exits' do
       FakeWeb.register_uri(:get, "http://docs.poms.omroep.nl/media/BLA", :status => [404, "Not Found"])
-      Poms.fetch('BLA').should eq(nil)
+      expect(Poms.fetch('BLA')).to eq(nil)
     end
   end
 
   describe '#fetch_broadcasts_for_serie' do
     it 'returns nil when a broadcast does not exits' do
       FakeWeb.register_uri(:get, "http://docs.poms.omroep.nl/media/_design/media/_view/by-ancestor-and-type?reduce=false&key=[%22BLA%22,%22BROADCAST%22]&include_docs=true", :status => [404, "Not Found"])
-      Poms.fetch_broadcasts_for_serie('BLA').should eq([])
+      expect(Poms.fetch_broadcasts_for_serie('BLA')).to eq([])
     end
   end
 
@@ -45,11 +45,11 @@ describe Poms do
 
     it "fetches all broadcast by zapp" do
       pending "method does not exist"
-      Poms.upcoming_broadcasts_raw_json('zapp', start_time, end_time).should eq(JSON.parse response)
+      expect(Poms.upcoming_broadcasts_raw_json('zapp', start_time, end_time)).to eq(JSON.parse response)
     end
 
     it "fetches all broadcast by zapp and parses it correctly" do
-      Poms::Builder.should_receive(:process_hash).exactly(136).times
+      expect(Poms::Builder).to receive(:process_hash).exactly(136).times
       Poms.upcoming_broadcasts('zapp', start_time, end_time)
     end
   end
