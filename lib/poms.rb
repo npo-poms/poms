@@ -65,12 +65,22 @@ module Poms
 
   def fetch_current_broadcast(channel)
     hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.ago, {limit: 1, descending: true}))
-    process_broadcast_rows(hash)
+    get_first_broadcast(hash)
+  end
+
+  def fetch_current_broadcast_and_key(channel)
+    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.ago, {limit: 1, descending: true}))
+    {key: get_first_key(hash), broadcast: get_first_broadcast(hash)}
   end
 
   def fetch_next_broadcast(channel)
     hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.from_now, {limit: 1}))
-    process_broadcast_rows(hash)
+    get_first_broadcast(hash)
+  end
+
+  def fetch_next_broadcast_and_key(channel)
+    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.from_now, {limit: 1}))
+    {key: get_first_key(hash), broadcast: get_first_broadcast(hash)}
   end
 
   # private
@@ -110,9 +120,14 @@ module Poms
     [CHANNEL_AND_START_PATH, channel_params(channel, start_time, end_time), query_options ].join
   end
 
-  def process_broadcast_rows(hash)
+  def get_first_broadcast(hash)
     rows = hash['rows']
     Poms::Builder.process_hash(rows.empty? ? {} : rows.first['doc'])
+  end
+
+  def get_first_key(hash)
+    rows = hash['rows']
+    rows.empty? ? [] : rows.first['key']
   end
 
 end
