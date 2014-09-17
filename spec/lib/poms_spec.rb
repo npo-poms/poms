@@ -1,3 +1,4 @@
+require 'timecop'
 require 'spec_helper'
 
 describe Poms do
@@ -26,7 +27,7 @@ describe Poms do
   end
 
   describe '#fetch_broadcasts_for_serie' do
-    it 'returns nil when a broadcast does not exits' do
+    it 'returns nil when a broadcast does not exist' do
       FakeWeb.register_uri(:get, "http://docs.poms.omroep.nl/media/_design/media/_view/by-ancestor-and-type?reduce=false&key=[%22BLA%22,%22BROADCAST%22]&include_docs=true", :status => [404, "Not Found"])
       expect(Poms.fetch_broadcasts_for_serie('BLA')).to eq([])
     end
@@ -51,6 +52,42 @@ describe Poms do
     it "fetches all broadcast by zapp and parses it correctly" do
       expect(Poms::Builder).to receive(:process_hash).exactly(136).times
       Poms.upcoming_broadcasts('zapp', start_time, end_time)
+    end
+  end
+
+  describe 'fetch broadcasts' do
+    let(:response)    { File.read 'spec/fixtures/poms_single_broadcast_by_channel.json' }
+
+    before do
+      Timecop.freeze(DateTime.strptime("1410969127",'%s'))
+    end
+
+    after do
+      Timecop.return
+    end
+
+    describe '#fetch_current_broadcast' do
+      before do
+        path = "http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?startkey=[%22NED3%22,1410969127000]&endkey=[%22NED3%22,1410882727000]&reduce=false&include_docs=true&descending=true&limit=1"
+        FakeWeb.register_uri(:get, path, :body => response)
+      end
+
+      it "fetches the current broadcast" do
+        expect(Poms::Builder).to receive(:process_hash).exactly(1).times
+        Poms.fetch_current_broadcast('NED3')
+      end
+    end
+
+    describe '#fetch_next_broadcast' do
+      before do
+        path = "http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?startkey=[%22NED3%22,1410969127000]&endkey=[%22NED3%22,1411055527000]&reduce=false&include_docs=true&limit=1"
+        FakeWeb.register_uri(:get, path, :body => response)
+      end
+
+      it "fetches the next broadcast" do
+        expect(Poms::Builder).to receive(:process_hash).exactly(1).times
+        Poms.fetch_next_broadcast('NED3')
+      end
     end
   end
 
