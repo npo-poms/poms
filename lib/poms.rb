@@ -64,17 +64,13 @@ module Poms
   end
 
   def fetch_current_broadcast(channel)
-    uri = [CHANNEL_AND_START_PATH, channel_params(channel, Time.now, 1.day.ago), '&descending=true&limit=1' ].join
-    hash = get_json(uri)
-    rows = hash['rows']
-    Poms::Builder.process_hash(rows.empty? ? {} : rows.first['doc'])
+    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.ago, {limit: 1, descending: true}))
+    process_broadcast_rows(hash)
   end
 
   def fetch_next_broadcast(channel)
-    uri = [CHANNEL_AND_START_PATH, channel_params(channel, Time.now, 1.day.from_now), '&limit=1' ].join
-    hash = get_json(uri)
-    rows = hash['rows']
-    Poms::Builder.process_hash(rows.empty? ? {} : rows.first['doc'])
+    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.from_now, {limit: 1}))
+    process_broadcast_rows(hash)
   end
 
   # private
@@ -105,6 +101,18 @@ module Poms
       raise e unless e.message.match(/404/)
       nil
     end
+  end
+
+  private
+
+  def channel_and_start_uri(channel, start_time, end_time, options={})
+    query_options = options.blank? ? '' : "&#{options.to_query}"
+    [CHANNEL_AND_START_PATH, channel_params(channel, start_time, end_time), query_options ].join
+  end
+
+  def process_broadcast_rows(hash)
+    rows = hash['rows']
+    Poms::Builder.process_hash(rows.empty? ? {} : rows.first['doc'])
   end
 
 end
