@@ -25,5 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "fakeweb"
   spec.add_development_dependency "fabrication"
+  spec.add_development_dependency "timecop"
   spec.add_dependency "activesupport"
 end

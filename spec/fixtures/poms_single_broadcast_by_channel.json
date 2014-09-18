@@ -1,0 +1,136 @@
+{
+  "total_rows": 654832,
+  "offset": 235162,
+  "rows": [
+    {
+      "id": "AT_2023343",
+      "key": [
+        "NED3",
+        1410966671000
+      ],
+      "value": null,
+      "doc": {
+        "_id": "AT_2023343",
+        "_rev": "55-d3eee0573e81d0c059eb1127fbc5abeb",
+        "objectType": "program",
+        "mid": "AT_2023343",
+        "creationDate": 1408855689977,
+        "lastModified": 1410964631410,
+        "sortDate": 1410966671000,
+        "urn": "urn:vpro:media:program:44386090",
+        "embeddable": true,
+        "episodeOf": [
+          {
+            "midRef": "AT_2011551",
+            "urnRef": "urn:vpro:media:group:43525293",
+            "type": "SEASON",
+            "index": 30,
+            "highlighted": false,
+            "added": 1408855690158
+          }
+        ],
+        "broadcasters": [
+          "AVROTROS"
+        ],
+        "titles": [
+          {
+            "value": "Junior Songfestival 2014",
+            "owner": "MIS",
+            "type": "MAIN"
+          },
+          {
+            "value": "1e Halve Finale LIVE",
+            "owner": "WHATS_ON",
+            "type": "MAIN"
+          },
+          {
+            "value": "1e Halve Finale LIVE",
+            "owner": "MIS",
+            "type": "SUB"
+          }
+        ],
+        "descriptions": [
+          {
+            "value": "In de eerste halve finale van het Junior Songfestival strijden Bobby & Ella, Chelsea, Sem en Suze tegen elkaar. Een professionele vakjury bepaalt samen met de kinderjury en de kijkers thuis wie er door mag naar die allesbeslissende finale.  Presentatie is in handen van Jan Smit.",
+            "owner": "WHATS_ON",
+            "type": "MAIN"
+          },
+          {
+            "value": "In de eerste halve finale strijden Bobby & Ella, Chelsea, Sem en Suze tegen elkaar. Een professionele vakjury bepaalt samen met de kinderjury en de kijkers thuis wie er door mag naar de finale.",
+            "owner": "MIS",
+            "type": "SHORT"
+          },
+          {
+            "value": "In de eerste halve finale strijden Bobby & Ella, Chelsea, Sem en Suze tegen elkaar.",
+            "owner": "MIS",
+            "type": "KICKER"
+          },
+          {
+            "value": "In de eerste halve finale van het Junior Songfestival strijden Bobby & Ella, Chelsea, Sem en Suze tegen elkaar. Een professionele vakjury bepaalt samen met de kinderjury en de kijkers thuis wie er door mag naar die allesbeslissende finale.",
+            "owner": "MIS",
+            "type": "EPISODE"
+          }
+        ],
+        "genres": [
+          "Jeugd",
+          "Muziek"
+        ],
+        "countries": [
+          "NL"
+        ],
+        "languages": [
+          "NL"
+        ],
+        "avAttributes": {
+          "videoAttributes": {
+            "color": "BLACK_AND_WHITE_AND_COLOR",
+            "aspectRatio": "16:9"
+          },
+          "audioAttributes": {
+            "numberOfChannels": 2
+          }
+        },
+        "releaseYear": 2014,
+        "duration": 3300000,
+        "credits": [
+          {
+            "givenName": "Jan",
+            "familyName": "Smit",
+            "role": "PRESENTER"
+          }
+        ],
+        "descendantOf": [
+          {
+            "midRef": "POMS_S_AVRO_096666",
+            "urnRef": "urn:vpro:media:group:3731025",
+            "type": "SERIES"
+          },
+          {
+            "midRef": "AT_2011551",
+            "urnRef": "urn:vpro:media:group:43525293",
+            "type": "SEASON"
+          }
+        ],
+        "predictions": [
+          {
+            "state": "ANNOUNCED",
+            "platform": "INTERNETVOD"
+          }
+        ],
+        "scheduleEvents": [
+          {
+            "start": 1410966671000,
+            "duration": 3016000,
+            "poProgID": "AT_2023343",
+            "channel": "NED3",
+            "urnRef": "urn:vpro:media:program:44386090",
+            "midRef": "AT_2023343"
+          }
+        ],
+        "workflow": "PUBLISHED",
+        "type": "BROADCAST",
+        "avType": "VIDEO"
+      }
+    }
+  ]
+}
