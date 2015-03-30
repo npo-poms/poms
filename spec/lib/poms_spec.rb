@@ -51,11 +51,6 @@ describe Poms do
       FakeWeb.register_uri(:get, path, :body => response)
     end
 
-    it "fetches all broadcast by zapp" do
-      pending "method does not exist"
-      expect(Poms.upcoming_broadcasts_raw_json('zapp', start_time, end_time)).to eq(JSON.parse response)
-    end
-
     it "fetches all broadcast by zapp and parses it correctly" do
       expect(Poms::Builder).to receive(:process_hash).exactly(136).times
       Poms.upcoming_broadcasts('zapp', start_time, end_time)
