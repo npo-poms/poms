@@ -32,6 +32,11 @@ module Poms
     get_json(uri)
   end
 
+  def fetch_group(mid)
+    uri = Poms::Views.by_group(mid)
+    get_bare_json(uri)
+  end
+
   def upcoming_broadcasts(zender, start_time = Time.now, end_time = Time.now+7.days)
     uri = [BROADCASTS_VIEW_PATH, broadcast_view_params(zender, start_time, end_time )].join
     hash = get_json(uri)
@@ -106,15 +111,19 @@ module Poms
   end
 
   def get_json(uri)
+    get_bare_json([URL, uri].join)
+  end
+
+  private
+
+  def get_bare_json(uri)
     begin
-      JSON.parse(open(URI.escape [URL, uri].join).read)
+      JSON.parse(open(URI.escape(uri)).read)
     rescue OpenURI::HTTPError => e
       raise e unless e.message.match(/404/)
       nil
     end
   end
-
-  private
 
   def channel_and_start_uri(channel, start_time, end_time, options={})
     query_options = options.blank? ? '' : "&#{options.to_query}"

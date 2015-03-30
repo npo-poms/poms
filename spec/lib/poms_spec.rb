@@ -20,6 +20,13 @@ describe Poms do
       Poms.fetch('KRO_1614405')
     end
 
+    it "fetches a group" do
+      response = File.read 'spec/fixtures/poms_broadcast.json'
+      url = 'http://docs.poms.omroep.nl/media/_design/media/_view/by-group?include_docs=true&key=%2522POMS_S_NPO_823012%2522&reduce=false'
+      FakeWeb.register_uri(:get, url, body: response)
+      expect(Poms.fetch_group('POMS_S_NPO_823012')).to eq(JSON.parse response)
+    end
+
     it 'returns nil when a broadcast does not exits' do
       FakeWeb.register_uri(:get, "http://docs.poms.omroep.nl/media/BLA", :status => [404, "Not Found"])
       expect(Poms.fetch('BLA')).to eq(nil)
