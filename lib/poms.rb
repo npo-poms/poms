@@ -8,6 +8,7 @@ require 'poms/schedule_event'
 require 'poms/broadcast'
 require 'poms/season'
 require 'poms/series'
+require 'poms/views'
 
 module Poms
   extend self
