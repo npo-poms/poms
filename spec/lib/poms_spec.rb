@@ -22,7 +22,7 @@ describe Poms do
 
     it "fetches a group" do
       response = File.read 'spec/fixtures/poms_broadcast.json'
-      url = 'http://docs.poms.omroep.nl/media/_design/media/_view/by-group?include_docs=true&key=%2522POMS_S_NPO_823012%2522&reduce=false'
+      url = 'http://docs.poms.omroep.nl/media/_design/media/_view/by-group?include_docs=true&key=%22POMS_S_NPO_823012%22&reduce=false'
       FakeWeb.register_uri(:get, url, body: response)
       expect(Poms.fetch_group('POMS_S_NPO_823012')).to eq(JSON.parse response)
     end

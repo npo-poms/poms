@@ -111,14 +111,14 @@ module Poms
   end
 
   def get_json(uri)
-    get_bare_json([URL, uri].join)
+    get_bare_json(URI.escape([URL, uri].join))
   end
 
   private
 
   def get_bare_json(uri)
     begin
-      JSON.parse(open(URI.escape(uri)).read)
+      JSON.parse(open(uri).read)
     rescue OpenURI::HTTPError => e
       raise e unless e.message.match(/404/)
       nil
