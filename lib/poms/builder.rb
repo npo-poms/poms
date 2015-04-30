@@ -3,7 +3,7 @@ require 'active_support/all'
 
 module Poms
   class Builder
-    SUPPORTED_CLASSES = %w(Broadcast Season Series Views)
+    SUPPORTED_CLASSES = %w(Broadcast Season Series Views Typeless)
 
     def self.process_hash(hash)
       return unless hash
