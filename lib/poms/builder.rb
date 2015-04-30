@@ -3,11 +3,14 @@ require 'active_support/all'
 
 module Poms
   class Builder
+    SUPPORTED_CLASSES = %w(Broadcast Season Series Views)
+
     def self.process_hash(hash)
       return unless hash
       underscored_hash = {}
       hash.each { |k,v| underscored_hash[k.underscore] = v }
       class_name = (underscored_hash['type'] || "Typeless").capitalize
+      class_name = pomsify_class_name(class_name)
       begin
         klass = Poms.const_get class_name
       rescue NameError
@@ -19,6 +22,10 @@ module Poms
 
     private
 
+    def self.pomsify_class_name(class_name)
+      class_name = "Poms" + class_name unless SUPPORTED_CLASSES.include? class_name
+      class_name
+    end
 
     class NestedOpenStruct < OpenStruct
 
