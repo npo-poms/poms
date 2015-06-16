@@ -249,7 +249,18 @@
     "poProgID": "KRO_1614405",
     "poSeriesID": "KRO_1521173",
     "predictions": [
-        "INTERNETVOD"
+        {
+            "state": "REALIZED",
+            "publishStart": 1434172368000,
+            "publishStop": 1435381968000,
+            "platform": "INTERNETVOD"
+        },
+        {
+            "state": "REALIZED",
+            "publishStart": 1434172368000,
+            "publishStop": 1435381968000,
+            "platform": "TVVOD"
+        }
     ],
     "scheduleEvents": [
         {

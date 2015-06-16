@@ -26,7 +26,7 @@ describe Poms::Broadcast do
   end
 
   it 'correctly sets available until' do
-    expect(poms_broadcast.available_until).to eq(Time.at(1369758599).to_datetime)
+    expect(poms_broadcast.available_until).to eq(Time.at(1435381968).to_datetime)
   end
 
   it 'sets the serie correctly when a broadcast only has a season, no series' do
