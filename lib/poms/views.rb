@@ -1,7 +1,15 @@
+require 'poms/connect'
+
 # Constructs urls for Poms
 module Poms
   module Views
+    include Poms::Connect
     extend self
+
+    def get(mid)
+      uri = "#{base_url}/media/#{mid}"
+      get_json(uri)
+    end
 
     def by_group(mid)
       args = {
@@ -9,7 +17,8 @@ module Poms
         reduce: false,
         include_docs: true
       }
-      construct_view_url('by-group', args)
+      uri = construct_view_url('by-group', args)
+      get_json(uri)
     end
 
     private

@@ -1,0 +1,10 @@
+# Gets fields from Poms results
+module Poms
+  module Fields
+
+    # Returns the title, main by default
+    def title(item, options = {type: 'MAIN'})
+      item['titles'].find {|title| title['type'] == options[:type]}['value']
+    end
+  end
+end

@@ -9,9 +9,14 @@ require 'poms/broadcast'
 require 'poms/season'
 require 'poms/series'
 require 'poms/views'
+require 'poms/fields'
 
 module Poms
+  extend Poms::Views
+  extend Poms::Fields
   extend self
+
+
   URL = 'http://docs.poms.omroep.nl'
   MEDIA_PATH = '/media/'
   BROADCASTS_VIEW_PATH = '/media/_design/media/_view/broadcasts-by-broadcaster-and-start'
