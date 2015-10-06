@@ -45,4 +45,28 @@ describe Poms do
       expect(result.schedule_events.last.starts_at).to be_present
     end
   end
+
+  describe '#fetch a clip' do
+    let(:clip) { Poms.fetch('POMS_EO_622912') }
+
+    it 'has a title' do
+      expect(clip['titles']).to be_present
+    end
+  end
+
+  describe '#fetch_group' do
+    let(:clip) { Poms.fetch_group('POMS_S_NPO_823012')['rows'].first['doc'] }
+
+    it 'has a child with a title' do
+      expect(clip['titles']).to be_present
+    end
+
+    it 'has a child with a media type' do
+      expect(clip['avType']).to be_present
+    end
+
+    it 'has a child with a media type' do
+      expect(clip['mid']).to be_present
+    end
+  end
 end

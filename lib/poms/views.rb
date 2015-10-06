@@ -17,8 +17,7 @@ module Poms
         reduce: false,
         include_docs: true
       }
-      uri = construct_view_url('by-group', args)
-      get_json(uri)
+      construct_view_url('by-group', args)
     end
 
     private
