@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://docs.poms.omroep.nl/media/WO_NPO_698651
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - "*/*"
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Tue, 06 Oct 2015 13:15:49 GMT
+      server:
+      - CouchDB/1.6.1 (Erlang OTP/R15B01)
+      etag:
+      - '"6-c273a64fa0e3d8caa9fcf5c91628b93a"'
+      content-type:
+      - text/plain; charset=utf-8
+      content-length:
+      - '1179'
+      cache-control:
+      - must-revalidate
+      x-proxyinstancename:
+      - poms1b
+      set-cookie:
+      - balancer://poms3cluster=balancer.poms1s2db; path=/;
+    body:
+      encoding: UTF-8
+      string: |
+        {"_id":"WO_NPO_698651","_rev":"6-c273a64fa0e3d8caa9fcf5c91628b93a","objectType":"program","mid":"WO_NPO_698651","creationDate":1416385472320,"lastModified":1418296810527,"sortDate":1416385472320,"urn":"urn:vpro:media:program:47726905","embeddable":true,"broadcasters":["NPO"],"titles":[{"value":"Promo Zapp-app","owner":"BROADCASTER","type":"MAIN"},{"value":"1","owner":"BROADCASTER","type":"SUB"}],"descriptions":[{"value":"Promo Zapp-app","owner":"BROADCASTER","type":"MAIN"}],"genres":[],"countries":[],"languages":[],"duration":60000,"locations":[{"programUrl":"http://www.publiekeomroep.nl/zapp/MP4/Zappapp.mp4","avAttributes":{"bitrate":1694000,"avFileFormat":"MP4"},"creationDate":1416385473319,"lastModified":1416385473621,"workflow":"PUBLISHED","owner":"BROADCASTER","urn":"urn:vpro:media:location:47726922"}],"images":[{"title":"Zappzapp","description":"Zappapp","imageUri":"urn:vpro:image:539854","height":315,"width":573,"credits":"","creationDate":1416385549296,"lastModified":1416385549383,"workflow":"PUBLISHED","owner":"BROADCASTER","type":"STILL","highlighted":false,"urn":"urn:vpro:media:image:47726953"}],"workflow":"PUBLISHED","type":"CLIP","avType":"VIDEO"}
+    http_version: '1.1'
+  recorded_at: Tue, 06 Oct 2015 10:00:00 GMT
+recorded_with: VCR 2.9.3

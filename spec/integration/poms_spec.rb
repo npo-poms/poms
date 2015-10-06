@@ -18,7 +18,7 @@ describe Poms do
     end
   end
 
-  describe '#fetch_current_broadcast' do
+  describe '#fetch_current_broadcast_and_key' do
     let(:current_broadcast) { Poms.fetch_current_broadcast_and_key('NED3') }
 
     it 'has a key' do
@@ -27,6 +27,22 @@ describe Poms do
 
     it 'has a broadcast with a mid' do
       expect(current_broadcast[:broadcast].mid).to be_present
+    end
+  end
+
+  describe '#fetch an aankeiler' do
+    let(:result) { Poms.fetch('WO_NPO_698651') }
+
+    it 'has images' do
+      expect(result.images.first.image_uri).to be_present
+    end
+  end
+
+  describe '#fetch a broadcast' do
+    let(:result) { Poms.fetch('POW_00182680') }
+
+    it 'has scheduled events with last with starts_at' do
+      expect(result.schedule_events.last.starts_at).to be_present
     end
   end
 end
