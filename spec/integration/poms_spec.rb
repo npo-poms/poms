@@ -69,4 +69,7 @@ describe Poms do
       expect(clip['mid']).to be_present
     end
   end
+
+  describe '#upcoming_broadcasts'
+  describe '#fetch_descendant_mids'  
 end
