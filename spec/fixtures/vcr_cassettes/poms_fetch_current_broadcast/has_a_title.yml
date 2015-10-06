@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?startkey=[%22NED3%22,1444125600000]&endkey=[%22NED3%22,1444039200000]&reduce=false&include_docs=true&descending=true&limit=1
+    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?descending=true&endkey=%5B%22NED3%22%2C+1444039200000%5D&include_docs=true&limit=1&reduce=false&startkey=%5B%22NED3%22%2C+1444125600000%5D
     body:
       encoding: US-ASCII
       string: ''
@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 06 Oct 2015 13:03:05 GMT
+      - Tue, 06 Oct 2015 13:49:58 GMT
       server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
       etag:
-      - '"46MJVJ33XNC302KN5YSA5Q4IF"'
+      - '"30Y1IK62A8G6B05FAOT6NADRQ"'
       content-type:
       - text/plain; charset=utf-8
       cache-control:
@@ -36,7 +36,7 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: "{\"total_rows\":898108,\"offset\":333425,\"rows\":[\r\n{\"id\":\"POW_01130830\",\"key\":[\"NED3\",1444125300000],\"value\":null,\"doc\":{\"_id\":\"POW_01130830\",\"_rev\":\"141-2e27637e110606cb263f9c192d4d7a3b\",\"objectType\":\"program\",\"mid\":\"POW_01130830\",\"creationDate\":1428728004993,\"lastModified\":1444130815096,\"hasSubtitles\":true,\"sortDate\":1434352500000,\"urn\":\"urn:vpro:media:program:53879692\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"POW_01130794\",\"urnRef\":\"urn:vpro:media:group:53485013\",\"type\":\"SEASON\",\"index\":10,\"highlighted\":false,\"added\":1428728005090}],\"broadcasters\":[\"AVROTROS\"],\"titles\":[{\"value\":\"De
+      string: "{\"total_rows\":898137,\"offset\":333463,\"rows\":[\r\n{\"id\":\"POW_01130830\",\"key\":[\"NED3\",1444125300000],\"value\":null,\"doc\":{\"_id\":\"POW_01130830\",\"_rev\":\"142-045b777771ee78118de71d8302de043d\",\"objectType\":\"program\",\"mid\":\"POW_01130830\",\"creationDate\":1428728004993,\"lastModified\":1444138057035,\"hasSubtitles\":true,\"sortDate\":1434352500000,\"urn\":\"urn:vpro:media:program:53879692\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"POW_01130794\",\"urnRef\":\"urn:vpro:media:group:53485013\",\"type\":\"SEASON\",\"index\":10,\"highlighted\":false,\"added\":1428728005090}],\"broadcasters\":[\"AVROTROS\"],\"titles\":[{\"value\":\"De
         speelgoeddokter\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"De speelgoeddokter\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"En
         gaan!\",\"owner\":\"MIS\",\"type\":\"SUB\"},{\"value\":\"En gaan!\",\"owner\":\"WHATS_ON\",\"type\":\"SUB\"},{\"value\":\"Blast
         off!\",\"owner\":\"WHATS_ON\",\"type\":\"ORIGINAL\"}],\"descriptions\":[{\"value\":\"Animatieserie
@@ -49,7 +49,7 @@ http_interactions:
         speelgoeddokter\",\"description\":\"Animatieserie over het meisje Doc, de
         speelgoeddokter.\",\"imageUri\":\"urn:vpro:image:621175\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1434355203917,\"lastModified\":1434355204340,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:57053081\"},{\"title\":\"De
         speelgoeddokter\",\"description\":\"Animatieserie over het meisje Doc, de
-        speelgoeddokter.\",\"imageUri\":\"urn:vpro:image:621176\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1434355204242,\"lastModified\":1434355204340,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:57053082\"},{\"title\":\"Speelgoeddokter\",\"description\":\"Speelgoeddokter\",\"imageUri\":\"urn:vpro:image:640983\",\"height\":1688,\"width\":3000,\"owner\":\"BROADCASTER\",\"type\":\"PROMO_LANDSCAPE\",\"highlighted\":false,\"creationDate\":1439563914312,\"lastModified\":1439563914322,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:60620402\"}],\"publishDate\":1444131121393,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
+        speelgoeddokter.\",\"imageUri\":\"urn:vpro:image:621176\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1434355204242,\"lastModified\":1434355204340,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:57053082\"},{\"title\":\"Speelgoeddokter\",\"description\":\"Speelgoeddokter\",\"imageUri\":\"urn:vpro:image:640983\",\"height\":1688,\"width\":3000,\"owner\":\"BROADCASTER\",\"type\":\"PROMO_LANDSCAPE\",\"highlighted\":false,\"creationDate\":1439563914312,\"lastModified\":1439563914322,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:60620402\"}],\"publishDate\":1444138207624,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
     http_version: '1.1'
   recorded_at: Tue, 06 Oct 2015 10:00:00 GMT
 recorded_with: VCR 2.9.3

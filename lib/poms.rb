@@ -10,6 +10,7 @@ require 'poms/season'
 require 'poms/series'
 require 'poms/views'
 require 'poms/fields'
+require 'poms/builderless/broadcast'
 
 module Poms
   extend Poms::Views
@@ -75,8 +76,10 @@ module Poms
   end
 
   def fetch_current_broadcast(channel)
-    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.ago, {limit: 1, descending: true}))
-    get_first_broadcast(hash)
+    uri = Poms::Views.broadcasts_by_channel_and_start(channel: channel)
+    hash = get_bare_json(uri)
+    row = hash['rows'].first
+    Builderless::Broadcast.new(row['doc']) if row
   end
 
   def fetch_current_broadcast_and_key(channel)
