@@ -1,0 +1,46 @@
+#!/bin/bash --login
+#
+# Usage: bin/ci-setup [--help]
+#
+# Set up a Codeship CI VM for running a test suite. Also see ci-run.
+#
+# Options:
+#
+#   --help  Display this message.
+
+set -e
+
+# Perform the steps necessary to set up the CI environment for testing. This
+# should include languages, services, package managers, environment, etc.
+setup() {
+  set -x
+  # Read the required version of Ruby from the Gemfile and use RVM to install it
+  rvm use $(cat .ruby-version) --install
+
+  # To use Node.js as Javascript runtime, uncomment the following lines.
+  # nvm install 0.12
+  # nvm use 0.12
+
+  # If the project has a package.json file and javascript dependencies, you can
+  # install them here.
+  # npm install
+
+  # Install Ruby dependencies with Bundler.
+  bundle install
+
+  set +x
+}
+
+# Print help for this script by printing its top comment block (without the
+# comment markers).
+show_help() {
+  awk '/^# Usage/,/^$/' $0 | cut -c 3-
+  exit 1
+}
+
+if [[ $# -ge 1 ]]
+then
+  show_help
+else
+  setup
+fi
