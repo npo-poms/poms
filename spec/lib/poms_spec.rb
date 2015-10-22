@@ -75,7 +75,7 @@ describe Poms do
       end
 
       it "fetches the current broadcast" do
-        expect(Poms::Builder).to receive(:process_hash).exactly(1).times
+        expect(Poms::Builder).to receive(:process_hash).exactly(0).times
         Poms.fetch_current_broadcast('NED3')
       end
     end
