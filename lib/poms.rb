@@ -11,6 +11,7 @@ require 'poms/series'
 require 'poms/views'
 require 'poms/fields'
 require 'poms/builderless/broadcast'
+require 'poms/builderless/clip'
 
 module Poms
   extend Poms::Views
@@ -31,6 +32,11 @@ module Poms
     return nil if mid.nil?
     hash = fetch_raw_json mid
     Poms::Builder.process_hash hash
+  end
+
+  def fetch_clip(mid)
+    clip_hash = fetch_raw_json(mid)
+    Poms::Builderless::Clip.new(clip_hash)
   end
 
   def fetch_raw_json(mid)
