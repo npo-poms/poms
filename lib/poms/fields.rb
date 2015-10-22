@@ -1,11 +1,11 @@
-# Gets fields from Poms results
 module Poms
+  # Gets fields from Poms results
   module Fields
     extend self
 
     # Returns the title, main by default
-    def title(item, options = {type: 'MAIN'})
-      item['titles'].find {|title| title['type'] == options[:type]}['value']
+    def title(item, options = { type: 'MAIN' })
+      item['titles'].find { |title| title['type'] == options[:type] }['value']
     end
 
     # Returns the images from the hash
