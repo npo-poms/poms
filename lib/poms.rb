@@ -42,7 +42,7 @@ module Poms
   def fetch_playlist_clips(mid)
     uri = Poms::Views.by_group(mid)
     playlist_hash = get_bare_json(uri)
-    playlist_hash['rows'].map { |hash| Poms::Builderless::Clip.new(hash) }
+    playlist_hash['rows'].map { |hash| Poms::Builderless::Clip.new(hash['doc']) }
   end
 
   def fetch_raw_json(mid)

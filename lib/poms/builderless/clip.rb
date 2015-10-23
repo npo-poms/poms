@@ -17,7 +17,7 @@ module Poms
       end
 
       def video_url
-        return if @hash['locations'].empty?
+        return unless @hash['locations']
         @hash['locations'].first['programUrl']
       end
 
@@ -28,7 +28,7 @@ module Poms
 
       def image_id
         images = Fields.images(@hash)
-        return if images.empty?
+        return unless images
         Fields.image_id(images.first)
       end
     end
