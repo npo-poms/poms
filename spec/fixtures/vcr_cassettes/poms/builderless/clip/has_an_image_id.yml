@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 23 Oct 2015 11:18:19 GMT
+      - Fri, 23 Oct 2015 12:11:04 GMT
       server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
       etag:
@@ -33,11 +33,11 @@ http_interactions:
       x-proxyinstancename:
       - poms1b
       set-cookie:
-      - balancer://poms3cluster=balancer.poms1madb; path=/;
+      - balancer://poms3cluster=balancer.poms1s1db; path=/;
     body:
       encoding: UTF-8
       string: |
         {"_id":"WO_NPO_1950962","_rev":"4-594e55601c906f36434b21bc9db51c90","objectType":"program","mid":"WO_NPO_1950962","creationDate":1442490263679,"lastModified":1442491591146,"sortDate":1442490263679,"urn":"urn:vpro:media:program:62589080","embeddable":true,"broadcasters":["NPO"],"titles":[{"value":"Liedje: de wielen van de bus","owner":"BROADCASTER","type":"MAIN"},{"value":"Liedje: de wielen van de bus","owner":"BROADCASTER","type":"SUB"}],"descriptions":[{"value":"Liedje: de wielen van de bus","owner":"BROADCASTER","type":"MAIN"}],"genres":["Jeugd"],"countries":[],"languages":[],"duration":60000,"descendantOf":[{"midRef":"POMS_S_NPO_2015412","urnRef":"urn:vpro:media:group:62589310","type":"PLAYLIST"}],"memberOf":[{"midRef":"POMS_S_NPO_2015412","urnRef":"urn:vpro:media:group:62589310","type":"PLAYLIST","index":1,"highlighted":false,"added":1442490529409}],"locations":[{"programUrl":"http://download.omroep.nl/npo/zappelin/DWVZ_AFL_86_De_wielen_van_de_bus.mp4","avAttributes":{"bitrate":1000000,"avFileFormat":"MP4"},"owner":"BROADCASTER","creationDate":1442490345785,"lastModified":1442490345864,"workflow":"PUBLISHED","urn":"urn:vpro:media:location:62589229"}],"images":[{"title":"Wielen van de bus","description":"wielen van de bus","imageUri":"urn:vpro:image:653515","height":259,"width":559,"owner":"BROADCASTER","type":"PORTRAIT","highlighted":true,"creationDate":1442491591052,"lastModified":1442491591141,"workflow":"PUBLISHED","urn":"urn:vpro:media:image:62590127"}],"publishDate":1442491834775,"workflow":"PUBLISHED","type":"CLIP","avType":"VIDEO"}
     http_version: '1.1'
-  recorded_at: Tue, 06 Oct 2015 10:00:00 GMT
+  recorded_at: Tue, 06 Oct 2015 12:00:00 GMT
 recorded_with: VCR 2.9.3

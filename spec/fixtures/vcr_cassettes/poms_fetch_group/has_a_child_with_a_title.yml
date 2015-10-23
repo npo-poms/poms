@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 23 Oct 2015 10:16:31 GMT
+      - Fri, 23 Oct 2015 12:11:03 GMT
       server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
       etag:
-      - '"9BTVNZ1QLOXX2GIJLN39A3BUO"'
+      - '"910BQREM1LETQNA1KVMXC30N2"'
       content-type:
       - text/plain; charset=utf-8
       cache-control:
@@ -37,7 +37,7 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJ0b3RhbF9yb3dzIjoxMTc1MDgsIm9mZnNldCI6NTE2MjEsInJvd3MiOlsN
+        eyJ0b3RhbF9yb3dzIjoxMTc1MjcsIm9mZnNldCI6NTE2MjEsInJvd3MiOlsN
         CnsiaWQiOiJQT01TX0VPXzYyMjkxMiIsImtleSI6IlBPTVNfU19OUE9fODIz
         MDEyIiwidmFsdWUiOm51bGwsImRvYyI6eyJfaWQiOiJQT01TX0VPXzYyMjkx
         MiIsIl9yZXYiOiI3LTJmZmY0MzJhMmE4NTc4ZGI1MWNmN2ViNGY4NjcwYjky
@@ -418,5 +418,5 @@ http_interactions:
         NDI3NzA5Njc1NzkwLCJ3b3JrZmxvdyI6IlBVQkxJU0hFRCIsInR5cGUiOiJD
         TElQIiwiYXZUeXBlIjoiVklERU8ifX0NCl19Cg==
     http_version: '1.1'
-  recorded_at: Tue, 06 Oct 2015 10:00:00 GMT
+  recorded_at: Tue, 06 Oct 2015 12:00:00 GMT
 recorded_with: VCR 2.9.3

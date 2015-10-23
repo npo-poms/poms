@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?descending=true&endkey=%5B%22NED3%22%2C+1444039200000%5D&include_docs=true&limit=1&reduce=false&startkey=%5B%22NED3%22%2C+1444125600000%5D
+    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?descending=true&endkey=%5B%22NED3%22%2C+1444046400000%5D&include_docs=true&limit=1&reduce=false&startkey=%5B%22NED3%22%2C+1444132800000%5D
     body:
       encoding: US-ASCII
       string: ''
@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 23 Oct 2015 10:16:30 GMT
+      - Fri, 23 Oct 2015 12:11:03 GMT
       server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
       etag:
-      - '"D6GOBMN6XNDRLS1XC4Y7ZQ2HO"'
+      - '"CGSNOB4VPR5VX3AU14P7EPN7D"'
       content-type:
       - text/plain; charset=utf-8
       cache-control:
@@ -31,25 +31,21 @@ http_interactions:
       x-proxyinstancename:
       - poms1b
       set-cookie:
-      - balancer://poms3cluster=balancer.poms1madb; path=/;
+      - balancer://poms3cluster=balancer.poms1s1db; path=/;
       transfer-encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: "{\"total_rows\":875824,\"offset\":308362,\"rows\":[\r\n{\"id\":\"POW_01130830\",\"key\":[\"NED3\",1444125300000],\"value\":null,\"doc\":{\"_id\":\"POW_01130830\",\"_rev\":\"157-6f7df756fd3d8ac4af3999a75c945f84\",\"objectType\":\"program\",\"mid\":\"POW_01130830\",\"creationDate\":1428728004993,\"lastModified\":1444336351833,\"hasSubtitles\":true,\"sortDate\":1434352500000,\"urn\":\"urn:vpro:media:program:53879692\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"POW_01130794\",\"urnRef\":\"urn:vpro:media:group:53485013\",\"type\":\"SEASON\",\"index\":10,\"highlighted\":false,\"added\":1428728005090}],\"broadcasters\":[\"AVROTROS\"],\"titles\":[{\"value\":\"De
-        speelgoeddokter\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"De speelgoeddokter\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"En
-        gaan!\",\"owner\":\"MIS\",\"type\":\"SUB\"},{\"value\":\"En gaan!\",\"owner\":\"WHATS_ON\",\"type\":\"SUB\"},{\"value\":\"Blast
-        off!\",\"owner\":\"WHATS_ON\",\"type\":\"ORIGINAL\"}],\"descriptions\":[{\"value\":\"Animatieserie
-        over het meisje Doc, de speelgoeddokter.\",\"owner\":\"MIS\",\"type\":\"SHORT\"},{\"value\":\"Animatieserie
-        over het meisje Doc, de speelgoeddokter.\",\"owner\":\"WHATS_ON\",\"type\":\"SHORT\"},{\"value\":\"Animatieserie
-        over het meisje Doc, de speelgoeddokter.\",\"owner\":\"MIS\",\"type\":\"KICKER\"}],\"genres\":[\"Animatie\",\"Jeugd\"],\"countries\":[\"US\"],\"languages\":[\"EN\"],\"avAttributes\":{\"videoAttributes\":{\"color\":\"BLACK_AND_WHITE_AND_COLOR\"},\"audioAttributes\":{\"numberOfChannels\":2}},\"releaseYear\":2011,\"duration\":720000,\"descendantOf\":[{\"midRef\":\"POW_01130794\",\"urnRef\":\"urn:vpro:media:group:53485013\",\"type\":\"SEASON\"},{\"midRef\":\"POMS_S_AT_832156\",\"urnRef\":\"urn:vpro:media:group:53845836\",\"type\":\"SERIES\"}],\"ageRating\":null,\"predictions\":[{\"state\":\"REALIZED\",\"publishStart\":1444123740000,\"publishStop\":1444728540000,\"platform\":\"PLUSVOD\"}],\"scheduleEvents\":[{\"guideDay\":1434319200000,\"start\":1434352500000,\"offset\":116000,\"duration\":793000,\"poProgID\":\"POW_01130830\",\"channel\":\"NED3\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:53879692\",\"midRef\":\"POW_01130830\"},{\"guideDay\":1435788000000,\"start\":1435821300000,\"offset\":93000,\"duration\":795000,\"poProgID\":\"POW_01130830\",\"channel\":\"NED3\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:53879692\",\"midRef\":\"POW_01130830\"},{\"guideDay\":1438466400000,\"start\":1438491000000,\"offset\":65000,\"duration\":705000,\"poProgID\":\"POW_01130830\",\"channel\":\"NED3\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:53879692\",\"midRef\":\"POW_01130830\"},{\"textSubtitles\":\"Teletekst
-        ondertitels\",\"guideDay\":1444082400000,\"start\":1444125300000,\"offset\":220000,\"duration\":705000,\"poProgID\":\"POW_01130830\",\"channel\":\"NED3\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:53879692\",\"midRef\":\"POW_01130830\"}],\"images\":[{\"title\":\"De
-        speelgoeddokter\",\"description\":\"Animatieserie over het meisje Doc, de
-        speelgoeddokter.\",\"imageUri\":\"urn:vpro:image:621174\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1434355203591,\"lastModified\":1434355204340,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:57053080\"},{\"title\":\"De
-        speelgoeddokter\",\"description\":\"Animatieserie over het meisje Doc, de
-        speelgoeddokter.\",\"imageUri\":\"urn:vpro:image:621175\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1434355203917,\"lastModified\":1434355204340,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:57053081\"},{\"title\":\"De
-        speelgoeddokter\",\"description\":\"Animatieserie over het meisje Doc, de
-        speelgoeddokter.\",\"imageUri\":\"urn:vpro:image:621176\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1434355204242,\"lastModified\":1434355204340,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:57053082\"},{\"title\":\"Speelgoeddokter\",\"description\":\"Speelgoeddokter\",\"imageUri\":\"urn:vpro:image:640983\",\"height\":1688,\"width\":3000,\"owner\":\"BROADCASTER\",\"type\":\"PROMO_LANDSCAPE\",\"highlighted\":false,\"creationDate\":1439563914312,\"lastModified\":1439563914322,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:60620402\"}],\"publishDate\":1444728968206,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
+      string: "{\"total_rows\":876157,\"offset\":308384,\"rows\":[\r\n{\"id\":\"VPWON_1238676\",\"key\":[\"NED3\",1444132500000],\"value\":null,\"doc\":{\"_id\":\"VPWON_1238676\",\"_rev\":\"110-1c314b1601d1e4aeb7802c0ddf685d1b\",\"objectType\":\"program\",\"mid\":\"VPWON_1238676\",\"creationDate\":1439554355202,\"lastModified\":1444336356545,\"sortDate\":1442897700000,\"urn\":\"urn:vpro:media:program:60611765\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"VPWON_1238622\",\"urnRef\":\"urn:vpro:media:group:51756714\",\"type\":\"SEASON\",\"index\":54,\"highlighted\":false,\"added\":1439898447529}],\"broadcasters\":[\"NTR\"],\"regions\":[\"NL\"],\"titles\":[{\"value\":\"Sesamstraat\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Sesamstraat\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"Plek\",\"owner\":\"MIS\",\"type\":\"SUB\"},{\"value\":\"Plek\",\"owner\":\"WHATS_ON\",\"type\":\"SUB\"}],\"descriptions\":[{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"MIS\",\"type\":\"SHORT\"},{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"WHATS_ON\",\"type\":\"SHORT\"},{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"MIS\",\"type\":\"KICKER\"}],\"genres\":[\"Jeugd\",\"Serie/soap\"],\"countries\":[\"NL\"],\"languages\":[\"NL\"],\"avAttributes\":{\"videoAttributes\":{\"color\":\"BLACK_AND_WHITE_AND_COLOR\",\"aspectRatio\":\"16:9\"},\"audioAttributes\":{\"numberOfChannels\":2}},\"releaseYear\":2014,\"duration\":904140,\"descendantOf\":[{\"midRef\":\"POMS_S_NTR_059958\",\"urnRef\":\"urn:vpro:media:group:4394573\",\"type\":\"SERIES\"},{\"midRef\":\"VPWON_1238622\",\"urnRef\":\"urn:vpro:media:group:51756714\",\"type\":\"SEASON\"}],\"ageRating\":null,\"websites\":[{\"value\":\"www.sesamstraat.nl\"}],\"predictions\":[{\"state\":\"REALIZED\",\"publishStart\":1442898632000,\"publishStop\":1444108232000,\"platform\":\"INTERNETVOD\"},{\"state\":\"REALIZED\",\"publishStart\":1442898632000,\"publishStop\":1444108232000,\"platform\":\"TVVOD\"}],\"scheduleEvents\":[{\"guideDay\":1442872800000,\"start\":1442897700000,\"offset\":28000,\"duration\":900000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"NED3\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"},{\"repeat\":{\"value\":\"22-07-2015\",\"isRerun\":true},\"guideDay\":1442872800000,\"start\":1442930700000,\"duration\":950000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"BVNT\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"},{\"repeat\":{\"value\":\"22-07-2015\",\"isRerun\":true},\"guideDay\":1442872800000,\"start\":1442936100000,\"offset\":-57000,\"duration\":930000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"NED1\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"},{\"repeat\":{\"value\":\"22-07-2015\",\"isRerun\":true},\"guideDay\":1442872800000,\"start\":1442973900000,\"duration\":950000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"BVNT\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"},{\"repeat\":{\"value\":\"22-07-2015\",\"isRerun\":true},\"textSubtitles\":\"Teletekst
+        ondertitels\",\"guideDay\":1444082400000,\"start\":1444132500000,\"offset\":83000,\"duration\":900000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"NED3\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"}],\"images\":[{\"title\":\"Sesamstraat\",\"description\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655291\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901617041,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861126\"},{\"title\":\"Sesamstraat\",\"description\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655292\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901617855,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861127\"},{\"title\":\"Sesamstraat\",\"description\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655293\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901618566,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861128\"}],\"publishDate\":1444336634635,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
     http_version: '1.1'
-  recorded_at: Tue, 06 Oct 2015 10:00:00 GMT
+  recorded_at: Tue, 06 Oct 2015 12:00:00 GMT
 recorded_with: VCR 2.9.3

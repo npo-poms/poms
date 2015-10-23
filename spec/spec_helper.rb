@@ -25,6 +25,6 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
-    Timecop.freeze Time.local(2015, 10, 6, 12)
+    Timecop.freeze Time.utc(2015, 10, 6, 12)
   end
 end
