@@ -21,6 +21,11 @@ module Poms
         @hash['locations'].first['programUrl']
       end
 
+      def position
+        return unless @hash['memberOf']
+        @hash['memberOf'].first['index']
+      end
+
       def image_id
         images = Fields.images(@hash)
         return if images.empty?

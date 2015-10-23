@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 06 Oct 2015 13:21:27 GMT
+      - Fri, 23 Oct 2015 10:16:31 GMT
       server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
       etag:
@@ -33,7 +33,7 @@ http_interactions:
       x-proxyinstancename:
       - poms1b
       set-cookie:
-      - balancer://poms3cluster=balancer.poms1s1db; path=/;
+      - balancer://poms3cluster=balancer.poms1madb; path=/;
     body:
       encoding: UTF-8
       string: |

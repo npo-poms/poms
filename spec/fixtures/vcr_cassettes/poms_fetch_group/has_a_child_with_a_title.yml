@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 06 Oct 2015 13:24:44 GMT
+      - Fri, 23 Oct 2015 10:16:31 GMT
       server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
       etag:
-      - '"EU519AC0XYTU932ERIMWPFXN3"'
+      - '"9BTVNZ1QLOXX2GIJLN39A3BUO"'
       content-type:
       - text/plain; charset=utf-8
       cache-control:
@@ -31,13 +31,13 @@ http_interactions:
       x-proxyinstancename:
       - poms1b
       set-cookie:
-      - balancer://poms3cluster=balancer.poms1s2db; path=/;
+      - balancer://poms3cluster=balancer.poms1s1db; path=/;
       transfer-encoding:
       - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJ0b3RhbF9yb3dzIjoxMTY0OTQsIm9mZnNldCI6NTExOTQsInJvd3MiOlsN
+        eyJ0b3RhbF9yb3dzIjoxMTc1MDgsIm9mZnNldCI6NTE2MjEsInJvd3MiOlsN
         CnsiaWQiOiJQT01TX0VPXzYyMjkxMiIsImtleSI6IlBPTVNfU19OUE9fODIz
         MDEyIiwidmFsdWUiOm51bGwsImRvYyI6eyJfaWQiOiJQT01TX0VPXzYyMjkx
         MiIsIl9yZXYiOiI3LTJmZmY0MzJhMmE4NTc4ZGI1MWNmN2ViNGY4NjcwYjky

@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 22 Oct 2015 15:18:40 GMT
+      - Fri, 23 Oct 2015 10:16:32 GMT
       server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
       etag:
-      - '"CEFI1N9K85ZKOFYTBX9N4BCL0"'
+      - '"BVZIXIOSODE8YVV8DAYR1CWA1"'
       content-type:
       - text/plain; charset=utf-8
       cache-control:
@@ -31,12 +31,12 @@ http_interactions:
       x-proxyinstancename:
       - poms1b
       set-cookie:
-      - balancer://poms3cluster=balancer.poms1madb; path=/;
+      - balancer://poms3cluster=balancer.poms1s1db; path=/;
       transfer-encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: "{\"total_rows\":875569,\"offset\":331444,\"rows\":[\r\n{\"id\":\"AT_2023343\",\"key\":[\"NED3\",1410966669000],\"value\":null,\"doc\":{\"_id\":\"AT_2023343\",\"_rev\":\"77-ad380957afc1f479fff66e9e9877c31f\",\"objectType\":\"program\",\"mid\":\"AT_2023343\",\"creationDate\":1408855689977,\"lastModified\":1430914291267,\"hasSubtitles\":true,\"sortDate\":1410966669000,\"urn\":\"urn:vpro:media:program:44386090\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"AT_2011551\",\"urnRef\":\"urn:vpro:media:group:43525293\",\"type\":\"SEASON\",\"index\":30,\"highlighted\":false,\"added\":1408855690158}],\"broadcasters\":[\"AVROTROS\"],\"titles\":[{\"value\":\"Junior
+      string: "{\"total_rows\":875824,\"offset\":331499,\"rows\":[\r\n{\"id\":\"AT_2023343\",\"key\":[\"NED3\",1410966669000],\"value\":null,\"doc\":{\"_id\":\"AT_2023343\",\"_rev\":\"77-ad380957afc1f479fff66e9e9877c31f\",\"objectType\":\"program\",\"mid\":\"AT_2023343\",\"creationDate\":1408855689977,\"lastModified\":1430914291267,\"hasSubtitles\":true,\"sortDate\":1410966669000,\"urn\":\"urn:vpro:media:program:44386090\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"AT_2011551\",\"urnRef\":\"urn:vpro:media:group:43525293\",\"type\":\"SEASON\",\"index\":30,\"highlighted\":false,\"added\":1408855690158}],\"broadcasters\":[\"AVROTROS\"],\"titles\":[{\"value\":\"Junior
         Songfestival 2014\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"1e Halve
         Finale LIVE\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"1e Halve
         Finale Herhaling\",\"owner\":\"BROADCASTER\",\"type\":\"SUB\"},{\"value\":\"1e

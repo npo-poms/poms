@@ -39,6 +39,12 @@ module Poms
     Poms::Builderless::Clip.new(clip_hash)
   end
 
+  def fetch_playlist_clips(mid)
+    uri = Poms::Views.by_group(mid)
+    playlist_hash = get_bare_json(uri)
+    playlist_hash['rows'].map { |hash| Poms::Builderless::Clip.new(hash) }
+  end
+
   def fetch_raw_json(mid)
     uri = [MEDIA_PATH, mid].join
     get_json(uri)
@@ -82,7 +88,7 @@ module Poms
   end
 
   def fetch_current_broadcast(channel)
-    uri = Poms::Views.broadcasts_by_channel_and_start(channel: channel)
+    uri = Poms::Views.broadcasts_by_channel_and_start(channel)
     hash = get_bare_json(uri)
     row = hash['rows'].first
     Builderless::Broadcast.new(row['doc']) if row

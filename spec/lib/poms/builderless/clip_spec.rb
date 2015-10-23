@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Poms::Builderless::Clip do
-  let (:clip) { Poms.fetch_clip('WO_NPO_1950962') }
+  let(:clip) { Poms.fetch_clip('WO_NPO_1950962') }
 
   it 'has a title' do
     expect(clip.title).to eq 'Liedje: de wielen van de bus'
@@ -12,5 +12,9 @@ describe Poms::Builderless::Clip do
 
   it 'has an image id' do
     expect(clip.image_id).to eq '653515'
+  end
+
+  it 'has a position' do
+    expect(clip.position).to eq 1
   end
 end

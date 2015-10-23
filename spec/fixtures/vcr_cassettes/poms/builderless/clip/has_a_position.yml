@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 23 Oct 2015 11:18:19 GMT
+      - Fri, 23 Oct 2015 11:20:36 GMT
       server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
       etag:

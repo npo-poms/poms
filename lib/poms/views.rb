@@ -20,7 +20,7 @@ module Poms
       construct_view_url('by-group', args)
     end
 
-    def broadcasts_by_channel_and_start(channel:, start_time: Time.now, end_time: 1.day.ago, limit: 1, descending: true)
+    def broadcasts_by_channel_and_start(channel, start_time = Time.now, end_time = 1.day.ago, limit = 1, descending = true)
       args = {
         startkey: "[\"#{channel}\", #{to_poms_timestamp(start_time)}]",
         endkey: "[\"#{channel}\", #{to_poms_timestamp(end_time)}]",
