@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?startkey=[%22NED3%22,1444132800000]&endkey=[%22NED3%22,1444046400000]&reduce=false&include_docs=true&descending=true&limit=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - "*/*"
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Fri, 23 Oct 2015 12:11:03 GMT
+      server:
+      - CouchDB/1.6.1 (Erlang OTP/R15B01)
+      etag:
+      - '"5NR9MXUBPGWU8MJGSZF6WKUPJ"'
+      content-type:
+      - text/plain; charset=utf-8
+      cache-control:
+      - must-revalidate
+      x-proxyinstancename:
+      - poms1b
+      set-cookie:
+      - balancer://poms3cluster=balancer.poms1madb; path=/;
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"total_rows\":876157,\"offset\":308384,\"rows\":[\r\n{\"id\":\"VPWON_1238676\",\"key\":[\"NED3\",1444132500000],\"value\":null,\"doc\":{\"_id\":\"VPWON_1238676\",\"_rev\":\"110-1c314b1601d1e4aeb7802c0ddf685d1b\",\"objectType\":\"program\",\"mid\":\"VPWON_1238676\",\"creationDate\":1439554355202,\"lastModified\":1444336356545,\"sortDate\":1442897700000,\"urn\":\"urn:vpro:media:program:60611765\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"VPWON_1238622\",\"urnRef\":\"urn:vpro:media:group:51756714\",\"type\":\"SEASON\",\"index\":54,\"highlighted\":false,\"added\":1439898447529}],\"broadcasters\":[\"NTR\"],\"regions\":[\"NL\"],\"titles\":[{\"value\":\"Sesamstraat\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Sesamstraat\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"Plek\",\"owner\":\"MIS\",\"type\":\"SUB\"},{\"value\":\"Plek\",\"owner\":\"WHATS_ON\",\"type\":\"SUB\"}],\"descriptions\":[{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"MIS\",\"type\":\"SHORT\"},{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"WHATS_ON\",\"type\":\"SHORT\"},{\"value\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"MIS\",\"type\":\"KICKER\"}],\"genres\":[\"Jeugd\",\"Serie/soap\"],\"countries\":[\"NL\"],\"languages\":[\"NL\"],\"avAttributes\":{\"videoAttributes\":{\"color\":\"BLACK_AND_WHITE_AND_COLOR\",\"aspectRatio\":\"16:9\"},\"audioAttributes\":{\"numberOfChannels\":2}},\"releaseYear\":2014,\"duration\":904140,\"descendantOf\":[{\"midRef\":\"POMS_S_NTR_059958\",\"urnRef\":\"urn:vpro:media:group:4394573\",\"type\":\"SERIES\"},{\"midRef\":\"VPWON_1238622\",\"urnRef\":\"urn:vpro:media:group:51756714\",\"type\":\"SEASON\"}],\"ageRating\":null,\"websites\":[{\"value\":\"www.sesamstraat.nl\"}],\"predictions\":[{\"state\":\"REALIZED\",\"publishStart\":1442898632000,\"publishStop\":1444108232000,\"platform\":\"INTERNETVOD\"},{\"state\":\"REALIZED\",\"publishStart\":1442898632000,\"publishStop\":1444108232000,\"platform\":\"TVVOD\"}],\"scheduleEvents\":[{\"guideDay\":1442872800000,\"start\":1442897700000,\"offset\":28000,\"duration\":900000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"NED3\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"},{\"repeat\":{\"value\":\"22-07-2015\",\"isRerun\":true},\"guideDay\":1442872800000,\"start\":1442930700000,\"duration\":950000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"BVNT\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"},{\"repeat\":{\"value\":\"22-07-2015\",\"isRerun\":true},\"guideDay\":1442872800000,\"start\":1442936100000,\"offset\":-57000,\"duration\":930000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"NED1\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"},{\"repeat\":{\"value\":\"22-07-2015\",\"isRerun\":true},\"guideDay\":1442872800000,\"start\":1442973900000,\"duration\":950000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"BVNT\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"},{\"repeat\":{\"value\":\"22-07-2015\",\"isRerun\":true},\"textSubtitles\":\"Teletekst
+        ondertitels\",\"guideDay\":1444082400000,\"start\":1444132500000,\"offset\":83000,\"duration\":900000,\"poProgID\":\"VPWON_1238676\",\"channel\":\"NED3\",\"net\":\"ZAPPE\",\"urnRef\":\"urn:vpro:media:program:60611765\",\"midRef\":\"VPWON_1238676\"}],\"images\":[{\"title\":\"Sesamstraat\",\"description\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655291\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901617041,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861126\"},{\"title\":\"Sesamstraat\",\"description\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655292\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901617855,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861127\"},{\"title\":\"Sesamstraat\",\"description\":\"Ieniemienie
+        heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655293\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901618566,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861128\"}],\"publishDate\":1444336634635,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
+    http_version: '1.1'
+  recorded_at: Tue, 06 Oct 2015 12:00:00 GMT
+recorded_with: VCR 2.9.3

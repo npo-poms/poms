@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://docs.poms.omroep.nl/media/POMS_EO_622912
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - "*/*"
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Fri, 23 Oct 2015 12:11:03 GMT
+      server:
+      - CouchDB/1.6.1 (Erlang OTP/R15B01)
+      etag:
+      - '"7-2fff432a2a8578db51cf7eb4f8670b92"'
+      content-type:
+      - text/plain; charset=utf-8
+      content-length:
+      - '3344'
+      cache-control:
+      - must-revalidate
+      x-proxyinstancename:
+      - poms1b
+      set-cookie:
+      - balancer://poms3cluster=balancer.poms1madb; path=/;
+    body:
+      encoding: UTF-8
+      string: |
+        {"_id":"POMS_EO_622912","_rev":"7-2fff432a2a8578db51cf7eb4f8670b92","objectType":"program","mid":"POMS_EO_622912","creationDate":1410179860837,"lastModified":1427709495597,"sortDate":1410179860837,"urn":"urn:vpro:media:program:44738242","embeddable":true,"broadcasters":["EO"],"titles":[{"value":"Thuistest knalerwt","owner":"BROADCASTER","type":"MAIN"},{"value":"cp s9 thuistest knalerwt","owner":"BROADCASTER","type":"WORK"}],"descriptions":[{"value":"Zin om je ouders even flink te laten schrikken? Koen weet hoe! Met knalerwten op de wc. Dat wordt lachen!","owner":"BROADCASTER","type":"MAIN"},{"value":"Zin om je ouders even flink te laten schrikken?","owner":"BROADCASTER","type":"SHORT"}],"genres":[],"countries":[],"languages":[],"avAttributes":{"avFileFormat":"UNKNOWN"},"duration":76000,"descendantOf":[{"midRef":"POMS_S_EO_470019","urnRef":"urn:vpro:media:group:35771109","type":"COLLECTION"},{"midRef":"POMS_S_NPO_823012","urnRef":"urn:vpro:media:group:53249931","type":"PLAYLIST"}],"memberOf":[{"midRef":"POMS_S_EO_470019","urnRef":"urn:vpro:media:group:35771109","type":"COLLECTION","index":1,"highlighted":false,"added":1410179861151},{"midRef":"POMS_S_NPO_823012","urnRef":"urn:vpro:media:group:53249931","type":"PLAYLIST","index":2,"highlighted":false,"added":1427709494490}],"locations":[{"programUrl":"odiw+http://odi.omroep.nl/o/eo/01KnalerwtenChec_48a8bf0d.ism","avAttributes":{"avFileFormat":"HASP"},"owner":"BROADCASTER","creationDate":1410179839574,"lastModified":1410179860862,"workflow":"PUBLISHED","urn":"urn:vpro:media:location:44738254"},{"programUrl":"http://content.omroep.nl/eo/vod/mp4/01KnalerwtenChec_48a8bf0d-264k.mp4","avAttributes":{"bitrate":264000,"avFileFormat":"M4V"},"owner":"BROADCASTER","creationDate":1410179839573,"lastModified":1410179860851,"workflow":"PUBLISHED","urn":"urn:vpro:media:location:44738248"},{"programUrl":"http://content.omroep.nl/eo/vod/mp4/01KnalerwtenChec_48a8bf0d-628k.mp4","avAttributes":{"bitrate":628000,"avFileFormat":"M4V"},"owner":"BROADCASTER","creationDate":1410179839573,"lastModified":1410179860852,"workflow":"PUBLISHED","urn":"urn:vpro:media:location:44738250"},{"programUrl":"http://content.omroep.nl/eo/vod/mp4/01KnalerwtenChec_48a8bf0d-828k.mp4","avAttributes":{"bitrate":828000,"avFileFormat":"M4V"},"owner":"BROADCASTER","creationDate":1410179839573,"lastModified":1410179860857,"workflow":"PUBLISHED","urn":"urn:vpro:media:location:44738252"},{"programUrl":"http://content.omroep.nl/eo/vod/mp4/01KnalerwtenChec_48a8bf0d-1092k.mp4","avAttributes":{"bitrate":1092000,"avFileFormat":"M4V"},"owner":"BROADCASTER","creationDate":1410179839573,"lastModified":1410179860850,"workflow":"PUBLISHED","urn":"urn:vpro:media:location:44738246"}],"relations":[{"value":"2014-09-09T16:30:14+02:00","urn":"urn:vpro:media:relation:44738416","broadcaster":"EO","type":"LAST_MODIFIED"},{"value":"Helena Hunink","urn":"urn:vpro:media:relation:44738417","broadcaster":"EO","type":"LAST_MODIFIER"}],"images":[{"title":"Checkpoint thuistest Koen knalerwt op wc","description":"Still","imageUri":"urn:vpro:image:509100","owner":"BROADCASTER","type":"PICTURE","highlighted":false,"creationDate":1410180105740,"lastModified":1410180105861,"workflow":"PUBLISHED","urn":"urn:vpro:media:image:44738415"}],"publishDate":1427709677036,"workflow":"PUBLISHED","type":"CLIP","avType":"VIDEO"}
+    http_version: '1.1'
+  recorded_at: Tue, 06 Oct 2015 12:00:00 GMT
+recorded_with: VCR 2.9.3

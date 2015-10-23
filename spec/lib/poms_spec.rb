@@ -33,6 +33,12 @@ describe Poms do
     end
   end
 
+  describe '#fetch_playlist_clips' do
+    it 'creates an array of clips' do
+      expect(Poms.fetch_playlist_clips('POMS_S_NPO_818759').size).to eq(21)
+    end
+  end
+
   describe '#fetch_broadcasts_for_serie' do
     it 'returns nil when a broadcast does not exist' do
       FakeWeb.register_uri(:get, "http://docs.poms.omroep.nl/media/_design/media/_view/by-ancestor-and-type?reduce=false&key=[%22BLA%22,%22BROADCAST%22]&include_docs=true", :status => [404, "Not Found"])
@@ -75,7 +81,7 @@ describe Poms do
       end
 
       it "fetches the current broadcast" do
-        expect(Poms::Builder).to receive(:process_hash).exactly(1).times
+        expect(Poms::Builder).to receive(:process_hash).exactly(0).times
         Poms.fetch_current_broadcast('NED3')
       end
     end

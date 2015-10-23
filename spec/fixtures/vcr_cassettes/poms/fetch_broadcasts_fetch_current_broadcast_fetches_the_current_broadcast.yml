@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?descending=true&endkey=%5B%22NED3%22%2C+1410882727000%5D&include_docs=true&limit=1&reduce=false&startkey=%5B%22NED3%22%2C+1410969127000%5D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - "*/*"
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Fri, 23 Oct 2015 12:11:04 GMT
+      server:
+      - CouchDB/1.6.1 (Erlang OTP/R15B01)
+      etag:
+      - '"23R6ARXC8YQORKQWTBRGOM2WI"'
+      content-type:
+      - text/plain; charset=utf-8
+      cache-control:
+      - must-revalidate
+      x-proxyinstancename:
+      - poms1b
+      set-cookie:
+      - balancer://poms3cluster=balancer.poms1madb; path=/;
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"total_rows\":876157,\"offset\":331531,\"rows\":[\r\n{\"id\":\"AT_2023343\",\"key\":[\"NED3\",1410966669000],\"value\":null,\"doc\":{\"_id\":\"AT_2023343\",\"_rev\":\"77-ad380957afc1f479fff66e9e9877c31f\",\"objectType\":\"program\",\"mid\":\"AT_2023343\",\"creationDate\":1408855689977,\"lastModified\":1430914291267,\"hasSubtitles\":true,\"sortDate\":1410966669000,\"urn\":\"urn:vpro:media:program:44386090\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"AT_2011551\",\"urnRef\":\"urn:vpro:media:group:43525293\",\"type\":\"SEASON\",\"index\":30,\"highlighted\":false,\"added\":1408855690158}],\"broadcasters\":[\"AVROTROS\"],\"titles\":[{\"value\":\"Junior
+        Songfestival 2014\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"1e Halve
+        Finale LIVE\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"1e Halve
+        Finale Herhaling\",\"owner\":\"BROADCASTER\",\"type\":\"SUB\"},{\"value\":\"1e
+        Halve Finale LIVE\",\"owner\":\"MIS\",\"type\":\"SUB\"}],\"descriptions\":[{\"value\":\"In
+        de eerste halve finale van het Junior Songfestival strijden Bobby & Ella,
+        Chelsea, Sem en Suze tegen elkaar. Een professionele vakjury bepaalt samen
+        met de kinderjury en de kijkers thuis wie er door mag naar die allesbeslissende
+        finale.\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"In de eerste halve
+        finale van het Junior Songfestival strijden Bobby & Ella, Chelsea, Sem en
+        Suze tegen elkaar. Een professionele vakjury bepaalt samen met de kinderjury
+        en de kijkers thuis wie er door mag naar die allesbeslissende finale.  Presentatie
+        is in handen van Jan Smit.\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"In
+        de eerste halve finale strijden Bobby & Ella, Chelsea, Sem en Suze tegen elkaar.
+        Een professionele vakjury bepaalt samen met de kinderjury en de kijkers thuis
+        wie er door mag naar de finale.\",\"owner\":\"MIS\",\"type\":\"SHORT\"},{\"value\":\"In
+        de eerste halve finale strijden Bobby & Ella, Chelsea, Sem en Suze tegen elkaar.\",\"owner\":\"MIS\",\"type\":\"KICKER\"}],\"genres\":[\"Jeugd\",\"Muziek\"],\"countries\":[\"NL\"],\"languages\":[],\"avAttributes\":{\"videoAttributes\":{\"color\":\"BLACK_AND_WHITE_AND_COLOR\",\"aspectRatio\":\"16:9\"},\"audioAttributes\":{\"numberOfChannels\":2}},\"releaseYear\":2014,\"duration\":3016180,\"descendantOf\":[{\"midRef\":\"POMS_S_AVRO_096666\",\"urnRef\":\"urn:vpro:media:group:3731025\",\"type\":\"SERIES\"},{\"midRef\":\"AT_2011551\",\"urnRef\":\"urn:vpro:media:group:43525293\",\"type\":\"SEASON\"}],\"predictions\":[{\"state\":\"REALIZED\",\"platform\":\"INTERNETVOD\"},{\"state\":\"REALIZED\",\"publishStart\":1410969687000,\"publishStop\":1413388887000,\"platform\":\"PLUSVOD\"}],\"locations\":[{\"programUrl\":\"odip+http://odi.omroep.nl/video/adaptive/AT_2023343\",\"avAttributes\":{\"avFileFormat\":\"HASP\"},\"owner\":\"CERES\",\"platform\":\"INTERNETVOD\",\"creationDate\":1410972070989,\"lastModified\":1410972071100,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:location:44963233\"},{\"programUrl\":\"odi+http://odi.omroep.nl/video/h264_sb/AT_2023343\",\"avAttributes\":{\"bitrate\":200000,\"avFileFormat\":\"H264\"},\"owner\":\"CERES\",\"platform\":\"INTERNETVOD\",\"creationDate\":1410969965391,\"lastModified\":1410969965554,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:location:44962711\"},{\"programUrl\":\"odi+http://odi.omroep.nl/video/h264_bb/AT_2023343\",\"avAttributes\":{\"bitrate\":500000,\"avFileFormat\":\"H264\"},\"owner\":\"CERES\",\"platform\":\"INTERNETVOD\",\"creationDate\":1410970863160,\"lastModified\":1410970863332,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:location:44962922\"},{\"programUrl\":\"odi+http://odi.omroep.nl/video/h264_std/AT_2023343\",\"avAttributes\":{\"bitrate\":1000000,\"avFileFormat\":\"H264\"},\"owner\":\"CERES\",\"platform\":\"INTERNETVOD\",\"creationDate\":1410970873878,\"lastModified\":1410970874078,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:location:44962924\"}],\"scheduleEvents\":[{\"guideDay\":1410904800000,\"start\":1410966669000,\"duration\":3016000,\"poProgID\":\"AT_2023343\",\"channel\":\"NED3\",\"urnRef\":\"urn:vpro:media:program:44386090\",\"midRef\":\"AT_2023343\"}],\"images\":[{\"title\":\"Junior
+        Songfestival 1e halve finale\",\"description\":\"Junior Songfestival 1e halve
+        finale\",\"imageUri\":\"urn:vpro:image:607332\",\"height\":1667,\"width\":2500,\"source\":\"\",\"owner\":\"BROADCASTER\",\"type\":\"PICTURE\",\"highlighted\":false,\"creationDate\":1430914290816,\"lastModified\":1430914290963,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:55030777\"}],\"publishDate\":1436335859110,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
+    http_version: '1.1'
+  recorded_at: Wed, 17 Sep 2014 15:52:07 GMT
+recorded_with: VCR 2.9.3

@@ -9,9 +9,16 @@ require 'poms/broadcast'
 require 'poms/season'
 require 'poms/series'
 require 'poms/views'
+require 'poms/fields'
+require 'poms/builderless/broadcast'
+require 'poms/builderless/clip'
 
 module Poms
+  extend Poms::Views
+  extend Poms::Fields
   extend self
+
+
   URL = 'http://docs.poms.omroep.nl'
   MEDIA_PATH = '/media/'
   BROADCASTS_VIEW_PATH = '/media/_design/media/_view/broadcasts-by-broadcaster-and-start'
@@ -25,6 +32,17 @@ module Poms
     return nil if mid.nil?
     hash = fetch_raw_json mid
     Poms::Builder.process_hash hash
+  end
+
+  def fetch_clip(mid)
+    clip_hash = fetch_raw_json(mid)
+    Poms::Builderless::Clip.new(clip_hash)
+  end
+
+  def fetch_playlist_clips(mid)
+    uri = Poms::Views.by_group(mid)
+    playlist_hash = get_bare_json(uri)
+    playlist_hash['rows'].map { |hash| Poms::Builderless::Clip.new(hash['doc']) }
   end
 
   def fetch_raw_json(mid)
@@ -70,8 +88,10 @@ module Poms
   end
 
   def fetch_current_broadcast(channel)
-    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.ago, {limit: 1, descending: true}))
-    get_first_broadcast(hash)
+    uri = Poms::Views.broadcasts_by_channel_and_start(channel)
+    hash = get_bare_json(uri)
+    row = hash['rows'].first
+    Builderless::Broadcast.new(row['doc']) if row
   end
 
   def fetch_current_broadcast_and_key(channel)
