@@ -33,11 +33,19 @@ module Poms
     end
 
     def available_until
-      return nil if locations.nil? or locations.empty?
-      timestamp = locations.map(&:publish_stop).compact.first
+      return if predictions.blank?
+      timestamp = offline_timestamp(predictions)
       return Time.at(timestamp / 1000).to_datetime if timestamp
     end
 
+    private
+
+    def offline_timestamp(predictions, platform = 'INTERNETVOD')
+      timestamps = predictions.map do |p|
+        p.publish_stop if p.platform == platform
+      end.compact
+      timestamps.first unless timestamps.empty?
+    end
   end
 
   class Strand < Broadcast
