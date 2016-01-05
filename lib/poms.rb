@@ -12,6 +12,7 @@ require 'poms/views'
 require 'poms/fields'
 require 'poms/builderless/broadcast'
 require 'poms/builderless/clip'
+require 'poms/merged_series'
 
 module Poms
   extend Poms::Views
