@@ -6,4 +6,9 @@ describe Poms::MergedSeries do
     expect(mids.keys).to include('POMS_S_EO_097367')
     expect(mids.values).to include('VPWON_1257896')
   end
+
+  it 'is enumerable' do
+    expect(subject.map { |_, new_mid| new_mid })
+      .to include('VPWON_1257896')
+  end
 end
