@@ -16,6 +16,7 @@ require 'poms/merged_series'
 require 'poms/poms_error'
 
 # Module that allows interfacing with the POMS CouchDB service.
+# rubocop:disable Metrics/ModuleLength
 module Poms
   extend Poms::Views
   extend Poms::Fields
@@ -180,3 +181,4 @@ module Poms
     rows.empty? ? [] : rows.first['key']
   end
 end
+# rubocop:enable Metrics/ModuleLength

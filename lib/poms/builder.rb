@@ -11,21 +11,22 @@ module Poms
       underscored_hash = hash.each_with_object({}) do |(k, v), res|
         res[k.underscore] = v
       end
-      class_name = (underscored_hash['type'] || 'Typeless').capitalize
-      class_name = pomsify_class_name(class_name)
-      begin
-        klass = Poms.const_get class_name
-      rescue NameError
-        klass = Poms.const_set class_name,
-                               Class.new(Poms::Builder::NestedOpenStruct)
-      end
+      class_name = pomsify_class_name(underscored_hash['type'])
+      klass = poms_class(class_name)
       klass.send(:new, underscored_hash)
     end
 
     def self.pomsify_class_name(class_name)
+      class_name = class_name.blank? ? 'Typeless' : class_name.capitalize
       class_name =
         'Poms' + class_name unless SUPPORTED_CLASSES.include? class_name
       class_name
+    end
+
+    def self.poms_class(class_name)
+      Poms.const_get class_name
+    rescue NameError
+      Poms.const_set class_name, Class.new(Poms::Builder::NestedOpenStruct)
     end
 
     # An OpenStruct subclass that allows nesting to simulate a hash.
