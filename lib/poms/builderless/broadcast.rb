@@ -2,7 +2,7 @@ require 'poms/fields'
 
 module Poms
   module Builderless
-    # A single broadcast fetched from Poms
+    # A single broadcast (episode) fetched from Poms
     class Broadcast
       def initialize(hash)
         @hash = hash
@@ -23,6 +23,7 @@ module Poms
       end
     end
 
+    # A single event of a broadcast.
     class Event
       def initialize(hash)
         @hash = hash

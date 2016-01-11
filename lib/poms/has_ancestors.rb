@@ -1,4 +1,5 @@
 module Poms
+  # Mixin for a class that has ancestors.
   module HasAncestors
     module ClassMethods
     end

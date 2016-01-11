@@ -2,6 +2,7 @@ require 'poms/has_ancestors'
 require 'poms/has_base_attributes'
 
 module Poms
+  # POMS wrapper for an episode of a Serie.
   class Broadcast < Poms::Builder::NestedOpenStruct
     include Poms::HasAncestors
     include Poms::HasBaseAttributes

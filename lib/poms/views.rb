@@ -1,7 +1,7 @@
 require 'poms/connect'
 
-# Constructs urls for Poms
 module Poms
+  # Views constructs the urls that can be used to access specific views in POMS.
   module Views
     include Poms::Connect
     extend self

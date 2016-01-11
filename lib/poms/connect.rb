@@ -1,4 +1,5 @@
 module Poms
+  # Module that gets json from a url.
   module Connect
     def get_json(uri)
       JSON.parse(open(uri).read)

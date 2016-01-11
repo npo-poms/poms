@@ -1,4 +1,5 @@
 module Poms
+  # POMS wrapper for a single scheduled broadcast.
   class ScheduleEvent < Poms::Builder::NestedOpenStruct
     def initialize(hash)
       @hash = hash

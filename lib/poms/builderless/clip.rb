@@ -2,7 +2,7 @@ require 'poms/fields'
 
 module Poms
   module Builderless
-    # A single broadcast fetched from Poms
+    # A single clip fetched from Poms
     class Clip
       def initialize(hash)
         @hash = hash

@@ -1,4 +1,5 @@
 module Poms
+  # Mixin for classes with a title and description.
   module HasBaseAttributes
     def title
       return @title if @title

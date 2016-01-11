@@ -1,6 +1,7 @@
 require 'poms/has_base_attributes'
 
 module Poms
+  # POMS wrapper for a TV Serie.
   class Series < Poms::Builder::NestedOpenStruct
     include Poms::HasBaseAttributes
 

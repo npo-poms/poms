@@ -2,6 +2,7 @@ require 'ostruct'
 require 'active_support/all'
 
 module Poms
+  # Builds the correct object based on the result from POMS.
   class Builder
     SUPPORTED_CLASSES = %w(Broadcast Season Series Views Typeless)
 
@@ -27,6 +28,7 @@ module Poms
       class_name
     end
 
+    # An OpenStruct subclass that allows nesting to simulate a hash.
     class NestedOpenStruct < OpenStruct
       include Poms::Base
 

@@ -15,6 +15,7 @@ require 'poms/builderless/clip'
 require 'poms/merged_series'
 require 'poms/poms_error'
 
+# Module that allows interfacing with the POMS CouchDB service.
 module Poms
   extend Poms::Views
   extend Poms::Fields
