@@ -8,8 +8,8 @@ module Poms
     def self.process_hash(hash)
       return unless hash
       underscored_hash = {}
-      hash.each { |k,v| underscored_hash[k.underscore] = v }
-      class_name = (underscored_hash['type'] || "Typeless").capitalize
+      hash.each { |k, v| underscored_hash[k.underscore] = v }
+      class_name = (underscored_hash['type'] || 'Typeless').capitalize
       class_name = pomsify_class_name(class_name)
       begin
         klass = Poms.const_get class_name
@@ -23,18 +23,17 @@ module Poms
     private
 
     def self.pomsify_class_name(class_name)
-      class_name = "Poms" + class_name unless SUPPORTED_CLASSES.include? class_name
+      class_name = 'Poms' + class_name unless SUPPORTED_CLASSES.include? class_name
       class_name
     end
 
     class NestedOpenStruct < OpenStruct
-
       include Poms::Base
 
       def initialize(hash)
         @hash = hash
-        @hash.each do |k,v|
-          process_key_value(k,v)
+        @hash.each do |k, v|
+          process_key_value(k, v)
         end
         super hash
       end
@@ -47,19 +46,19 @@ module Poms
           struct_array = v.map do |element|
             process_element(element)
           end
-          @hash.send("[]=", k, struct_array)
+          @hash.send('[]=', k, struct_array)
         when Hash
-          @hash.send("[]=", k, Poms::Builder.process_hash(v))
+          @hash.send('[]=', k, Poms::Builder.process_hash(v))
         when String, Integer
 
           case k
-          when "start", "end", "sort_date"
-            @hash.send("[]=", k, Time.at(v / 1000))
+          when 'start', 'end', 'sort_date'
+            @hash.send('[]=', k, Time.at(v / 1000))
           end
         when NilClass, FalseClass, TrueClass, Time, Poms::Typeless
           # do nothing
         else
-          raise Poms::Exceptions::UnkownStructure, "Error processing #{v.class}: #{v}, which was expected to be a String or Array"
+          fail Poms::Exceptions::UnkownStructure, "Error processing #{v.class}: #{v}, which was expected to be a String or Array"
         end
       end
 
@@ -70,16 +69,14 @@ module Poms
         when Hash
           Poms::Builder.process_hash element
         else
-          raise Poms::Exceptions::UnkownStructure, "Error processing #{element}: which was expected to be a String nor a Hash"
+          fail Poms::Exceptions::UnkownStructure, "Error processing #{element}: which was expected to be a String nor a Hash"
         end
       end
     end
   end
 
-
   module Exceptions
     class UnkownStructure < StandardError
     end
   end
-
 end

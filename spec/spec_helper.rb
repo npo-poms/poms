@@ -9,7 +9,7 @@ require 'poms' # and any other gems you need
 FakeWeb.allow_net_connect = false
 
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :fakeweb
 end
 

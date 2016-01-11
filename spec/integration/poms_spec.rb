@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Poms do
-
   describe '#fetch_current_broadcast' do
     let(:current_broadcast) { Poms.fetch_current_broadcast('NED3') }
 
@@ -71,5 +70,5 @@ describe Poms do
   end
 
   describe '#upcoming_broadcasts'
-  describe '#fetch_descendant_mids'  
+  describe '#fetch_descendant_mids'
 end

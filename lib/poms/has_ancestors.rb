@@ -1,7 +1,6 @@
 module Poms
   module HasAncestors
     module ClassMethods
-
     end
 
     module InstanceMethods
@@ -28,8 +27,16 @@ module Poms
 
       def ancestor_mids
         return @ancestor_mids if @ancestor_mids
-        descendant_of_mids = descendant_of.map(&:mid_ref) rescue []
-        episode_of_mids = episode_of.map(&:mid_ref) rescue  []
+        descendant_of_mids = begin
+                               descendant_of.map(&:mid_ref)
+                             rescue
+                               []
+                             end
+        episode_of_mids = begin
+                            episode_of.map(&:mid_ref)
+                          rescue
+                            []
+                          end
         @ancestor_mids = (descendant_of_mids + episode_of_mids).flatten.compact.uniq
       end
     end

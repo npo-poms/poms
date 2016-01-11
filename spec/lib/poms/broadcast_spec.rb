@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Poms::Broadcast do
-
   let(:poms_broadcast) { Fabricate(:poms_broadcast) }
   # pippi langkous is a peculiar case, as it has no series, just a season
   let(:poms_pippi_langkous) { Fabricate(:poms_broadcast_pippi_langkous) }
@@ -15,18 +14,18 @@ describe Poms::Broadcast do
   end
 
   it 'correctly sets the description' do
-    description = "Li biedt Barry een baantje aan bij de uitdragerij en vraagt zich meteen af of dat wel zo slim was. Timon en Joep zien de criminele organisatie de Rijland Angels. Timon wil naar hun loods, maar is dat wel een goed idee?"
+    description = 'Li biedt Barry een baantje aan bij de uitdragerij en vraagt zich meteen af of dat wel zo slim was. Timon en Joep zien de criminele organisatie de Rijland Angels. Timon wil naar hun loods, maar is dat wel een goed idee?'
     expect(poms_broadcast.description).to eq(description)
   end
 
-  it 'converts schedule events to Poms::ScheduleEvent'  do
+  it 'converts schedule events to Poms::ScheduleEvent' do
     poms_broadcast.schedule_events.each do |e|
       expect(e.class).to eq(Poms::ScheduleEvent)
     end
   end
 
   it 'correctly sets available until' do
-    expect(poms_broadcast.available_until).to eq(Time.at(1435381968).to_datetime)
+    expect(poms_broadcast.available_until).to eq(Time.at(1_435_381_968).to_datetime)
   end
 
   it 'sets the serie correctly when a broadcast only has a season, no series' do
@@ -34,11 +33,11 @@ describe Poms::Broadcast do
   end
 
   it 'returns the available streams' do
-    expect(poms_broadcast.odi_streams).to eq(["adaptive", "h264_sb", "h264_bb", "h264_std", "wvc1_std", "wmv_sb", "wmv_bb"])
+    expect(poms_broadcast.odi_streams).to eq(%w(adaptive h264_sb h264_bb h264_std wvc1_std wmv_sb wmv_bb))
   end
 
   it 'return the ancestors of the broadcast' do
     # I use to_set as the order does not matter
-    expect(poms_broadcast.ancestor_mids.to_set).to eq(['POMS_S_KRO_059857', 'KRO_1521173'].to_set)
+    expect(poms_broadcast.ancestor_mids.to_set).to eq(%w(POMS_S_KRO_059857 KRO_1521173).to_set)
   end
 end

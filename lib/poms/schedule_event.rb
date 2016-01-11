@@ -1,7 +1,6 @@
 module Poms
   class ScheduleEvent < Poms::Builder::NestedOpenStruct
-
-    def initialize hash
+    def initialize(hash)
       @hash = hash
       set_start_and_end_times
       super @hash
@@ -16,10 +15,10 @@ module Poms
 
     def set_starts_at
       @hash[:starts_at] = case @hash[:start]
-        when String, Integer
-          Time.at @hash[:start] / 1000
-        when Time
-          @hash[:start]
+                          when String, Integer
+                            Time.at @hash[:start] / 1000
+                          when Time
+                            @hash[:start]
         end
     end
 
@@ -30,7 +29,5 @@ module Poms
     def duration
       (@hash[:duration].to_i / 1000).seconds
     end
-
   end
 end
-

@@ -33,7 +33,7 @@ end
 Fabricator(:zapp_broadcasts, class_name: :array) do
   initialize_with do
     hash = JSON.parse File.read('spec/fixtures/poms_zapp.json')
-    array = hash['rows'].take(10).map {|item| Poms::Builder.process_hash item['doc']}
+    array = hash['rows'].take(10).map { |item| Poms::Builder.process_hash item['doc'] }
     array
   end
 end

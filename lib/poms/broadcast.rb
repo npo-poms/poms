@@ -3,11 +3,10 @@ require 'poms/has_base_attributes'
 
 module Poms
   class Broadcast < Poms::Builder::NestedOpenStruct
-
     include Poms::HasAncestors
     include Poms::HasBaseAttributes
 
-    def initialize hash
+    def initialize(hash)
       super
       process_schedule_events
     end
@@ -24,7 +23,7 @@ module Poms
     end
 
     def odi_streams
-      return [] if locations.nil? or locations.empty?
+      return [] if locations.nil? || locations.empty?
       odi_streams = locations.select { |l| l.program_url.match(/^odi/) }
       streams = odi_streams.map do |l|
         l.program_url.match(/^[\w+]+\:\/\/[\w\.]+\/video\/(\w+)\/\w+/)[1]
@@ -50,5 +49,4 @@ module Poms
 
   class Strand < Broadcast
   end
-
 end
