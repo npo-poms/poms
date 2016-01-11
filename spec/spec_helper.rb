@@ -21,7 +21,7 @@ RSpec.configure do |config|
     else
       name = example.metadata[:full_description]
              .split(/\s+/, 2).join('/')
-             .underscore.gsub(/[^\w\/]+/, '_')
+             .underscore.gsub(%r{[^\w\/]+}, '_')
       VCR.use_cassette(name, options, &example)
     end
   end

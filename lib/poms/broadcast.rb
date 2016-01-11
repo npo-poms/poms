@@ -29,7 +29,7 @@ module Poms
       return [] if locations.nil? || locations.empty?
       odi_streams = locations.select { |l| l.program_url.match(/^odi/) }
       streams = odi_streams.map do |l|
-        l.program_url.match(/^[\w+]+\:\/\/[\w\.]+\/video\/(\w+)\/\w+/)[1]
+        l.program_url.match(%r{^[\w+]+\:\/\/[\w\.]+\/video\/(\w+)\/\w+})[1]
       end
       streams.uniq
     end
