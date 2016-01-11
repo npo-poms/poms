@@ -19,7 +19,7 @@ module Poms
                             Time.at @hash[:start] / 1000
                           when Time
                             @hash[:start]
-        end
+                          end
     end
 
     def set_ends_at

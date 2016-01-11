@@ -5,7 +5,7 @@ module Poms
     include Poms::HasBaseAttributes
 
     def related_group_mids
-      Poms.fetch_descendants_for_serie(mid, 'SEASON').map &:mid
+      Poms.fetch_descendants_for_serie(mid, 'SEASON').map(&:mid)
     end
   end
 end

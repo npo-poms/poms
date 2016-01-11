@@ -7,8 +7,7 @@ module Poms
 
     def self.process_hash(hash)
       return unless hash
-      underscored_hash = {}
-      hash.each { |k, v| underscored_hash[k.underscore] = v }
+      underscored_hash = hash.each_with_object({}) { |(k, v), res| res[k.underscore] = v }
       class_name = (underscored_hash['type'] || 'Typeless').capitalize
       class_name = pomsify_class_name(class_name)
       begin
@@ -19,8 +18,6 @@ module Poms
       end
       klass.send(:new, underscored_hash)
     end
-
-    private
 
     def self.pomsify_class_name(class_name)
       class_name = 'Poms' + class_name unless SUPPORTED_CLASSES.include? class_name
@@ -38,19 +35,13 @@ module Poms
         super hash
       end
 
-      private
-
       def process_key_value(k, v)
         case v
         when Array
-          struct_array = v.map do |element|
-            process_element(element)
-          end
-          @hash.send('[]=', k, struct_array)
+          process_array(k, v)
         when Hash
           @hash.send('[]=', k, Poms::Builder.process_hash(v))
         when String, Integer
-
           case k
           when 'start', 'end', 'sort_date'
             @hash.send('[]=', k, Time.at(v / 1000))
@@ -60,6 +51,13 @@ module Poms
         else
           fail Poms::Exceptions::UnkownStructure, "Error processing #{v.class}: #{v}, which was expected to be a String or Array"
         end
+      end
+
+      def process_array(key, value)
+        struct_array = value.map do |element|
+          process_element(element)
+        end
+        @hash.send('[]=', key, struct_array)
       end
 
       def process_element(element)

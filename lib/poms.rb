@@ -27,7 +27,6 @@ module Poms
   ANCESTOR_AND_SORTDATE_PATH = '/media/_design/media/_view/by-ancestor-and-sortdate'
   CHANNEL_AND_START_PATH = '/media/_design/media/_view/broadcasts-by-channel-and-start'
   VALID_CHANNELS = /^NED(1|2|3)$/
-  #  ?startkey=[\"Zapp\",1369755130000]&endkey=[\"Zapp\",1370964770000]&reduce=false&include_docs=true
 
   def fetch(mid)
     return nil if mid.nil?
@@ -110,7 +109,6 @@ module Poms
     { key: get_first_key(hash), broadcast: get_first_broadcast(hash) }
   end
 
-  # private
   def broadcast_view_params(zender, start_time, end_time)
     zender = zender.capitalize
     "?startkey=[\"#{zender}\",#{start_time.to_i * 1000}]&endkey=[\"#{zender}\",#{end_time.to_i * 1000}]&reduce=false&include_docs=true"
