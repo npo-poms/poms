@@ -22,10 +22,13 @@ module Poms
 
   URL = 'http://docs.poms.omroep.nl'
   MEDIA_PATH = '/media/'
-  BROADCASTS_VIEW_PATH = '/media/_design/media/_view/broadcasts-by-broadcaster-and-start'
+  BROADCASTS_VIEW_PATH =
+    '/media/_design/media/_view/broadcasts-by-broadcaster-and-start'
   ANCESTOR_AND_TYPE_PATH = '/media/_design/media/_view/by-ancestor-and-type'
-  ANCESTOR_AND_SORTDATE_PATH = '/media/_design/media/_view/by-ancestor-and-sortdate'
-  CHANNEL_AND_START_PATH = '/media/_design/media/_view/broadcasts-by-channel-and-start'
+  ANCESTOR_AND_SORTDATE_PATH =
+    '/media/_design/media/_view/by-ancestor-and-sortdate'
+  CHANNEL_AND_START_PATH =
+    '/media/_design/media/_view/broadcasts-by-channel-and-start'
   VALID_CHANNELS = /^NED(1|2|3)$/
 
   def fetch(mid)
@@ -42,7 +45,9 @@ module Poms
   def fetch_playlist_clips(mid)
     uri = Poms::Views.by_group(mid)
     playlist_hash = get_bare_json(uri)
-    playlist_hash['rows'].map { |hash| Poms::Builderless::Clip.new(hash['doc']) }
+    playlist_hash['rows'].map do |hash|
+      Poms::Builderless::Clip.new(hash['doc'])
+    end
   end
 
   def fetch_raw_json(mid)
@@ -55,8 +60,10 @@ module Poms
     get_bare_json(uri)
   end
 
-  def upcoming_broadcasts(zender, start_time = Time.now, end_time = Time.now + 7.days)
-    uri = [BROADCASTS_VIEW_PATH, broadcast_view_params(zender, start_time, end_time)].join
+  def upcoming_broadcasts(zender, start_time = Time.now,
+                          end_time = Time.now + 7.days)
+    view_params = broadcast_view_params(zender, start_time, end_time)
+    uri = [BROADCASTS_VIEW_PATH, view_params].join
     hash = get_json(uri)
     hash['rows'].map { |item| Poms::Builder.process_hash item['doc'] }
   end
@@ -70,19 +77,23 @@ module Poms
   alias_method :fetch_broadcasts_for_serie, :fetch_descendants_for_serie
 
   def fetch_descendants_by_date_for_serie(mid, start_time = 1.week.ago)
-    uri = [ANCESTOR_AND_SORTDATE_PATH, ancestor_sortdate_params(mid, start_time)].join
+    view_params = ancestor_sortdate_params(mid, start_time)
+    uri = [ANCESTOR_AND_SORTDATE_PATH, view_params].join
     hash = get_json(uri) || { 'rows' => [] }
     hash['rows'].map { |item| Poms::Builder.process_hash item['doc'] }
   end
 
   def fetch_descendant_mids(mid, type = 'BROADCAST')
-    uri = [ANCESTOR_AND_TYPE_PATH, ancestor_type_params(mid, type), '&include_docs=false'].join
+    view_params = ancestor_type_params(mid, type)
+    uri = [ANCESTOR_AND_TYPE_PATH, view_params, '&include_docs=false'].join
     hash = get_json(uri) || { 'rows' => [] }
     hash['rows'].map { |item| item['id'] }
   end
 
-  def fetch_broadcasts_by_channel_and_start(channel, start_time = 1.week.ago, end_time = Time.now)
-    uri = [CHANNEL_AND_START_PATH, channel_params(channel, start_time, end_time)].join
+  def fetch_broadcasts_by_channel_and_start(channel, start_time = 1.week.ago,
+                                            end_time = Time.now)
+    view_params = channel_params(channel, start_time, end_time)
+    uri = [CHANNEL_AND_START_PATH, view_params].join
     hash = get_json(uri)
     hash['rows'].map { |item| Poms::Builder.process_hash item['doc'] }
   end
@@ -95,23 +106,31 @@ module Poms
   end
 
   def fetch_current_broadcast_and_key(channel)
-    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.ago, limit: 1, descending: true))
+    hash = get_json(channel_and_start_uri(
+                      channel, Time.now, 1.day.ago, limit: 1, descending: true)
+                   )
     { key: get_first_key(hash), broadcast: get_first_broadcast(hash) }
   end
 
   def fetch_next_broadcast(channel)
-    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.from_now, limit: 1))
+    hash = get_json(channel_and_start_uri(
+                      channel, Time.now, 1.day.from_now, limit: 1)
+                   )
     get_first_broadcast(hash)
   end
 
   def fetch_next_broadcast_and_key(channel)
-    hash = get_json(channel_and_start_uri(channel, Time.now, 1.day.from_now, limit: 1))
+    hash = get_json(channel_and_start_uri(
+                      channel, Time.now, 1.day.from_now, limit: 1)
+                   )
     { key: get_first_key(hash), broadcast: get_first_broadcast(hash) }
   end
 
   def broadcast_view_params(zender, start_time, end_time)
     zender = zender.capitalize
-    "?startkey=[\"#{zender}\",#{start_time.to_i * 1000}]&endkey=[\"#{zender}\",#{end_time.to_i * 1000}]&reduce=false&include_docs=true"
+    "?startkey=[\"#{zender}\",#{start_time.to_i * 1000}]" \
+    "&endkey=[\"#{zender}\",#{end_time.to_i * 1000}]" \
+    '&reduce=false&include_docs=true'
   end
 
   def ancestor_type_params(mid, type)
@@ -121,11 +140,14 @@ module Poms
   def ancestor_sortdate_params(mid, start_time = 1.month.ago)
     end_time_i    = 1.week.from_now.to_i * 1000
     start_time_i  = start_time.to_i * 1000
-    "?reduce=false&startkey=[\"#{mid}\",#{start_time_i}]&endkey=[\"#{mid}\",#{end_time_i}]&include_docs=true"
+    "?reduce=false&startkey=[\"#{mid}\",#{start_time_i}]" \
+    "&endkey=[\"#{mid}\",#{end_time_i}]&include_docs=true"
   end
 
   def channel_params(channel, start_time, end_time)
-    "?startkey=[\"#{channel}\",#{start_time.to_i * 1000}]&endkey=[\"#{channel}\",#{end_time.to_i * 1000}]&reduce=false&include_docs=true"
+    "?startkey=[\"#{channel}\",#{start_time.to_i * 1000}]" \
+    "&endkey=[\"#{channel}\",#{end_time.to_i * 1000}]" \
+    '&reduce=false&include_docs=true'
   end
 
   def get_json(uri)
@@ -143,7 +165,8 @@ module Poms
 
   def channel_and_start_uri(channel, start_time, end_time, options = {})
     query_options = options.blank? ? '' : "&#{options.to_query}"
-    [CHANNEL_AND_START_PATH, channel_params(channel, start_time, end_time), query_options].join
+    view_params = channel_params(channel, start_time, end_time)
+    [CHANNEL_AND_START_PATH, view_params, query_options].join
   end
 
   def get_first_broadcast(hash)

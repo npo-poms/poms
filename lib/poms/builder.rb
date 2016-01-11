@@ -7,20 +7,23 @@ module Poms
 
     def self.process_hash(hash)
       return unless hash
-      underscored_hash = hash.each_with_object({}) { |(k, v), res| res[k.underscore] = v }
+      underscored_hash = hash.each_with_object({}) do |(k, v), res|
+        res[k.underscore] = v
+      end
       class_name = (underscored_hash['type'] || 'Typeless').capitalize
       class_name = pomsify_class_name(class_name)
       begin
         klass = Poms.const_get class_name
       rescue NameError
-        # c = Class.new(Poms::NestedOpenStruct)
-        klass = Poms.const_set class_name, Class.new(Poms::Builder::NestedOpenStruct)
+        klass = Poms.const_set class_name,
+                               Class.new(Poms::Builder::NestedOpenStruct)
       end
       klass.send(:new, underscored_hash)
     end
 
     def self.pomsify_class_name(class_name)
-      class_name = 'Poms' + class_name unless SUPPORTED_CLASSES.include? class_name
+      class_name =
+        'Poms' + class_name unless SUPPORTED_CLASSES.include? class_name
       class_name
     end
 
@@ -49,7 +52,9 @@ module Poms
         when NilClass, FalseClass, TrueClass, Time, Poms::Typeless
           # do nothing
         else
-          fail Poms::Exceptions::UnkownStructure, "Error processing #{v.class}: #{v}, which was expected to be a String or Array"
+          fail Poms::Exceptions::UnkownStructure,
+               "Error processing #{v.class}: #{v}, which was expected to be " \
+               'a String or Array'
         end
       end
 
@@ -67,7 +72,9 @@ module Poms
         when Hash
           Poms::Builder.process_hash element
         else
-          fail Poms::Exceptions::UnkownStructure, "Error processing #{element}: which was expected to be a String nor a Hash"
+          fail Poms::Exceptions::UnkownStructure,
+               "Error processing #{element}: which was expected to be a " \
+               'String nor a Hash'
         end
       end
     end

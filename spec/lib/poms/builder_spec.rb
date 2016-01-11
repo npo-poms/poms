@@ -12,6 +12,7 @@ describe Poms::Builder do
   end
 
   it 'correctly converts start times to Time-object' do
-    expect(poms_broadcast.schedule_events.first.start).to eq(Time.parse '2013-05-28 18:08:55 +0200')
+    expect(poms_broadcast.schedule_events.first.start)
+      .to eq(Time.parse '2013-05-28 18:08:55 +0200')
   end
 end

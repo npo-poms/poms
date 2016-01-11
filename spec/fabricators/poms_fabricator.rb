@@ -14,10 +14,13 @@ Fabricator(:poms_broadcast_pippi_langkous, class_name: :"Poms::Broadcast") do
   end
 end
 
-Fabricator(:poms_broadcast_multiple_schedule_events, class_name: :"Poms::Broadcast") do
+Fabricator(:poms_broadcast_multiple_schedule_events,
+           class_name: :"Poms::Broadcast") do
   initialize_with do
     Poms::Builder.process_hash(
-      JSON.parse File.read('spec/fixtures/poms_broadcast_multiple_schedule_events.json')
+      JSON.parse(
+        File.read('spec/fixtures/poms_broadcast_multiple_schedule_events.json')
+      )
     )
   end
 end
@@ -33,7 +36,9 @@ end
 Fabricator(:zapp_broadcasts, class_name: :array) do
   initialize_with do
     hash = JSON.parse File.read('spec/fixtures/poms_zapp.json')
-    array = hash['rows'].take(10).map { |item| Poms::Builder.process_hash item['doc'] }
+    array = hash['rows'].take(10).map do |item|
+      Poms::Builder.process_hash item['doc']
+    end
     array
   end
 end

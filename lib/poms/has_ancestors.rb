@@ -6,7 +6,9 @@ module Poms
     module InstanceMethods
       def series
         return @series if @series
-        descendant_series = descendant_of.reject { |obj| obj.class != Poms::Series }
+        descendant_series = descendant_of.reject do |obj|
+          obj.class != Poms::Series
+        end
         if descendant_of.blank?
           []
         elsif descendant_series.blank?
@@ -27,7 +29,8 @@ module Poms
 
       def ancestor_mids
         return @ancestor_mids if @ancestor_mids
-        @ancestor_mids = (descendant_of_mids + episode_of_mids).flatten.compact.uniq
+        @ancestor_mids = (descendant_of_mids +
+          episode_of_mids).flatten.compact.uniq
       end
 
       def descendant_of_mids

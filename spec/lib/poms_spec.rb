@@ -6,7 +6,8 @@ describe Poms do
     let(:response)  { File.read 'spec/fixtures/poms_broadcast.json' }
 
     before do
-      FakeWeb.register_uri(:get, 'http://docs.poms.omroep.nl/media/KRO_1614405', body: response)
+      FakeWeb.register_uri(:get, 'http://docs.poms.omroep.nl/media/KRO_1614405',
+                           body: response)
     end
 
     it 'fetches a broadcast' do
@@ -26,7 +27,8 @@ describe Poms do
     end
 
     it 'returns nil when a broadcast does not exits' do
-      FakeWeb.register_uri(:get, 'http://docs.poms.omroep.nl/media/BLA', status: [404, 'Not Found'])
+      FakeWeb.register_uri(:get, 'http://docs.poms.omroep.nl/media/BLA',
+                           status: [404, 'Not Found'])
       expect(Poms.fetch('BLA')).to eq(nil)
     end
   end
@@ -39,7 +41,8 @@ describe Poms do
 
   describe '#fetch_broadcasts_for_serie' do
     it 'returns nil when a broadcast does not exist' do
-      FakeWeb.register_uri(:get, 'http://docs.poms.omroep.nl/media/_design/media/_view/by-ancestor-and-type?reduce=false&key=[%22BLA%22,%22BROADCAST%22]&include_docs=true', status: [404, 'Not Found'])
+      FakeWeb.register_uri(:get, 'http://docs.poms.omroep.nl/media/_design/media/_view/by-ancestor-and-type?reduce=false&key=[%22BLA%22,%22BROADCAST%22]&include_docs=true',
+                           status: [404, 'Not Found'])
       expect(Poms.fetch_broadcasts_for_serie('BLA')).to eq([])
     end
   end
@@ -61,7 +64,9 @@ describe Poms do
   end
 
   describe 'fetch broadcasts' do
-    let(:response) { File.read 'spec/fixtures/poms_single_broadcast_by_channel.json' }
+    let(:response) do
+      File.read 'spec/fixtures/poms_single_broadcast_by_channel.json'
+    end
 
     before do
       Timecop.freeze(DateTime.strptime('1410969127', '%s'))
@@ -95,7 +100,8 @@ describe Poms do
       end
 
       it 'returns the key' do
-        expect(Poms.fetch_current_broadcast_and_key('NED3')[:key]).to eq(['NED3', 1_410_966_671_000])
+        expect(Poms.fetch_current_broadcast_and_key('NED3')[:key])
+          .to eq(['NED3', 1_410_966_671_000])
       end
     end
 
@@ -123,7 +129,8 @@ describe Poms do
       end
 
       it 'returns the key' do
-        expect(Poms.fetch_next_broadcast_and_key('NED3')[:key]).to eq(['NED3', 1_410_966_671_000])
+        expect(Poms.fetch_next_broadcast_and_key('NED3')[:key])
+          .to eq(['NED3', 1_410_966_671_000])
       end
     end
   end

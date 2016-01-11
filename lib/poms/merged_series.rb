@@ -10,7 +10,8 @@ module Poms
 
     # Gets the merged serie mids as a hash. Expects a JSON response from
     # the server with a `map` key.
-    # Throws a PomsError if the call timeouts, has an HTTP error or JSON parse error
+    # Throws a PomsError if the call timeouts, has an HTTP error or JSON parse
+    # error.
     #
     # @param api_url the API url to query
     # @return [Hash] a hash with old_mid => new_mid pairs
