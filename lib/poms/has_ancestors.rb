@@ -1,16 +1,17 @@
 module Poms
+  # Mixin for a class that has ancestors.
   module HasAncestors
     module ClassMethods
-
     end
 
     module InstanceMethods
       def series
         return @series if @series
-        descendant_series = descendant_of.reject { |obj| obj.class != Poms::Series }
-        if descendant_of.blank?
-          []
-        elsif descendant_series.blank?
+        return [] if descendant_of.blank?
+        descendant_series = descendant_of.reject do |obj|
+          obj.class != Poms::Series
+        end
+        if descendant_series.blank?
           descendant_of
         else
           descendant_series
@@ -28,9 +29,20 @@ module Poms
 
       def ancestor_mids
         return @ancestor_mids if @ancestor_mids
-        descendant_of_mids = descendant_of.map(&:mid_ref) rescue []
-        episode_of_mids = episode_of.map(&:mid_ref) rescue  []
-        @ancestor_mids = (descendant_of_mids + episode_of_mids).flatten.compact.uniq
+        @ancestor_mids = (descendant_of_mids +
+          episode_of_mids).flatten.compact.uniq
+      end
+
+      def descendant_of_mids
+        descendant_of.map(&:mid_ref)
+      rescue
+        []
+      end
+
+      def episode_of_mids
+        episode_of.map(&:mid_ref)
+      rescue
+        []
       end
     end
 

@@ -34,6 +34,7 @@ run_tests() {
   source $(rvm $RUBY_VERSION do rvm env --path)
 
   set -x
+  bundle exec rubocop
   bundle exec rspec
 }
 

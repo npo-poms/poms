@@ -1,0 +1,10 @@
+Style/Documentation:
+  Exclude:
+    - 'lib/poms/has_ancestors.rb'
+
+Style/ModuleFunction:
+  Exclude:
+    - 'lib/poms.rb'
+    - 'lib/poms/fields.rb'
+    - 'lib/poms/merged_series.rb'
+    - 'lib/poms/views.rb'
