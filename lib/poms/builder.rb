@@ -41,6 +41,7 @@ module Poms
         super hash
       end
 
+      # rubocop:disable Metrics/MethodLength
       def process_key_value(k, v)
         case v
         when Array
@@ -60,6 +61,7 @@ module Poms
                'a String or Array'
         end
       end
+      # rubocop:enable Metrics/MethodLength
 
       def process_array(key, value)
         struct_array = value.map do |element|

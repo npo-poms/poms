@@ -7,12 +7,11 @@ module Poms
     module InstanceMethods
       def series
         return @series if @series
+        return [] if descendant_of.blank?
         descendant_series = descendant_of.reject do |obj|
           obj.class != Poms::Series
         end
-        if descendant_of.blank?
-          []
-        elsif descendant_series.blank?
+        if descendant_series.blank?
           descendant_of
         else
           descendant_series

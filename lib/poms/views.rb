@@ -20,6 +20,7 @@ module Poms
       construct_view_url('by-group', args)
     end
 
+    # rubocop:disable Metrics/MethodLength
     def broadcasts_by_channel_and_start(channel, start_time = Time.now,
                                         end_time = 1.day.ago, limit = 1,
                                         descending = true)
@@ -33,6 +34,7 @@ module Poms
       }
       construct_view_url('broadcasts-by-channel-and-start', args)
     end
+    # rubocop:enable Metrics/MethodLength
 
     private
 
