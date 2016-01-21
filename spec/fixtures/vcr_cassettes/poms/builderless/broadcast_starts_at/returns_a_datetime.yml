@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?descending=true&endkey=%5B%22OPVO%22%2C+1444046400000%5D&include_docs=true&limit=1&reduce=false&startkey=%5B%22OPVO%22%2C+1444132800000%5D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - "*/*"
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Tue, 19 Jan 2016 13:05:32 GMT
+      server:
+      - CouchDB/1.6.1 (Erlang OTP/R15B01)
+      etag:
+      - '"Y2MYXBT5GJJ0TD6483E1R9EI"'
+      content-type:
+      - text/plain; charset=utf-8
+      cache-control:
+      - must-revalidate
+      x-proxyinstancename:
+      - poms1b
+      set-cookie:
+      - balancer://poms3cluster=balancer.poms1s2db; path=/;
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"total_rows\":923957,\"offset\":237582,\"rows\":[\r\n{\"id\":\"T_POW_02983987\",\"key\":[\"OPVO\",1444128900000],\"value\":null,\"doc\":{\"_id\":\"T_POW_02983987\",\"_rev\":\"20-2580d71f807a2182a6e5298231166a69\",\"objectType\":\"program\",\"mid\":\"T_POW_02983987\",\"creationDate\":1442487246008,\"lastModified\":1452873713621,\"sortDate\":1444128900000,\"urn\":\"urn:vpro:media:program:62586944\",\"embeddable\":true,\"broadcasters\":[\"KRO-NCRV\"],\"titles\":[{\"value\":\"Peperbollen\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Alle
+        begin is moeilijk\",\"owner\":\"MIS\",\"type\":\"SUB\"}],\"descriptions\":[{\"value\":\"Een
+        groepje kinderen dat zich de Peperbollen noemt bestrijdt misdaad en onrecht.
+        Ze hebben hun hoofdkwartier in een magazijnencomplex in het havendistrict
+        van Hamburg.\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Een groepje
+        kinderen dat zich de Peperbollen noemt bestrijdt misdaad en onrecht. Ze hebben
+        hun hoofdkwartier in een magazijnencomplex in het havendistrict van Hamburg.\",\"owner\":\"MIS\",\"type\":\"SHORT\"},{\"value\":\"Een
+        groepje kinderen dat zich de Peperbollen noemt bestrijdt misdaad en onrecht
+        in Hamburg.\",\"owner\":\"MIS\",\"type\":\"KICKER\"}],\"genres\":[\"Jeugd\",\"Serie/soap\"],\"countries\":[\"DE\"],\"languages\":[\"DE\"],\"releaseYear\":2011,\"duration\":1500000,\"credits\":[{\"givenName\":\"Katherina\",\"familyName\":\"Unger\",\"role\":\"ACTOR\"},{\"givenName\":\"Coco\",\"familyName\":\"Nima\",\"role\":\"ACTOR\"},{\"givenName\":\"Aurelia\",\"familyName\":\"Stern\",\"role\":\"ACTOR\"}],\"scheduleEvents\":[{\"guideDay\":1444082400000,\"start\":1444128900000,\"duration\":1500000,\"poProgID\":\"T_POW_02983987\",\"channel\":\"OPVO\",\"urnRef\":\"urn:vpro:media:program:62586944\",\"midRef\":\"T_POW_02983987\"},{\"guideDay\":1444082400000,\"start\":1444153800000,\"duration\":1500000,\"poProgID\":\"T_POW_02983987\",\"channel\":\"OPVO\",\"urnRef\":\"urn:vpro:media:program:62586944\",\"midRef\":\"T_POW_02983987\"},{\"textSubtitles\":\"Teletekst
+        ondertitels\",\"guideDay\":1452812400000,\"start\":1452837300000,\"duration\":1658000,\"poProgID\":\"T_POW_02983987\",\"channel\":\"OPVO\",\"urnRef\":\"urn:vpro:media:program:62586944\",\"midRef\":\"T_POW_02983987\"},{\"textSubtitles\":\"Teletekst
+        ondertitels\",\"guideDay\":1452812400000,\"start\":1452849900000,\"duration\":1658000,\"poProgID\":\"T_POW_02983987\",\"channel\":\"OPVO\",\"urnRef\":\"urn:vpro:media:program:62586944\",\"midRef\":\"T_POW_02983987\"},{\"textSubtitles\":\"Teletekst
+        ondertitels\",\"guideDay\":1453071600000,\"start\":1453148100000,\"duration\":1658000,\"poProgID\":\"T_POW_02983987\",\"channel\":\"OPVO\",\"urnRef\":\"urn:vpro:media:program:62586944\",\"midRef\":\"T_POW_02983987\"}],\"publishDate\":1452873995581,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
+    http_version: '1.1'
+  recorded_at: Tue, 06 Oct 2015 12:00:00 GMT
+recorded_with: VCR 2.9.3

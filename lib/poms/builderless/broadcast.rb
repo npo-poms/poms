@@ -30,7 +30,7 @@ module Poms
       end
 
       def starts_at
-        @hash['start']
+        Time.at(@hash['start'] / 1000).utc.to_datetime
       end
     end
   end
