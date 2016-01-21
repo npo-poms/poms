@@ -30,7 +30,7 @@ module Poms
       end
 
       def starts_at
-        Time.at(@hash['start'] / 1000).utc.to_datetime
+        Poms::Timestamp.convert(@hash['start'])
       end
     end
   end
