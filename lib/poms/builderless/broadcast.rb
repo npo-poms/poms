@@ -30,7 +30,7 @@ module Poms
       end
 
       def starts_at
-        @hash['start']
+        Timestamp.convert(@hash['start'])
       end
     end
   end
