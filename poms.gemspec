@@ -7,11 +7,10 @@ require 'rake'
 Gem::Specification.new do |spec|
   spec.name          = 'poms'
   spec.version       = Poms::VERSION
-  spec.authors       = ['Tom Kruijsen', 'Stijn Meurkens', 'Tijn Schuurmans']
-  spec.email         = ['tom@brightin.nl', 'stijn@brightin.nl',
-                        'tijn@brightin.nl']
+  spec.authors       = ['Tom Kruijsen']
+  spec.email         = ['tom@brightin.nl']
   spec.description   = 'Interface to POMS CouchDB API'
-  spec.summary       = 'Interfcae to POMS CouchDB API'
+  spec.summary       = 'Interface to POMS CouchDB API'
   spec.homepage      = 'https://github.com/brightin/poms'
   spec.license       = 'MIT'
 
