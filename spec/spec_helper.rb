@@ -1,16 +1,16 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'fakeweb'
+require 'webmock/rspec'
 require 'fabrication'
 require 'vcr'
 require 'timecop'
-require 'poms' # and any other gems you need
+require 'poms'
 
-FakeWeb.allow_net_connect = false
+WebMock.disable_net_connect!
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  config.hook_into :fakeweb
+  config.hook_into :webmock
 end
 
 RSpec.configure do |config|

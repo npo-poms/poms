@@ -2,41 +2,41 @@
 http_interactions:
 - request:
     method: get
-    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?startkey=[%22NED3%22,1444132800000]&endkey=[%22NED3%22,1444046400000]&reduce=false&include_docs=true&descending=true&limit=1
+    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?descending=true&endkey=%5B%22NED3%22,1444046400000%5D&include_docs=true&limit=1&reduce=false&startkey=%5B%22NED3%22,1444132800000%5D
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      accept-encoding:
+      Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      accept:
+      Accept:
       - "*/*"
-      user-agent:
+      User-Agent:
       - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
-      date:
-      - Fri, 23 Oct 2015 12:11:03 GMT
-      server:
+      Date:
+      - Tue, 09 Feb 2016 11:02:27 GMT
+      Server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
-      etag:
-      - '"CGSNOB4VPR5VX3AU14P7EPN7D"'
-      content-type:
+      Etag:
+      - '"BJK0QD6JFFZIR8MP9MC6LCQ8Q"'
+      Content-Type:
       - text/plain; charset=utf-8
-      cache-control:
+      Cache-Control:
       - must-revalidate
-      x-proxyinstancename:
+      X-Proxyinstancename:
       - poms1b
-      set-cookie:
+      Set-Cookie:
       - balancer://poms3cluster=balancer.poms1s1db; path=/;
-      transfer-encoding:
+      Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: "{\"total_rows\":876157,\"offset\":308384,\"rows\":[\r\n{\"id\":\"VPWON_1238676\",\"key\":[\"NED3\",1444132500000],\"value\":null,\"doc\":{\"_id\":\"VPWON_1238676\",\"_rev\":\"110-1c314b1601d1e4aeb7802c0ddf685d1b\",\"objectType\":\"program\",\"mid\":\"VPWON_1238676\",\"creationDate\":1439554355202,\"lastModified\":1444336356545,\"sortDate\":1442897700000,\"urn\":\"urn:vpro:media:program:60611765\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"VPWON_1238622\",\"urnRef\":\"urn:vpro:media:group:51756714\",\"type\":\"SEASON\",\"index\":54,\"highlighted\":false,\"added\":1439898447529}],\"broadcasters\":[\"NTR\"],\"regions\":[\"NL\"],\"titles\":[{\"value\":\"Sesamstraat\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Sesamstraat\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"Plek\",\"owner\":\"MIS\",\"type\":\"SUB\"},{\"value\":\"Plek\",\"owner\":\"WHATS_ON\",\"type\":\"SUB\"}],\"descriptions\":[{\"value\":\"Ieniemienie
+      string: "{\"total_rows\":937833,\"offset\":338863,\"rows\":[\r\n{\"id\":\"VPWON_1238676\",\"key\":[\"NED3\",1444132500000],\"value\":null,\"doc\":{\"_id\":\"VPWON_1238676\",\"_rev\":\"110-1c314b1601d1e4aeb7802c0ddf685d1b\",\"objectType\":\"program\",\"mid\":\"VPWON_1238676\",\"creationDate\":1439554355202,\"lastModified\":1444336356545,\"sortDate\":1442897700000,\"urn\":\"urn:vpro:media:program:60611765\",\"embeddable\":true,\"episodeOf\":[{\"midRef\":\"VPWON_1238622\",\"urnRef\":\"urn:vpro:media:group:51756714\",\"type\":\"SEASON\",\"index\":54,\"highlighted\":false,\"added\":1439898447529}],\"broadcasters\":[\"NTR\"],\"regions\":[\"NL\"],\"titles\":[{\"value\":\"Sesamstraat\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Sesamstraat\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"Plek\",\"owner\":\"MIS\",\"type\":\"SUB\"},{\"value\":\"Plek\",\"owner\":\"WHATS_ON\",\"type\":\"SUB\"}],\"descriptions\":[{\"value\":\"Ieniemienie
         heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Ieniemienie
         heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"WHATS_ON\",\"type\":\"MAIN\"},{\"value\":\"Ieniemienie
         heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"owner\":\"MIS\",\"type\":\"SHORT\"},{\"value\":\"Ieniemienie
@@ -46,6 +46,6 @@ http_interactions:
         heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655291\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901617041,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861126\"},{\"title\":\"Sesamstraat\",\"description\":\"Ieniemienie
         heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655292\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901617855,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861127\"},{\"title\":\"Sesamstraat\",\"description\":\"Ieniemienie
         heeft de grootste tekening van Sesamstraat gemaakt. Maar waar zal ze hem ophangen?\",\"imageUri\":\"urn:vpro:image:655293\",\"owner\":\"NEBO\",\"type\":\"STILL\",\"highlighted\":false,\"creationDate\":1442901618566,\"lastModified\":1442901618791,\"workflow\":\"PUBLISHED\",\"urn\":\"urn:vpro:media:image:62861128\"}],\"publishDate\":1444336634635,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
-    http_version: '1.1'
+    http_version: 
   recorded_at: Tue, 06 Oct 2015 12:00:00 GMT
 recorded_with: VCR 2.9.3

@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rspec'
-  spec.add_development_dependency 'fakeweb'
+  spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'fabrication'
   spec.add_development_dependency 'rubocop', '~> 0.34.1'
   spec.add_development_dependency 'timecop'

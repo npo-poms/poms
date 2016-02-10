@@ -2,41 +2,41 @@
 http_interactions:
 - request:
     method: get
-    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?descending=true&endkey=%5B%22OPVO%22%2C+1444046400000%5D&include_docs=true&limit=1&reduce=false&startkey=%5B%22OPVO%22%2C+1444132800000%5D
+    uri: http://docs.poms.omroep.nl/media/_design/media/_view/broadcasts-by-channel-and-start?descending=true&endkey=%5B%22OPVO%22,%201444046400000%5D&include_docs=true&limit=1&reduce=false&startkey=%5B%22OPVO%22,%201444132800000%5D
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      accept-encoding:
+      Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      accept:
+      Accept:
       - "*/*"
-      user-agent:
+      User-Agent:
       - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
-      date:
-      - Tue, 19 Jan 2016 13:05:32 GMT
-      server:
+      Date:
+      - Tue, 09 Feb 2016 11:02:28 GMT
+      Server:
       - CouchDB/1.6.1 (Erlang OTP/R15B01)
-      etag:
-      - '"Y2MYXBT5GJJ0TD6483E1R9EI"'
-      content-type:
+      Etag:
+      - '"32Y7KHAFUNQKIXXS10QE1MBD0"'
+      Content-Type:
       - text/plain; charset=utf-8
-      cache-control:
+      Cache-Control:
       - must-revalidate
-      x-proxyinstancename:
+      X-Proxyinstancename:
       - poms1b
-      set-cookie:
-      - balancer://poms3cluster=balancer.poms1s2db; path=/;
-      transfer-encoding:
+      Set-Cookie:
+      - balancer://poms3cluster=balancer.poms1madb; path=/;
+      Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: "{\"total_rows\":923957,\"offset\":237582,\"rows\":[\r\n{\"id\":\"T_POW_02983987\",\"key\":[\"OPVO\",1444128900000],\"value\":null,\"doc\":{\"_id\":\"T_POW_02983987\",\"_rev\":\"20-2580d71f807a2182a6e5298231166a69\",\"objectType\":\"program\",\"mid\":\"T_POW_02983987\",\"creationDate\":1442487246008,\"lastModified\":1452873713621,\"sortDate\":1444128900000,\"urn\":\"urn:vpro:media:program:62586944\",\"embeddable\":true,\"broadcasters\":[\"KRO-NCRV\"],\"titles\":[{\"value\":\"Peperbollen\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Alle
+      string: "{\"total_rows\":937833,\"offset\":241709,\"rows\":[\r\n{\"id\":\"T_POW_02983987\",\"key\":[\"OPVO\",1444128900000],\"value\":null,\"doc\":{\"_id\":\"T_POW_02983987\",\"_rev\":\"20-2580d71f807a2182a6e5298231166a69\",\"objectType\":\"program\",\"mid\":\"T_POW_02983987\",\"creationDate\":1442487246008,\"lastModified\":1452873713621,\"sortDate\":1444128900000,\"urn\":\"urn:vpro:media:program:62586944\",\"embeddable\":true,\"broadcasters\":[\"KRO-NCRV\"],\"titles\":[{\"value\":\"Peperbollen\",\"owner\":\"MIS\",\"type\":\"MAIN\"},{\"value\":\"Alle
         begin is moeilijk\",\"owner\":\"MIS\",\"type\":\"SUB\"}],\"descriptions\":[{\"value\":\"Een
         groepje kinderen dat zich de Peperbollen noemt bestrijdt misdaad en onrecht.
         Ze hebben hun hoofdkwartier in een magazijnencomplex in het havendistrict
@@ -48,6 +48,6 @@ http_interactions:
         ondertitels\",\"guideDay\":1452812400000,\"start\":1452837300000,\"duration\":1658000,\"poProgID\":\"T_POW_02983987\",\"channel\":\"OPVO\",\"urnRef\":\"urn:vpro:media:program:62586944\",\"midRef\":\"T_POW_02983987\"},{\"textSubtitles\":\"Teletekst
         ondertitels\",\"guideDay\":1452812400000,\"start\":1452849900000,\"duration\":1658000,\"poProgID\":\"T_POW_02983987\",\"channel\":\"OPVO\",\"urnRef\":\"urn:vpro:media:program:62586944\",\"midRef\":\"T_POW_02983987\"},{\"textSubtitles\":\"Teletekst
         ondertitels\",\"guideDay\":1453071600000,\"start\":1453148100000,\"duration\":1658000,\"poProgID\":\"T_POW_02983987\",\"channel\":\"OPVO\",\"urnRef\":\"urn:vpro:media:program:62586944\",\"midRef\":\"T_POW_02983987\"}],\"publishDate\":1452873995581,\"workflow\":\"PUBLISHED\",\"type\":\"BROADCAST\",\"avType\":\"VIDEO\"}}\r\n]}\n"
-    http_version: '1.1'
+    http_version: 
   recorded_at: Tue, 06 Oct 2015 12:00:00 GMT
 recorded_with: VCR 2.9.3
