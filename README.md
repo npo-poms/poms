@@ -17,6 +17,18 @@ Or install it yourself as:
 
     $ gem install poms
 
+## Usage
+
+The `Poms` module contains various ways to query the Poms CouchDB service. The simplest way to get something is to use the `fetch` function, which takes a MID.
+
+    Poms.fetch('mid')
+
+This returns an OpenStruct-like object that wraps the json of the Poms response.
+
+For some more advanced querying, you can use functions like `fetch_clip` which also takes a MID, but returns a `Clip` object, that is a little easier to work with.
+
+You can also query collections in a way to get back multiple episodes. This is tied to the views in the Poms CouchDB service and is documented on the wiki of the NPO.
+
 ## Contributing
 
 1. Fork it
