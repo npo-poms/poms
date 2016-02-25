@@ -71,4 +71,11 @@ describe Poms do
 
   describe '#upcoming_broadcasts'
   describe '#fetch_descendant_mids'
+
+  describe '#fetch_descendants_for_serie' do
+    let(:result) { Poms.fetch_descendants_for_serie('POMS_S_KRO_059861') }
+    it 'builds a list of broadcasts' do
+      expect(result.first.mid).to eq('KN_1655665')
+    end
+  end
 end

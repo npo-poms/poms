@@ -72,8 +72,8 @@ module Poms
   end
 
   def fetch_descendants_for_serie(mid, type = 'BROADCAST')
-    uri = [ANCESTOR_AND_TYPE_PATH, ancestor_type_params(mid, type)].join
-    hash = get_json(uri) || { 'rows' => [] }
+    uri = Poms::Views.descendants_by_type(mid, type)
+    hash = get_bare_json(uri) || { 'rows' => [] }
     hash['rows'].map { |item| Poms::Builder.process_hash item['doc'] }
   end
 

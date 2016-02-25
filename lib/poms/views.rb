@@ -20,6 +20,16 @@ module Poms
       construct_view_url('by-group', args)
     end
 
+    # Constructs a url using the by-ancestor-and-type view of Poms.
+    def descendants_by_type(mid, type = 'BROADCAST')
+      args = {
+        key: "[\"#{mid}\", \"#{type}\"]",
+        reduce: false,
+        include_docs: true
+      }
+      construct_view_url('by-ancestor-and-type', args)
+    end
+
     # rubocop:disable Metrics/MethodLength
     def broadcasts_by_channel_and_start(channel, start_time = Time.now,
                                         end_time = 1.day.ago, limit = 1,
