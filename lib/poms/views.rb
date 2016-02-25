@@ -6,19 +6,19 @@ module Poms
     include Poms::Connect
     extend self
 
+    BASE_URL = 'http://docs.poms.omroep.nl'.freeze
     DEFAULT_OPTIONS = { reduce: false, include_docs: true }.freeze
+    VIEW_PATH = '/media/_design/media/_view/'.freeze
 
     def get(mid)
-      uri = "#{base_url}/media/#{mid}"
+      uri = "#{BASE_URL}/media/#{mid}"
       get_json(uri)
     end
 
     def by_group(mid)
       args = {
-        key: "\"#{mid}\"",
-        reduce: false,
-        include_docs: true
-      }
+        key: "\"#{mid}\""
+      }.merge(DEFAULT_OPTIONS)
       construct_view_url('by-group', args)
     end
 
@@ -31,7 +31,6 @@ module Poms
       construct_view_url('by-ancestor-and-type', args)
     end
 
-    # rubocop:disable Metrics/MethodLength
     def broadcasts_by_channel_and_start(channel, start_time = Time.now,
                                         end_time = 1.day.ago, limit = 1,
                                         descending = true)
@@ -39,26 +38,15 @@ module Poms
         startkey: "[\"#{channel}\", #{to_poms_timestamp(start_time)}]",
         endkey: "[\"#{channel}\", #{to_poms_timestamp(end_time)}]",
         limit: limit,
-        descending: descending,
-        reduce: false,
-        include_docs: true
-      }
+        descending: descending
+      }.merge(DEFAULT_OPTIONS)
       construct_view_url('broadcasts-by-channel-and-start', args)
     end
-    # rubocop:enable Metrics/MethodLength
 
     private
 
-    def base_url
-      'http://docs.poms.omroep.nl'
-    end
-
-    def view_path
-      '/media/_design/media/_view/'
-    end
-
     def construct_view_url(view, args)
-      "#{base_url}#{view_path}#{view}?#{args.to_query}"
+      "#{BASE_URL}#{VIEW_PATH}#{view}?#{args.to_query}"
     end
 
     def to_poms_timestamp(timestamp)
