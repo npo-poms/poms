@@ -24,5 +24,15 @@ describe Poms::Views do
           'http://docs.poms.omroep.nl/media/_design/media/_view/by-ancestor-and-type?include_docs=true&key=%5B%22POMS_S_NPO_823012%22%2C+%22BROADCAST%22%5D&reduce=false'
         )
     end
+
+    it 'can switch to not include docs' do
+      expect(
+        subject.descendants_by_type('POMS_S_NPO_823012',
+                                    'BROADCAST',
+                                    include_docs: false))
+        .to eq(
+          'http://docs.poms.omroep.nl/media/_design/media/_view/by-ancestor-and-type?include_docs=false&key=%5B%22POMS_S_NPO_823012%22%2C+%22BROADCAST%22%5D&reduce=false'
+        )
+    end
   end
 end

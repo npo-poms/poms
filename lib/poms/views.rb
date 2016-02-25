@@ -6,6 +6,8 @@ module Poms
     include Poms::Connect
     extend self
 
+    DEFAULT_OPTIONS = { reduce: false, include_docs: true }.freeze
+
     def get(mid)
       uri = "#{base_url}/media/#{mid}"
       get_json(uri)
@@ -21,12 +23,11 @@ module Poms
     end
 
     # Constructs a url using the by-ancestor-and-type view of Poms.
-    def descendants_by_type(mid, type = 'BROADCAST')
+    def descendants_by_type(mid, type = 'BROADCAST', options = {})
+      options = DEFAULT_OPTIONS.merge(options)
       args = {
-        key: "[\"#{mid}\", \"#{type}\"]",
-        reduce: false,
-        include_docs: true
-      }
+        key: "[\"#{mid}\", \"#{type}\"]"
+      }.merge(options)
       construct_view_url('by-ancestor-and-type', args)
     end
 
