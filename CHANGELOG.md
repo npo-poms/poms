@@ -1,9 +1,13 @@
 # Poms Release notes
 
+## 1.1.1
+
+* [#22](https://github.com/brightin/poms/pull/22) Refactor descendant-related code into views.
+
 ## 1.1.0
 
 * Updated README with usage instruction.
-* [#21] Allow access to the Poms API. This functionality is only used for merging series at this point.
+* [#21](https://github.com/brightin/poms/pull/21) Allow access to the Poms API. This functionality is only used for merging series at this point.
 
 ## 1.0.1
 
