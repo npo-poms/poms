@@ -19,8 +19,6 @@ require 'poms/poms_error'
 # Module that allows interfacing with the POMS CouchDB service.
 # rubocop:disable Metrics/ModuleLength
 module Poms
-  extend Poms::Views
-  extend Poms::Fields
   extend self
 
   URL = 'http://docs.poms.omroep.nl'
@@ -37,19 +35,19 @@ module Poms
   def fetch(mid)
     return nil if mid.nil?
     hash = fetch_raw_json mid
-    Poms::Builder.process_hash hash
+    Builder.process_hash hash
   end
 
   def fetch_clip(mid)
     clip_hash = fetch_raw_json(mid)
-    Poms::Builderless::Clip.new(clip_hash)
+    Builderless::Clip.new(clip_hash)
   end
 
   def fetch_playlist_clips(mid)
-    uri = Poms::Views.by_group(mid)
+    uri = Views.by_group(mid)
     playlist_hash = get_bare_json(uri)
     playlist_hash['rows'].map do |hash|
-      Poms::Builderless::Clip.new(hash['doc'])
+      Builderless::Clip.new(hash['doc'])
     end
   end
 
@@ -59,7 +57,7 @@ module Poms
   end
 
   def fetch_group(mid)
-    uri = Poms::Views.by_group(mid)
+    uri = Views.by_group(mid)
     get_bare_json(uri)
   end
 
@@ -68,13 +66,13 @@ module Poms
     view_params = broadcast_view_params(zender, start_time, end_time)
     uri = [BROADCASTS_VIEW_PATH, view_params].join
     hash = get_json(uri)
-    hash['rows'].map { |item| Poms::Builder.process_hash item['doc'] }
+    hash['rows'].map { |item| Builder.process_hash item['doc'] }
   end
 
   def fetch_descendants_for_serie(mid, type = 'BROADCAST')
-    uri = Poms::Views.descendants_by_type(mid, type)
+    uri = Views.descendants_by_type(mid, type)
     hash = get_bare_json(uri) || { 'rows' => [] }
-    hash['rows'].map { |item| Poms::Builder.process_hash item['doc'] }
+    hash['rows'].map { |item| Builder.process_hash item['doc'] }
   end
 
   alias_method :fetch_broadcasts_for_serie, :fetch_descendants_for_serie
@@ -83,11 +81,11 @@ module Poms
     view_params = ancestor_sortdate_params(mid, start_time)
     uri = [ANCESTOR_AND_SORTDATE_PATH, view_params].join
     hash = get_json(uri) || { 'rows' => [] }
-    hash['rows'].map { |item| Poms::Builder.process_hash item['doc'] }
+    hash['rows'].map { |item| Builder.process_hash item['doc'] }
   end
 
   def fetch_descendant_mids(mid, type = 'BROADCAST')
-    uri = Poms::Views.descendants_by_type(mid, type, include_docs: false)
+    uri = Views.descendants_by_type(mid, type, include_docs: false)
     hash = get_bare_json(uri) || { 'rows' => [] }
     hash['rows'].map { |item| item['id'] }
   end
@@ -97,11 +95,11 @@ module Poms
     view_params = channel_params(channel, start_time, end_time)
     uri = [CHANNEL_AND_START_PATH, view_params].join
     hash = get_json(uri)
-    hash['rows'].map { |item| Poms::Builder.process_hash item['doc'] }
+    hash['rows'].map { |item| Builder.process_hash item['doc'] }
   end
 
   def fetch_current_broadcast(channel)
-    uri = Poms::Views.broadcasts_by_channel_and_start(channel)
+    uri = Views.broadcasts_by_channel_and_start(channel)
     hash = get_bare_json(uri)
     row = hash['rows'].first
     Builderless::Broadcast.new(row['doc']) if row
@@ -173,7 +171,7 @@ module Poms
 
   def get_first_broadcast(hash)
     rows = hash['rows']
-    Poms::Builder.process_hash(rows.empty? ? {} : rows.first['doc'])
+    Builder.process_hash(rows.empty? ? {} : rows.first['doc'])
   end
 
   def get_first_key(hash)
