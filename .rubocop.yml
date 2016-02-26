@@ -1,3 +1,7 @@
+AllCops:
+  Exclude:
+    - bin/*
+
 Style/Documentation:
   Exclude:
     - 'lib/poms/has_ancestors.rb'
