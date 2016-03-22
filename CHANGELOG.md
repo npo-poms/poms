@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 1.2.0
+
+* [#24](https://github.com/brightin/poms/pull/24) Add functions to access the internals of a Poms broadcast hash.
+
 ## 1.1.1
 
 * [#22](https://github.com/brightin/poms/pull/22) Refactor descendant-related code into views.

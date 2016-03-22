@@ -1,11 +1,17 @@
 module Poms
-  # Gets fields from Poms results
+  # This module contains functions to extract things from a Poms hash that may
+  # be harder to access, or are accessed in multiple places.
   module Fields
     extend self
 
     # Returns the title, main by default
-    def title(item, options = { type: 'MAIN' })
-      item['titles'].find { |title| title['type'] == options[:type] }['value']
+    def title(item, type = 'MAIN')
+      value_of_type(item, 'titles', type)
+    end
+
+    # Returns the description, main by default
+    def description(item, type = 'MAIN')
+      value_of_type(item, 'descriptions', type)
     end
 
     # Returns the images from the hash
@@ -17,6 +23,56 @@ module Poms
     # Expects a hash of just an image from POMS
     def image_id(image)
       image['imageUri'].split(':').last
+    end
+
+    # Returns the id of the first image of nil if there are none.
+    def first_image_id(item)
+      return unless images(item)
+      image_id(images(item).first)
+    end
+
+    # Returns the revision from a Poms hash.
+    def rev(item)
+      item['_rev'].to_i
+    end
+
+    # Returns an array of odi stream types.
+    # Note: this code is copied from Broadcast and it is assumed it was working
+    # there.
+    def odi_streams(item)
+      locations = item['locations']
+      return [] if locations.nil? || locations.empty?
+      odi_streams = locations.select { |l| l['programUrl'].match(/^odi/) }
+      streams = odi_streams.map do |l|
+        l['programUrl'].match(%r{^[\w+]+\:\/\/[\w\.]+\/video\/(\w+)\/\w+})[1]
+      end
+      streams.uniq
+    end
+
+    # Returns the enddate of the publication of an internet vod if present.
+    def available_until(item)
+      return if item['predictions'].blank?
+      internetvod = item['predictions']
+                    .find { |p| p['platform'] == 'INTERNETVOD' }
+      return unless internetvod
+      Poms::Timestamp.convert(internetvod['publishStop'])
+    end
+
+    private
+
+    # Poms has arrays of hashes for some types that have a value and type. This
+    # is a way to access those simply.
+    #
+    # Example:
+    #    item = {'titles' => [{'value' => 'Main title', 'type' => 'MAIN'},
+    #           {'value' => 'Subtitle', 'type' => 'SUB'}] }
+    #    value_of_type(item, 'titles', 'MAIN') => 'Main title'
+    #
+    # @param item The Poms hash
+    # @param key The key of the array we want to look in
+    # @param type The type to select
+    def value_of_type(item, key, type)
+      item[key].find { |value| value['type'] == type }['value']
     end
   end
 end
