@@ -56,6 +56,8 @@ module Poms
     get_json(uri)
   end
 
+  alias_method :fetch_broadcast, :fetch_raw_json
+
   def fetch_group(mid)
     uri = Views.by_group(mid)
     get_bare_json(uri)
