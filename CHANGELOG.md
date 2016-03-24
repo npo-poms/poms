@@ -2,6 +2,9 @@
 
 ## 1.2.2
 
+* Fix issue with description type that did not exist.
+* Add some more specs to the field classes to catch values that are empty.
+
 ## 1.2.1
 
 * [#25](https://github.com/brightin/poms/pull/25) Fix issue with `Timestamp.convert`

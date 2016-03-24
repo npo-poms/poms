@@ -22,6 +22,7 @@ module Poms
     # Extracts the image id from an image hash
     # Expects a hash of just an image from POMS
     def image_id(image)
+      return unless image['imageUri']
       image['imageUri'].split(':').last
     end
 
@@ -72,7 +73,9 @@ module Poms
     # @param key The key of the array we want to look in
     # @param type The type to select
     def value_of_type(item, key, type)
-      item[key].find { |value| value['type'] == type }['value']
+      res = item[key].find { |value| value['type'] == type }
+      return unless res
+      res['value']
     end
   end
 end
