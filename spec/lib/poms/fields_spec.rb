@@ -27,9 +27,24 @@ naar hun loods, maar is dat wel een goed idee?")
     end
   end
 
+  describe '#image_id' do
+    it 'returns the id of the image' do
+      expect(described_class.image_id(poms_data['images'].first))
+        .to eq('184169')
+    end
+
+    it 'returns nil if there is no image' do
+      expect(described_class.image_id({})).to be_nil
+    end
+  end
+
   describe '#first_image_id' do
     it 'returns the id of the first image' do
       expect(described_class.first_image_id(poms_data)).to eq('184169')
+    end
+
+    it 'returns nil if there is no image' do
+      expect(described_class.first_image_id({})).to be_nil
     end
   end
 
@@ -37,12 +52,20 @@ naar hun loods, maar is dat wel een goed idee?")
     it 'returns the current Poms revision' do
       expect(described_class.rev(poms_data)).to eq(60)
     end
+
+    it 'returns 0 if it cannot be found' do
+      expect(described_class.rev({})).to eq(0)
+    end
   end
 
   describe '#odi_streams' do
     it 'returns an array of stream types' do
       expect(described_class.odi_streams(poms_data)).to match_array(
         %w(adaptive h264_sb h264_bb h264_std wvc1_std wmv_sb wmv_bb))
+    end
+
+    it 'returns an empty array of no stream types are found' do
+      expect(described_class.odi_streams({})).to eq([])
     end
   end
 

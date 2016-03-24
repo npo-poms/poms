@@ -3,6 +3,7 @@
 ## 1.2.2
 
 * Fix issue with description type that did not exist.
+* Add some more specs to the field classes to catch values that are empty.
 
 ## 1.2.1
 

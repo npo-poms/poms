@@ -22,6 +22,7 @@ module Poms
     # Extracts the image id from an image hash
     # Expects a hash of just an image from POMS
     def image_id(image)
+      return unless image['imageUri']
       image['imageUri'].split(':').last
     end
 
