@@ -42,5 +42,13 @@ naar hun loods, maar is dat wel een goed idee?")
       expect(described_class.available_until(poms_data))
         .to eq('Sat, 27 Jun 2015 07:12:48 +0200')
     end
+
+    it 'returns nil if the INTERNETVOD has no publishStop' do
+      expect(
+        described_class.available_until(
+          'predictions' => [
+            { 'state' => 'REALIZED', 'platform' => 'INTERNETVOD' }]))
+        .to be_nil
+    end
   end
 end
