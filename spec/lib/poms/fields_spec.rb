@@ -7,6 +7,10 @@ describe Poms::Fields do
     it 'returns the first MAIN title' do
       expect(described_class.title(poms_data)).to eq('VRijland')
     end
+
+    it 'returns nil if no title can be found' do
+      expect(described_class.title(poms_data, 'NONEXISTANTTYPE')).to be_nil
+    end
   end
 
   describe '#description' do
@@ -15,6 +19,11 @@ describe Poms::Fields do
 een baantje aan bij de uitdragerij en vraagt zich meteen af of dat wel zo slim \
 was. Timon en Joep zien de criminele organisatie de Rijland Angels. Timon wil \
 naar hun loods, maar is dat wel een goed idee?")
+    end
+
+    it 'returns nil if no description can be found' do
+      expect(described_class.description(poms_data, 'NONEXISTANTTYPE'))
+        .to be_nil
     end
   end
 
