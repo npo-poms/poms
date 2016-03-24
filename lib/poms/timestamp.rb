@@ -4,6 +4,7 @@ module Poms
     module_function
 
     def convert(poms_timestamp)
+      return unless poms_timestamp
       Time.at(poms_timestamp / 1000).to_datetime
     end
   end
