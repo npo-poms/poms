@@ -1,5 +1,7 @@
 # Poms Release notes
 
+## 1.2.2
+
 ## 1.2.1
 
 * [#25](https://github.com/brightin/poms/pull/25) Fix issue with `Timestamp.convert`
