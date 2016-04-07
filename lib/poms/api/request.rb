@@ -1,6 +1,5 @@
 require 'poms/api/auth'
 require 'open-uri'
-require 'addressable/uri'
 
 module Poms
   module Api
