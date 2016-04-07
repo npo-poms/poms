@@ -3,6 +3,7 @@ require 'poms/media'
 require 'poms/errors/authentication_error'
 require 'json'
 
+# Main interface for the POMS gem
 module Poms
   extend self
 
@@ -12,10 +13,17 @@ module Poms
     @origin = origin
   end
 
-  def media(mid)
+  def fetch(arg)
     assert_credentials
-    request = Poms::Media.from_mid(mid, @key, @secret, @origin)
-    JSON.parse(request.call)
+    if arg.is_a?(Array)
+      request = Poms::Media.multiple(arg, @key, @secret, @origin)
+    elsif arg.is_a?(String)
+      request = Poms::Media.from_mid(arg, @key, @secret, @origin)
+    else
+      fail 'Invalid argument passed to Poms.fetch. '\
+        'Please make sure to provide either a mid or an array of mid'
+    end
+    JSON.parse(request.call.read)
   end
 
   private
