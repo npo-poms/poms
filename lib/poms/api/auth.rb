@@ -1,3 +1,5 @@
+require 'base64'
+
 module Poms
   module Api
     # This module can be used to create an authentication header for the Poms
@@ -20,20 +22,24 @@ module Poms
       # Creates the header that is used for authenticating a request to the Poms
       # API.
       #
-      # @param uri The uri that is being requested
+      # @param uri An instance of an Addressable::URI of the requested uri
       # @param origin The origin header
       # @param date The date as an RFC822 string
       # @param params The url params as a ruby hash
-      def self.message(uri, origin, date, params = {})
-        params_string = params.sort.map do |key, value|
-          "#{key}:#{value}"
-        end.join(',') if params.present?
+      def self.message(uri, origin, date)
         [
           "origin:#{origin}",
           "x-npo-date:#{date}",
-          "uri:#{uri}",
-          params_string
+          "uri:#{uri.path}",
+          params_string(uri.query_values)
         ].compact.join(',')
+      end
+
+      private
+
+      def self.params_string(params)
+        return unless params
+        params.map { |k,v| "#{k}:#{v}" }.sort.join(',')
       end
     end
   end
