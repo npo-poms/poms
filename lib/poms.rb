@@ -21,8 +21,8 @@ module Poms
   private
 
   def assert_credentials
-    raise Poms::Errors::AuthenticationError.new('API key not supplied') unless @key.present?
-    raise Poms::Errors::AuthenticationError.new('API secret not supplied') unless @secret.present?
-    raise Poms::Errors::AuthenticationError.new('Origin not supplied') unless @origin.present?
+    fail Errors::AuthenticationError, 'API key not supplied' unless @key.present?
+    fail Errors::AuthenticationError, 'API secret not supplied' unless @secret.present?
+    fail Errors::AuthenticationError, 'Origin not supplied' unless @origin.present?
   end
 end
