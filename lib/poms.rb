@@ -1,5 +1,5 @@
 require 'active_support/all'
-require 'poms/api/request'
+require 'poms/media'
 require 'json'
 
 module Poms
@@ -13,8 +13,8 @@ module Poms
 
   def media(mid)
     assert_credentials
-    request = Poms::Api::Request.new("https://rs.poms.omroep.nl/v1/api/media/" + mid, @key, @secret, @origin)
-    JSON.parse(request.call.read)
+    request = Poms::Media.from_mid(mid, @key, @secret, @origin)
+    JSON.parse(request.call)
   end
 
   private
