@@ -5,10 +5,10 @@ require 'json'
 module Poms
   extend self
 
-  def init(params)
-    @key = params[:key]
-    @secret = params[:secret]
-    @origin = params[:origin]
+  def init(key:, secret:, origin:)
+    @key = key
+    @secret = secret
+    @origin = origin
   end
 
   def media(mid)
