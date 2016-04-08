@@ -1,12 +1,11 @@
 require 'spec_helper'
+require 'pry'
 
 RSpec.describe Poms::Api::Request do
   let(:subject) do
-    described_class.new(
-      Addressable::URI.parse('https://rs.poms.omroep.nl/v1/api/media/redirects/'),
-      'key',
-      'secret',
-      'http://zapp.nl')
+    uri = Addressable::URI.parse('https://rs.poms.omroep.nl/v1/api/media/redirects/')
+    credentials = OpenStruct.new(key: 'key', secret: 'secret', origin: 'http://zapp.nl')
+    described_class.new(uri, credentials)
   end
 
   describe '#call' do
@@ -25,8 +24,7 @@ RSpec.describe Poms::Api::Request do
         headers: {
           'Origin' => 'http://zapp.nl',
           'X-NPO-Date' => Time.now.rfc822,
-          'Authorization' => 'NPO key:encoded-string',
-          'accept' => 'application/json'
+          'Authorization' => 'NPO key:encoded-string'
         }
       )
       subject.call

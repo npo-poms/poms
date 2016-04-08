@@ -1,11 +1,14 @@
 require 'poms/api/auth'
 require 'open-uri'
+require 'net/http'
+require 'net/https'
 
 module Poms
   module Api
     # A request to the Poms API. Does the authentication and allows you to
     # execute the request.
     class Request
+      attr_reader :uri, :credentials
       # Create a new request to the Poms API. The request is initialized with a
       # URI to be called and the key, secret and origin that are needed for
       # authentication.
@@ -14,28 +17,25 @@ module Poms
       # @param key The api key
       # @param secret The secret that goes with the api key
       # @param origin The whitelisted origin for this api key
-      def initialize(uri, key, secret, origin)
+      def initialize(uri, credentials)
         @uri = uri
-        @key = key
-        @secret = secret
-        @origin = origin
+        @credentials = credentials
       end
 
       # Executes the request.
       def call
-        open @uri.to_s, headers
+        open uri.to_s, headers
       end
 
       def headers
         date = Time.now.rfc822
-        origin = @origin
-        message = Auth.message(@uri, @origin, date)
-        encoded_message = Auth.encode(@secret, message)
+        message = Auth.message(uri, credentials.origin, date)
+        encoded_message = Auth.encode(credentials.secret, message)
         {
-          'Origin' => origin,
+          'Origin' => credentials.origin,
           'X-NPO-Date' => date,
-          'Authorization' => "NPO #{@key}:#{encoded_message}",
-          'accept' => 'application/json'
+          'Authorization' => "NPO #{credentials.key}:#{encoded_message}",
+          'Content-Type' => 'application/json'
         }
       end
     end
