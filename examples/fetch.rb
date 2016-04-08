@@ -1,7 +1,11 @@
 require 'poms'
 
 # Initialize poms with the correct credentials
-Poms.init(key: '**API KEY**', secret: '**API SECRET**', origin: '**ORIGIN**')
+Poms.configure do |config|
+  config.key    = '**poms key**'
+  config.origin = '**poms origin**'
+  config.secret = '**poms secret**'
+end
 
 # Fetch an entity from POMS by mid
 Poms.fetch("POMS_S_NTR_2342303")

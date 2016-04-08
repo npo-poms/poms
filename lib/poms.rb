@@ -6,11 +6,11 @@ require 'json'
 # Main interface for the POMS gem
 module Poms
   extend self
+  attr_reader :config
 
-  def init(key:, secret:, origin:)
-    @key = key
-    @secret = secret
-    @origin = origin
+  def configure
+    @config ||= OpenStruct.new
+    yield @config
   end
 
   def fetch(arg)
@@ -29,8 +29,8 @@ module Poms
   private
 
   def assert_credentials
-    fail Errors::AuthenticationError, 'API key not supplied' unless @key.present?
-    fail Errors::AuthenticationError, 'API secret not supplied' unless @secret.present?
-    fail Errors::AuthenticationError, 'Origin not supplied' unless @origin.present?
+    fail Errors::AuthenticationError, 'API key not supplied'    if config.key.blank?
+    fail Errors::AuthenticationError, 'API secret not supplied' if config.secret.blank?
+    fail Errors::AuthenticationError, 'Origin not supplied'     if config.origin.blank?
   end
 end
