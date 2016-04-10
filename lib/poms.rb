@@ -23,7 +23,7 @@ module Poms
       fail 'Invalid argument passed to Poms.fetch. '\
         'Please make sure to provide either a mid or an array of mid'
     end
-    JSON.parse(request.call.read)
+    JSON.parse(request.get.body)
   end
 
   private

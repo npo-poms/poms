@@ -9,10 +9,10 @@ RSpec.describe Poms::Api::Request do
     described_class.new(uri, credentials)
   end
 
-  describe '.call' do
+  describe '.get' do
     it 'makes the request' do
       stub = stub_request(:get, test_url)
-      subject.call
+      subject.get
       expect(stub).to have_been_requested
     end
 
@@ -25,7 +25,7 @@ RSpec.describe Poms::Api::Request do
           'Authorization' => 'NPO key:encoded-string'
         }
       )
-      subject.call
+      subject.get
       expect(stub).to have_been_requested
     end
   end

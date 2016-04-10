@@ -1,5 +1,4 @@
 require 'poms/api/auth'
-require 'open-uri'
 require 'net/https'
 
 module Poms
@@ -21,18 +20,29 @@ module Poms
         @credentials = credentials
       end
 
-      # Executes the request.
-      def call
-        open uri.to_s, headers
+      # Executes a GET request
+      def get
+        req = Net::HTTP::Get.new(uri.path)
+        headers.each { |key, val| req[key] = val }
+        execute_ssl_request(uri.host, req)
       end
 
+      # Executes a POST request with post body
+      #
+      # @param data The data object to be submitted as request body
       def post(data = {})
         req = Net::HTTP::Post.new(uri.path)
         req.body = data.to_json
         headers.each { |key, val| req[key] = val }
-        https = Net::HTTP.new(uri.host, 443)
-        https.use_ssl = true
-        https.request(req)
+        execute_ssl_request(uri.host, req)
+      end
+
+      private
+
+      def execute_ssl_request(host, request)
+        Net::HTTP.start(host, 443, use_ssl: true) do |http|
+          http.request(request)
+        end
       end
 
       def headers
