@@ -16,9 +16,9 @@ module Poms
   def fetch(arg)
     assert_credentials
     if arg.is_a?(Array)
-      request = Poms::Media.multiple(arg, @key, @secret, @origin)
+      request = Poms::Media.multiple(arg, config)
     elsif arg.is_a?(String)
-      request = Poms::Media.from_mid(arg, @key, @secret, @origin)
+      request = Poms::Media.from_mid(arg, config)
     else
       fail 'Invalid argument passed to Poms.fetch. '\
         'Please make sure to provide either a mid or an array of mid'

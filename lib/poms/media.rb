@@ -3,12 +3,12 @@ require 'poms/uris'
 
 module Poms
   module Media
-    def self.from_mid(mid, key, secret, origin)
-      Poms::Api::Request.new(Poms::URIs::Media.single(mid), key, secret, origin)
+    def self.from_mid(mid, credentials)
+      Poms::Api::Request.new(Poms::URIs::Media.single(mid), credentials)
     end
 
-    def self.multiple(mids, key, secret, origin)
-      Poms::Api::Request.new(Poms::URIs::Media.multiple(mids), key, secret, origin)
+    def self.multiple(mids, credentials)
+      Poms::Api::Request.new(Poms::URIs::Media.multiple(mids), credentials)
     end
   end
 end
