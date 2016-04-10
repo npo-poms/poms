@@ -36,5 +36,11 @@ RSpec.describe Poms::Api::Request do
       subject.post
       expect(stub).to have_been_requested
     end
+
+    it 'sets the post body' do
+      stub = stub_request(:post, test_url).with(body: { foo: 'bar' }.to_json)
+      subject.post(foo: 'bar')
+      expect(stub).to have_been_requested
+    end
   end
 end

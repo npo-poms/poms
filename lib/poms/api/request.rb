@@ -26,8 +26,9 @@ module Poms
         open uri.to_s, headers
       end
 
-      def post
+      def post(data = {})
         req = Net::HTTP::Post.new(uri.path)
+        req.body = data.to_json
         https = Net::HTTP.new(uri.host, 443)
         https.use_ssl = true
         https.request(req)
