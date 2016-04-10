@@ -42,5 +42,19 @@ RSpec.describe Poms::Api::Request do
       subject.post(foo: 'bar')
       expect(stub).to have_been_requested
     end
+
+    it 'sets the correct headers' do
+      allow(Poms::Api::Auth).to receive(:encode).and_return('encoded-string')
+      stub = stub_request(:post, test_url).with(
+        headers: {
+          'Origin' => 'http://zapp.nl',
+          'X-NPO-Date' => Time.now.rfc822,
+          'Authorization' => 'NPO key:encoded-string',
+          'Content-Type' => 'application/json'
+        }
+      )
+      subject.post(foo: 'bar')
+      expect(stub).to have_been_requested
+    end
   end
 end

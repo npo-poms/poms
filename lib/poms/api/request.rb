@@ -29,6 +29,7 @@ module Poms
       def post(data = {})
         req = Net::HTTP::Post.new(uri.path)
         req.body = data.to_json
+        headers.each { |key, val| req[key] = val }
         https = Net::HTTP.new(uri.host, 443)
         https.use_ssl = true
         https.request(req)
