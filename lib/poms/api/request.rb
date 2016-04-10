@@ -1,6 +1,5 @@
 require 'poms/api/auth'
 require 'open-uri'
-require 'net/http'
 require 'net/https'
 
 module Poms
@@ -25,6 +24,13 @@ module Poms
       # Executes the request.
       def call
         open uri.to_s, headers
+      end
+
+      def post
+        req = Net::HTTP::Post.new(uri.path)
+        https = Net::HTTP.new(uri.host, 443)
+        https.use_ssl = true
+        https.request(req)
       end
 
       def headers
