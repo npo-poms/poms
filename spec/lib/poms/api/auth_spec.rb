@@ -5,7 +5,7 @@ RSpec.describe Poms::Api::Auth do
   describe '.encode' do
     it 'encodes the message with the secret' do
       expect(described_class.encode('secret', 'message'))
-        .to eq("i19IcCmVwVmMVz2x4hhmqbgl1KeU0WnXBgoDYFeWNgs=\n")
+        .to eq("i19IcCmVwVmMVz2x4hhmqbgl1KeU0WnXBgoDYFeWNgs=")
     end
   end
 

@@ -16,7 +16,7 @@ module Poms
       def self.encode(secret, message)
         sha256 = OpenSSL::Digest.new('sha256')
         digest = OpenSSL::HMAC.digest(sha256, secret, message)
-        Base64.encode64(digest)
+        Base64.encode64(digest).strip
       end
 
       # Creates the header that is used for authenticating a request to the Poms
