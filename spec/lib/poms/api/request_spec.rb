@@ -1,18 +1,19 @@
 require 'spec_helper'
 require 'pry'
 
-RSpec.describe Poms::Api::Request do
+describe 'Poms Api Requests' do
   let(:test_url) { 'https://rs.poms.omroep.nl/v1/api/media' }
-  let(:subject) do
-    uri = Addressable::URI.parse(test_url)
-    credentials = OpenStruct.new(key: 'key', secret: 'secret', origin: 'http://zapp.nl')
-    described_class.new(uri, credentials)
-  end
 
-  describe '.get' do
+  describe Poms::Api::GetRequest do
+    subject do
+      uri = Addressable::URI.parse(test_url)
+      credentials = OpenStruct.new(key: 'key', secret: 'secret', origin: 'http://zapp.nl')
+      described_class.new(uri, credentials)
+    end
+
     it 'makes the request' do
       stub = stub_request(:get, test_url)
-      subject.get
+      subject.execute
       expect(stub).to have_been_requested
     end
 
@@ -25,21 +26,27 @@ RSpec.describe Poms::Api::Request do
           'Authorization' => 'NPO key:encoded-string'
         }
       )
-      subject.get
+      subject.execute
       expect(stub).to have_been_requested
     end
   end
 
-  describe '.post' do
+  describe Poms::Api::PostRequest do
+    subject do
+      uri = Addressable::URI.parse(test_url)
+      credentials = OpenStruct.new(key: 'key', secret: 'secret', origin: 'http://zapp.nl')
+      described_class.new(uri, credentials, body: { foo: 'bar' })
+    end
+
     it 'makes a post request' do
       stub = stub_request(:post, test_url)
-      subject.post
+      subject.execute
       expect(stub).to have_been_requested
     end
 
     it 'sets the post body' do
       stub = stub_request(:post, test_url).with(body: { foo: 'bar' }.to_json)
-      subject.post(foo: 'bar')
+      subject.execute
       expect(stub).to have_been_requested
     end
 
@@ -53,7 +60,7 @@ RSpec.describe Poms::Api::Request do
           'Content-Type' => 'application/json'
         }
       )
-      subject.post(foo: 'bar')
+      subject.execute
       expect(stub).to have_been_requested
     end
   end
