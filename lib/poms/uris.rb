@@ -7,11 +7,21 @@ module Poms
 
     module Media
       def self.single(mid)
-        Addressable::URI.new(BASE_PARAMS.merge path: "/v1/api/media/#{mid}")
+        uri_for_path("/#{mid}")
       end
 
       def self.multiple
-        Addressable::URI.new(BASE_PARAMS.merge(path: '/v1/api/media/multiple'))
+        uri_for_path("/multiple")
+      end
+
+      def self.descendants(mid)
+        uri_for_path("/#{mid}/descendants")
+      end
+
+      private
+
+      def self.uri_for_path(path)
+        Addressable::URI.new(BASE_PARAMS.merge(path: "/v1/api/media#{path}"))
       end
     end
   end
