@@ -2,7 +2,7 @@ module Poms
   module Errors
     # Custom Error class to signal missing authorization attributes
     class AuthenticationError < StandardError
-      attr_accessor :message
+      attr_reader :message
 
       def initialize(message)
         @message = message
@@ -10,4 +10,3 @@ module Poms
     end
   end
 end
-
