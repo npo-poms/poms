@@ -1,5 +1,5 @@
 require 'active_support/all'
-require 'poms/media'
+require 'poms/api/media'
 require 'poms/errors/authentication_error'
 require 'json'
 
@@ -16,9 +16,9 @@ module Poms
   def fetch(arg)
     assert_credentials
     if arg.is_a?(Array)
-      request = Poms::Media.multiple(arg, config)
+      request = Poms::Api::Media.multiple(arg, config)
     elsif arg.is_a?(String)
-      request = Poms::Media.from_mid(arg, config)
+      request = Poms::Api::Media.from_mid(arg, config)
     else
       raise 'Invalid argument passed to Poms.fetch. '\
         'Please make sure to provide either a mid or an array of mid'
