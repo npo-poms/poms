@@ -7,9 +7,7 @@ module Poms
         end_time: 'end'
       }.freeze
 
-      module_function
-
-      def build(options)
+      def self.build(options)
         all = options.map do |key, value|
           case key
           when :start_time, :end_time
@@ -21,9 +19,9 @@ module Poms
         all.reduce(&:deep_merge)
       end
 
-      private
+      private_class_method
 
-      def time_params(key, value)
+      def self.time_params(key, value)
         {
           'searches' => {
             'sortDates' => {
