@@ -4,6 +4,7 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   Exclude:
     - bin/*
+    - poms.gemspec
 
 Style/Documentation:
   Exclude:
