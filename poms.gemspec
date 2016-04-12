@@ -13,8 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/brightin/poms'
   spec.license       = 'MIT'
 
-  spec.files         = FileList['lib/**/*.rb', '[A-Z]*', 'spec/**/*'].to_a
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activesupport'
