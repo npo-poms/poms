@@ -4,7 +4,7 @@ require 'poms/api/search'
 module Poms
   module Api
     describe Search do
-      let(:now) { Time.now }
+      let(:now) { Time.zone.now }
       let(:next_week) { 1.week.from_now }
 
       describe 'sortDate' do
