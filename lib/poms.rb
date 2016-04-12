@@ -20,7 +20,7 @@ module Poms
     elsif arg.is_a?(String)
       request = Poms::Media.from_mid(arg, config)
     else
-      fail 'Invalid argument passed to Poms.fetch. '\
+      raise 'Invalid argument passed to Poms.fetch. '\
         'Please make sure to provide either a mid or an array of mid'
     end
     JSON.parse(request.get.body)
@@ -29,8 +29,8 @@ module Poms
   private
 
   def assert_credentials
-    fail Errors::AuthenticationError, 'API key not supplied'    if config.key.blank?
-    fail Errors::AuthenticationError, 'API secret not supplied' if config.secret.blank?
-    fail Errors::AuthenticationError, 'Origin not supplied'     if config.origin.blank?
+    raise Errors::AuthenticationError, 'API key not supplied'    if config.key.blank?
+    raise Errors::AuthenticationError, 'API secret not supplied' if config.secret.blank?
+    raise Errors::AuthenticationError, 'Origin not supplied'     if config.origin.blank?
   end
 end
