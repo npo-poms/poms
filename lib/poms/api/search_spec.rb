@@ -9,22 +9,22 @@ module Poms
 
       describe 'sortDate' do
         it 'returns the correct hash for a start date' do
-          built = described_class.build(start_time: now)
-          expect(built).to eql(
+          subject = described_class.build(start_time: now)
+          expect(subject).to eql(
             'searches' => { 'sortDates' => { 'begin' => now.to_i * 1000 } }
           )
         end
 
         it 'returns the correct hash for an end date' do
-          built = described_class.build(end_time: next_week)
-          expect(built).to eql(
+          subject = described_class.build(end_time: next_week)
+          expect(subject).to eql(
             'searches' => { 'sortDates' => { 'end' => next_week.to_i * 1000 } }
           )
         end
 
         it 'returns a correct hash for a start and end date' do
-          built = described_class.build(start_time: now, end_time: next_week)
-          expect(built).to eql(
+          subject = described_class.build(start_time: now, end_time: next_week)
+          expect(subject).to eql(
             'searches' => {
               'sortDates' => {
                 'begin' => now.to_i * 1000,
@@ -36,9 +36,9 @@ module Poms
       end
 
       describe 'type' do
+        subject { described_class.build(type: 'BROADCAST') }
         it 'returns the correct facet for a given type' do
-          built = described_class.build(type: 'BROADCAST')
-          expect(built).to eql(
+          expect(subject).to eql(
             'facets' => {
               'subsearch' => {
                 'types' => 'BROADCAST'
@@ -50,8 +50,12 @@ module Poms
 
       describe 'all' do
         it 'works correctly with a multitude of options' do
-          built = described_class.build(start_time: now, end_time: next_week, type: 'BROADCAST')
-          expect(built).to eql(
+          subject = described_class.build(
+            start_time: now,
+            end_time: next_week,
+            type: 'BROADCAST'
+          )
+          expect(subject).to eql(
             'searches' => {
               'sortDates' => {
                 'begin' => now.to_i * 1000,
