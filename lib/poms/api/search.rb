@@ -13,7 +13,7 @@ module Poms
         all = options.map do |key, value|
           case key
           when :start_time, :end_time
-            date_params(key, value)
+            time_params(key, value)
           when :type
             { 'facets' => { 'subsearch' => { 'types' => value } } }
           end
@@ -21,7 +21,9 @@ module Poms
         all.reduce(&:deep_merge)
       end
 
-      def date_params(key, value)
+      private
+
+      def time_params(key, value)
         {
           'searches' => {
             'sortDates' => {
