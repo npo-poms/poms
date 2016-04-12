@@ -24,16 +24,6 @@ Lint/UselessAccessModifier:
 Metrics/LineLength:
   Max: 90
 
-# Offense count: 1
-RSpec/DescribeClass:
-  Exclude:
-    - 'spec/lib/poms/api/request_spec.rb'
-
-# Offense count: 2
-RSpec/DescribedClass:
-  Exclude:
-    - 'spec/lib/poms/timestamp_spec.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
