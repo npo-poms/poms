@@ -10,14 +10,22 @@ module Poms
         it 'returns the correct hash for a start date' do
           subject = described_class.build(start_time: now)
           expect(subject).to eql(
-            'searches' => { 'sortDates' => { 'begin' => now.to_i * 1000 } }
+            'searches' => {
+              'sortDates' => {
+                'begin' => Timestamp.to_unix_ms(now)
+              }
+            }
           )
         end
 
         it 'returns the correct hash for an end date' do
           subject = described_class.build(end_time: next_week)
           expect(subject).to eql(
-            'searches' => { 'sortDates' => { 'end' => next_week.to_i * 1000 } }
+            'searches' => {
+              'sortDates' => {
+                'end' => Timestamp.to_unix_ms(next_week)
+              }
+            }
           )
         end
 
@@ -26,8 +34,8 @@ module Poms
           expect(subject).to eql(
             'searches' => {
               'sortDates' => {
-                'begin' => now.to_i * 1000,
-                'end' => next_week.to_i * 1000
+                'begin' => Timestamp.to_unix_ms(now),
+                'end' => Timestamp.to_unix_ms(next_week)
               }
             }
           )
@@ -57,8 +65,8 @@ module Poms
           expect(subject).to eql(
             'searches' => {
               'sortDates' => {
-                'begin' => now.to_i * 1000,
-                'end' => next_week.to_i * 1000
+                'begin' => Timestamp.to_unix_ms(now),
+                'end' => Timestamp.to_unix_ms(next_week)
               }
             },
             'facets' => {

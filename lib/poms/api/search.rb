@@ -1,13 +1,15 @@
 module Poms
   module Api
     module Search
-      def self.build(options)
+      module_function
+
+      def build(options)
         all = options.map do |key, value|
           case key
           when :start_time
-            { 'searches' => { 'sortDates' => { 'begin' => ms(value) } } }
+            date_params('begin', Timestamp.to_unix_ms(value))
           when :end_time
-            { 'searches' => { 'sortDates' => { 'end' => ms(value) } } }
+            date_params('end', Timestamp.to_unix_ms(value))
           when :type
             { 'facets' => { 'subsearch' => { 'types' => value } } }
           end
@@ -15,10 +17,8 @@ module Poms
         all.reduce(&:deep_merge)
       end
 
-      private
-
-      def self.ms(time)
-        time.to_i * 1000
+      def date_params(key, value)
+        { 'searches' => { 'sortDates' => { key => value } } }
       end
     end
   end

@@ -5,6 +5,7 @@ require 'fabrication'
 require 'vcr'
 require 'timecop'
 require 'poms'
+require 'poms/timestamp'
 
 WebMock.disable_net_connect!
 

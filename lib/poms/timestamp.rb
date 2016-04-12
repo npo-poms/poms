@@ -3,9 +3,20 @@ module Poms
   module Timestamp
     module_function
 
-    def convert(poms_timestamp)
-      return unless poms_timestamp
-      Time.at(poms_timestamp / 1000).to_datetime
+    def convert(timestamp)
+      # Deprecate this method
+      to_ruby_datetime(timestamp)
+    end
+
+    def to_ruby_datetime(timestamp)
+      return unless timestamp
+      Time.at(timestamp / 1000).to_datetime
+    end
+
+    # Convert to unix timestamp in milliseconds
+    def to_unix_ms(datetime)
+      return unless datetime
+      datetime.to_i * 1000
     end
   end
 end
