@@ -1,8 +1,17 @@
+# Create a new request for the Poms API. The request is initialized with a
+# URI to be called and the key, secret and origin that are needed for
+# authentication.
+
+# @param uri An instance of an Addressable::URI of the requested uri
+# @param credentials A struct containing the poms api key, secret and origin
+# @param body The data that is submitted in the post request body
+
 require 'poms/api/auth'
 require 'net/https'
 
 module Poms
   module Api
+    # Contains authentication and request specific properties
     module RequestExecution
       def execute_ssl_request(host, request)
         Net::HTTP.start(host, 443, use_ssl: true) do |http|
@@ -25,17 +34,11 @@ module Poms
       end
     end
 
+    # Build an executable PostRequest
     class PostRequest
       include RequestExecution
       attr_reader :uri, :credentials, :body
 
-      # Create a new request to the Poms API. The request is initialized with a
-      # URI to be called and the key, secret and origin that are needed for
-      # authentication.
-      #
-      # @param uri An instance of an Addressable::URI of the requested uri
-      # @param credentials A struct containing the poms api key, secret and origin
-      # @param body The data that is submitted in the post request body
       def initialize(uri, credentials, body: {})
         @uri = uri
         @credentials = credentials
@@ -51,12 +54,7 @@ module Poms
       end
     end
 
-    # Create a new request to the Poms API. The request is initialized with a
-    # URI to be called and the key, secret and origin that are needed for
-    # authentication.
-    #
-    # @param uri An instance of an Addressable::URI of the requested uri
-    # @param credentials A struct containing the poms api key, secret and origin
+    # Build an executable GetRequest
     class GetRequest
       include RequestExecution
       attr_reader :uri, :credentials
