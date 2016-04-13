@@ -8,7 +8,7 @@ module Poms
 
       describe 'sortDate' do
         it 'returns the correct hash for a start date' do
-          subject = described_class.build(start_time: now)
+          subject = described_class.build(starts_at: now)
           expect(subject).to eql(
             'searches' => {
               'sortDates' => {
@@ -19,7 +19,7 @@ module Poms
         end
 
         it 'returns the correct hash for an end date' do
-          subject = described_class.build(end_time: next_week)
+          subject = described_class.build(ends_at: next_week)
           expect(subject).to eql(
             'searches' => {
               'sortDates' => {
@@ -30,7 +30,7 @@ module Poms
         end
 
         it 'returns a correct hash for a start and end date' do
-          subject = described_class.build(start_time: now, end_time: next_week)
+          subject = described_class.build(starts_at: now, ends_at: next_week)
           expect(subject).to eql(
             'searches' => {
               'sortDates' => {
@@ -58,8 +58,8 @@ module Poms
       describe 'all' do
         it 'works correctly with a multitude of options' do
           subject = described_class.build(
-            start_time: now,
-            end_time: next_week,
+            starts_at: now,
+            ends_at: next_week,
             type: 'BROADCAST'
           )
           expect(subject).to eql(
