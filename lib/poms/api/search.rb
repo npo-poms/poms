@@ -1,3 +1,5 @@
+require 'poms/timestamp'
+
 module Poms
   module Api
     # Map search parameters to POMS specific format
@@ -8,6 +10,7 @@ module Poms
       }.freeze
 
       def self.build(options)
+        return {} if options.empty?
         all = options.map do |key, value|
           case key
           when :starts_at, :ends_at
