@@ -13,11 +13,7 @@ require 'json'
 module Poms
   extend self
 
-  REQUIRED_CREDENTIALS = {
-    key: 'API key must be supplied',
-    origin: 'origin must be supplied',
-    secret: 'API secret must be supplied'
-  }.freeze
+  REQUIRED_CREDENTIAL_KEYS = %i(key origin secret).freeze
 
   attr_reader :config
 
@@ -50,10 +46,10 @@ module Poms
   private
 
   def assert_credentials_presence
-    REQUIRED_CREDENTIALS.each do |key, message|
+    REQUIRED_CREDENTIALS.each do |key|
       value = config.send(key)
       next if value.present?
-      raise Errors::AuthenticationError, message
+      raise Errors::AuthenticationError, "#{key} must be supplied"
     end
   end
 end
