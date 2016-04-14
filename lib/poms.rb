@@ -25,7 +25,7 @@ module Poms
     JSON.parse(request.execute.body)
   end
 
-  def descendants(mid, search_params)
+  def descendants(mid, search_params = {})
     assert_credentials
     request = Api::Media.descendants(mid, config, search_params)
     JSON.parse(request.execute.body)
