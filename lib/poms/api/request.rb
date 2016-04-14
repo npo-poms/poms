@@ -42,13 +42,13 @@ module Poms
       def initialize(uri, credentials, body: {})
         @uri = uri
         @credentials = credentials
-        @body = body
+        @body = body.to_json
       end
 
       # Executes a POST request with post body
       def execute
         req = Net::HTTP::Post.new(uri.path)
-        req.body = body.to_json
+        req.body = body
         headers.each { |key, val| req[key] = val }
         execute_ssl_request(uri.host, req)
       end

@@ -3,8 +3,10 @@ require 'spec_helper'
 module Poms
   module Api
     describe Media do
+      let(:dummy_credentials) { {} }
+
       describe '.from_mid' do
-        subject { described_class.from_mid('the-mid', {}) }
+        subject { described_class.from_mid('the-mid', dummy_credentials) }
         it 'builds an executable get request' do
           expect(subject).to respond_to(:execute)
         end
@@ -15,7 +17,7 @@ module Poms
       end
 
       describe '.multiple' do
-        subject { described_class.multiple(['mid1', 'mid2'], {}) }
+        subject { described_class.multiple(['mid1', 'mid2'], dummy_credentials) }
 
         it 'builds an executable request' do
           expect(subject).to respond_to(:execute)
@@ -26,23 +28,34 @@ module Poms
         end
 
         it 'will execute with the correct body' do
-          expect(subject.body).to eql(['mid1', 'mid2'])
+          expect(subject.body).to eql(['mid1', 'mid2'].to_json)
         end
       end
 
       describe '.descendants' do
-        subject { described_class.descendants('the-mid', {}, { fake_query: true }) }
+        context 'without search parameters' do
+          subject { described_class.descendants('the-mid', dummy_credentials) }
 
-        it 'builds an executable request' do
-          expect(subject).to respond_to(:execute)
+          it 'builds an executable request' do
+            expect(subject).to respond_to(:execute)
+          end
+
+          it 'builds a request to the correct endpoint' do
+            expect(subject.uri.to_s).to eq('https://rs.poms.omroep.nl/v1/api/media/the-mid/descendants')
+          end
         end
 
-        it 'builds a request to the correct endpoint' do
-          expect(subject.uri.to_s).to eq('https://rs.poms.omroep.nl/v1/api/media/the-mid/descendants')
-        end
+        context 'with search params' do
+          let(:search_params) { { starts_at: Time.now } }
 
-        it 'will execute with the correct body' do
-          expect(subject.body).to eql({ fake_query: true })
+          it 'will execute with the correct body' do
+            subject = described_class.descendants(
+              'the-mid',
+              dummy_credentials,
+              search_params
+            )
+            expect(subject.body).to eql(Search.build(search_params).to_json)
+          end
         end
       end
     end
