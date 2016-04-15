@@ -1,3 +1,5 @@
+require 'poms/timestamp'
+
 module Poms
   module Api
     # Map search parameters to POMS specific format
