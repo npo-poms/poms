@@ -12,11 +12,9 @@ require 'json'
 # 3 -- Parse responded JSON. Extract fields if necessary
 module Poms
   extend self
-  attr_reader :config
 
   def configure
-    @config ||= OpenStruct.new
-    yield @config
+    yield config
   end
 
   def fetch(arg)
@@ -32,6 +30,10 @@ module Poms
   end
 
   private
+
+  def config
+    @config ||= OpenStruct.new
+  end
 
   def assert_credentials
     raise Errors::AuthenticationError, 'API key not supplied'    if config.key.blank?
