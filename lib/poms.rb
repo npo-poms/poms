@@ -15,6 +15,8 @@ module Poms
 
   def configure
     yield config
+    config.freeze
+    nil
   end
 
   def fetch(arg)
