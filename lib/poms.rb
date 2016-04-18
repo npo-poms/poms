@@ -12,7 +12,7 @@ require 'json'
 # 3 -- Parse responded JSON. Extract fields if necessary
 module Poms
   extend self
-  REQUIRED_CREDENTIAL_KEYS = %i(key origin secret).freeze
+  REQUIRED_CREDENTIAL_KEYS = [:key, :origin, :secret].freeze
 
   def configure
     yield config
