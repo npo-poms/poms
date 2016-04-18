@@ -7,18 +7,17 @@ RSpec.describe Poms do
   end
 
   describe '.members' do
-    let(:config) { double('config') }
+    let(:credentials) { double('credentials') }
 
     before do
-      allow(described_class).to receive(:assert_credentials)
-      allow(described_class).to receive(:config).and_return(config)
+      allow(described_class).to receive(:credentials).and_return(credentials)
     end
 
     it 'fetches members of a mid' do
       request = double('request', execute: double('body', body:
         { key: 'value' }.to_json))
       expect(Poms::Api::Media).to receive(:members)
-        .with('POMS_S_NTR_601648', config).and_return(request)
+        .with('POMS_S_NTR_601648', credentials).and_return(request)
       expect(described_class.members('POMS_S_NTR_601648'))
         .to eq('key' => 'value')
     end
