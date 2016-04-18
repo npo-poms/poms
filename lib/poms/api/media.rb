@@ -21,6 +21,12 @@ module Poms
           body: search_query
         )
       end
+
+      # Get request that gets all the members of a Group. Useful for getting
+      # Clips from a Playlist for instance.
+      def self.members(mid, credentials)
+        GetRequest.new(URIs::Media.members(mid), credentials)
+      end
     end
   end
 end

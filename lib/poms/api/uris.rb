@@ -21,6 +21,10 @@ module Poms
           uri_for_path("/#{mid}/descendants")
         end
 
+        def self.members(mid)
+          uri_for_path("/#{mid}/members")
+        end
+
         private
 
         def self.uri_for_path(path)

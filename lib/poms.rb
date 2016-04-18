@@ -30,6 +30,12 @@ module Poms
     JSON.parse(request.execute.body)
   end
 
+  def members(mid)
+    assert_credentials
+    request = Api::Media.members(mid, config)
+    JSON.parse(request.execute.body)
+  end
+
   private
 
   def assert_credentials_presence
