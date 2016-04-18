@@ -20,6 +20,14 @@ module Poms
     nil
   end
 
+  # Returns the first result for a mid if it is not an error.
+  #
+  # @param mid The mid to find
+  def first(mid)
+    item = fetch(mid)["items"][0]
+    item["result"] unless item.key?("error")
+  end
+
   def fetch(arg)
     request = Api::Media.multiple(Array(arg), credentials)
     JSON.parse(request.execute.body)

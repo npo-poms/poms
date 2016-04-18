@@ -34,3 +34,6 @@ TooManyStatements:
 LongParameterList:
   exclude:
   - Poms::MergedSeries#serie_mids
+FeatureEnvy:
+  exclude:
+  - Poms#first
