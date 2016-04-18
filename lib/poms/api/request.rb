@@ -39,10 +39,11 @@ module Poms
       include RequestExecution
       attr_reader :uri, :credentials, :body
 
-      def initialize(uri, credentials, body: {})
+      def initialize(uri, credentials, body = {})
         @uri = uri
         @credentials = credentials
-        @body = body.to_json
+        # This is needed for 1.9.3. Better to revert this when Zappelin is updated.
+        @body = body.fetch(:body).to_json
       end
 
       # Executes a POST request with post body
