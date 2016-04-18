@@ -18,6 +18,11 @@ module Poms
           uri = described_class.descendants('the-mid')
           expect(uri.to_s).to eql('https://rs.poms.omroep.nl/v1/api/media/the-mid/descendants')
         end
+
+        it 'returns the correct uri for members' do
+          uri = described_class.members('the-mid')
+          expect(uri.to_s).to eql('https://rs.poms.omroep.nl/v1/api/media/the-mid/members')
+        end
       end
     end
   end

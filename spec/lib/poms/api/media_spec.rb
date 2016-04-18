@@ -58,6 +58,18 @@ module Poms
           end
         end
       end
+
+      describe '.members' do
+        subject { described_class.members('the-mid', {}) }
+
+        it 'builds an executable request' do
+          expect(subject).to respond_to(:execute)
+        end
+
+        it 'builds a request to the correct endpoint' do
+          expect(subject.uri.to_s).to eq('https://rs.poms.omroep.nl/v1/api/media/the-mid/members')
+        end
+      end
     end
   end
 end
