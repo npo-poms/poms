@@ -23,6 +23,7 @@ UtilityFunction:
   - Poms::Fields#image_id
   - Poms::Fields#images
   - Poms::Fields#odi_streams
+  - Poms::Fields#position
   - Poms::Fields#rev
   - Poms::Fields#value_of_type
 NilCheck:
