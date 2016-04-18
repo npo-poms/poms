@@ -83,4 +83,15 @@ naar hun loods, maar is dat wel een goed idee?")
         .to be_nil
     end
   end
+
+  describe '#position' do
+    it 'returns the position' do
+      clip = JSON.parse File.read('spec/fixtures/poms_clip.json')
+      expect(described_class.position(clip)).to eq(1)
+    end
+
+    it 'returns nil if it not a member of anything' do
+      expect(described_class.position(poms_data)).to be_nil
+    end
+  end
 end
