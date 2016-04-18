@@ -1,0 +1,100 @@
+{
+  "objectType": "program",
+  "mid": "WO_NTR_781797",
+  "type": "CLIP",
+  "avType": "VIDEO",
+  "workflow": "PUBLISHED",
+  "sortDate": 1422978906227,
+  "creationDate": 1422978906227,
+  "lastModified": 1437564609632,
+  "urn": "urn:vpro:media:program:51004816",
+  "embeddable": true,
+  "broadcasters": [
+    {
+      "id": "NTR",
+      "value": "NTR"
+    }
+  ],
+  "titles": [
+    {
+      "value": "Wickie de Viking",
+      "owner": "BROADCASTER",
+      "type": "MAIN"
+    },
+    {
+      "value": "Promo",
+      "owner": "BROADCASTER",
+      "type": "SUB"
+    }
+  ],
+  "descriptions": [
+    {
+      "value": "Animatieserie over het kleine verlegen Vikingjongetje Wickie. Samen met Ylvi, Halvar, Ylva en Verschrikkelijke Sven beleeft hij nieuwe avonturen.",
+      "owner": "BROADCASTER",
+      "type": "MAIN"
+    },
+    {
+      "value": "Animatieserie over het kleine verlegen Vikingjongetje Wickie. Samen met Ylvi, Halvar, Ylva en Verschrikkelijke Sven beleeft hij nieuwe avonturen.",
+      "owner": "BROADCASTER",
+      "type": "SHORT"
+    }
+  ],
+  "genres": [
+    {
+      "id": "3.0.1.1",
+      "terms": [
+        "Jeugd"
+      ]
+    }
+  ],
+  "countries": [],
+  "languages": [],
+  "descendantOf": [
+    {
+      "midRef": "POMS_S_NPO_818759",
+      "urnRef": "urn:vpro:media:group:53045541",
+      "type": "PLAYLIST"
+    }
+  ],
+  "memberOf": [
+    {
+      "midRef": "POMS_S_NPO_818759",
+      "urnRef": "urn:vpro:media:group:53045541",
+      "type": "PLAYLIST",
+      "index": 1,
+      "highlighted": false,
+      "added": 1427284134408
+    }
+  ],
+  "locations": [
+    {
+      "programUrl": "http://www.zappelin.nl/data/promo/wickie_viking.mp4",
+      "avAttributes": {
+        "bitrate": 1000000,
+        "avFileFormat": "MP4"
+      },
+      "owner": "BROADCASTER",
+      "creationDate": 1422978924152,
+      "lastModified": 1422978924255,
+      "workflow": "PUBLISHED",
+      "urn": "urn:vpro:media:location:51004853"
+    }
+  ],
+  "images": [
+    {
+      "title": "Wickie de Viking",
+      "description": "Wickie de Viking",
+      "imageUri": "urn:vpro:image:605390",
+      "height": 180,
+      "width": 300,
+      "owner": "BROADCASTER",
+      "type": "PICTURE",
+      "highlighted": false,
+      "creationDate": 1430473376489,
+      "lastModified": 1430473376493,
+      "workflow": "PUBLISHED",
+      "urn": "urn:vpro:media:image:54819654"
+    }
+  ],
+  "publishDate": 1437564680132
+}

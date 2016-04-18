@@ -59,6 +59,12 @@ module Poms
       Poms::Timestamp.convert(internetvod['publishStop'])
     end
 
+    # Returns the position in the parent context if it is present.
+    def position(item)
+      parent = item['memberOf']
+      parent.first['index'] if parent.present?
+    end
+
     private
 
     # Poms has arrays of hashes for some types that have a value and type. This

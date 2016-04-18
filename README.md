@@ -29,6 +29,19 @@ For some more advanced querying, you can use functions like `fetch_clip` which a
 
 You can also query collections in a way to get back multiple episodes. This is tied to the views in the Poms CouchDB service and is documented on the wiki of the NPO.
 
+
+## Searching
+
+For reference of possible search options, see the [POMS API wiki](http://wiki.publiekeomroep.nl/display/npoapi/Media-+en+gids-API).
+
+For Ruby we try to adhere to conventional naming and we map this to the relevant Poms API fields.
+
+Gem | API
+---|---
+`starts_at` | `"sortDates": { "begin" } `
+`ends_at` | `"sortDates": { "end" } `
+`type` | `{ "facets": { "subsearch": { "types" } } }`
+
 ## Contributing
 
 1. Fork it
