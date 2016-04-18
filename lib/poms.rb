@@ -12,14 +12,12 @@ require 'json'
 # 3 -- Parse responded JSON. Extract fields if necessary
 module Poms
   extend self
-
   REQUIRED_CREDENTIAL_KEYS = %i(key origin secret).freeze
 
-  attr_reader :config
-
   def configure
-    @config ||= OpenStruct.new
-    yield @config
+    yield config
+    config.freeze
+    nil
   end
 
   def credentials
@@ -46,10 +44,14 @@ module Poms
   private
 
   def assert_credentials_presence
-    REQUIRED_CREDENTIALS.each do |key|
+    REQUIRED_CREDENTIAL_KEYS.each do |key|
       value = config.send(key)
       next if value.present?
       raise Errors::AuthenticationError, "#{key} must be supplied"
     end
+  end
+
+  def config
+    @config ||= OpenStruct.new
   end
 end
