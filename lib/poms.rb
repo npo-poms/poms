@@ -20,17 +20,6 @@ module Poms
     nil
   end
 
-  def credentials
-    @credentials ||= begin
-      assert_credentials_presence
-      OpenStruct.new(
-        key: config.key,
-        origin: config.origin,
-        secret: config.secret
-      )
-    end
-  end
-
   def fetch(arg)
     request = Api::Media.multiple(Array(arg), credentials)
     JSON.parse(request.execute.body)
@@ -53,5 +42,16 @@ module Poms
 
   def config
     @config ||= OpenStruct.new
+  end
+
+  def credentials
+    @credentials ||= begin
+      assert_credentials_presence
+      OpenStruct.new(
+        key: config.key,
+        origin: config.origin,
+        secret: config.secret
+      )
+    end
   end
 end
