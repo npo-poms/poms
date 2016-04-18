@@ -5,14 +5,15 @@ module Poms
     # Map search parameters to POMS specific format
     module Search
       TIME_PARAMS = {
-        start_time: 'begin',
-        end_time: 'end'
+        starts_at: 'begin',
+        ends_at: 'end'
       }.freeze
 
       def self.build(options)
+        return {} if options.empty?
         all = options.map do |key, value|
           case key
-          when :start_time, :end_time
+          when :starts_at, :ends_at
             time_params(key, value)
           when :type
             { 'facets' => { 'subsearch' => { 'types' => value } } }

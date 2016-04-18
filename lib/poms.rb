@@ -12,6 +12,7 @@ require 'json'
 # 3 -- Parse responded JSON. Extract fields if necessary
 module Poms
   extend self
+  REQUIRED_CREDENTIAL_KEYS = %i(key origin secret).freeze
 
   def configure
     yield config
@@ -20,26 +21,37 @@ module Poms
   end
 
   def fetch(arg)
-    assert_credentials
-    request = Api::Media.multiple(Array(arg), config)
+    request = Api::Media.multiple(Array(arg), credentials)
     JSON.parse(request.execute.body)
   end
 
-  def descendants(mid, search_params)
-    assert_credentials
-    request = Api::Media.descendants(mid, config, search_params)
+  def descendants(mid, search_params = {})
+    request = Api::Media.descendants(mid, credentials, search_params)
     JSON.parse(request.execute.body)
   end
 
   private
 
+  def assert_credentials_presence
+    REQUIRED_CREDENTIAL_KEYS.each do |key|
+      value = config.send(key)
+      next if value.present?
+      raise Errors::AuthenticationError, "#{key} must be supplied"
+    end
+  end
+
   def config
     @config ||= OpenStruct.new
   end
 
-  def assert_credentials
-    raise Errors::AuthenticationError, 'API key not supplied'    if config.key.blank?
-    raise Errors::AuthenticationError, 'API secret not supplied' if config.secret.blank?
-    raise Errors::AuthenticationError, 'Origin not supplied'     if config.origin.blank?
+  def credentials
+    @credentials ||= begin
+      assert_credentials_presence
+      OpenStruct.new(
+        key: config.key,
+        origin: config.origin,
+        secret: config.secret
+      )
+    end
   end
 end
