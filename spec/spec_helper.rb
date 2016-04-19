@@ -4,7 +4,7 @@ require 'webmock/rspec'
 require 'fabrication'
 require 'vcr'
 require 'timecop'
-require 'poms'
+require 'active_support/all'
 
 WebMock.disable_net_connect!
 

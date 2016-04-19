@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'poms'
 
 RSpec.describe Poms do
   it 'gives a meaningful error message when used without configuration' do

@@ -1,9 +1,10 @@
 require 'spec_helper'
+require 'poms/api/uris'
 
 module Poms
   module Api
     module URIs
-      describe Media do
+      RSpec.describe Media do
         it 'returns the correct uri for a single resource' do
           uri = described_class.single('the-mid')
           expect(uri.to_s).to eql('https://rs.poms.omroep.nl/v1/api/media/the-mid')
