@@ -2,6 +2,8 @@ require 'poms/api/client'
 
 module Poms
   module Api
+    # The JsonClient module is a wrapper around the regular Client module. It
+    # requests and responses to handle JSON-formatted bodies.
     module JsonClient
       DEFAULT_HEADERS = {
         'Content-Type' => 'application/json',

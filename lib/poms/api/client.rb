@@ -4,6 +4,11 @@ require 'poms/api/auth'
 
 module Poms
   module Api
+    # The Client module isolates all HTTP interactions, regardless of the driver
+    # module to implement the actual operations. Use the Client module to build
+    # signed requests and execute them.
+    #
+    # @see Poms::Api::Drivers::NetHttp
     module Client
       extend Drivers::NetHttp
 

@@ -2,6 +2,9 @@ require 'forwardable'
 
 module Poms
   module Api
+    # The `Request` object is an implementation-agnostic description of an HTTP
+    # request, representing a combination of an HTTP method, URI, body and
+    # headers.
     class Request
       extend Forwardable
       def_delegators :@headers, :[], :[]=
