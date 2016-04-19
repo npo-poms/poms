@@ -9,25 +9,25 @@ module Poms
 
       # Builds uri's for /media endpoints
       module Media
-        def self.single(mid)
+        module_function
+
+        def single(mid)
           uri_for_path("/#{mid}")
         end
 
-        def self.multiple
+        def multiple
           uri_for_path('/multiple')
         end
 
-        def self.descendants(mid)
+        def descendants(mid)
           uri_for_path("/#{mid}/descendants")
         end
 
-        def self.members(mid)
+        def members(mid)
           uri_for_path("/#{mid}/members")
         end
 
-        private
-
-        def self.uri_for_path(path)
+        def uri_for_path(path)
           Addressable::URI.new(BASE_PARAMS.merge(path: "/v1/api/media#{path}"))
         end
       end
