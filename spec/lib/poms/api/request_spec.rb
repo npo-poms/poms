@@ -2,68 +2,49 @@ require 'spec_helper'
 
 module Poms
   module Api
-    describe GetRequest do
-      let(:test_url) { 'https://rs.poms.omroep.nl/v1/api/media' }
-      let(:uri) { Addressable::URI.parse(test_url) }
-      let(:credentials) do
-        OpenStruct.new(key: 'key', secret: 'secret', origin: 'http://zapp.nl')
+    RSpec.describe Request do
+      it 'requires a valid HTTP method' do
+        expect {
+          described_class.new('bla', 'uri')
+        }.to raise_error(ArgumentError, 'method should be :get or :post')
+
+        expect {
+          described_class.new('get', 'uri')
+        }.not_to raise_error
       end
 
-      subject { described_class.new(uri, credentials) }
-
-      it 'makes the request' do
-        stub = stub_request(:get, test_url)
-        subject.execute
-        expect(stub).to have_been_requested
+      it 'indicates whether it is a get or post request' do
+        expect(described_class.new(:get, 'uri')).to be_get
+        expect(described_class.new(:post, 'uri')).to be_post
       end
 
-      it 'sets the headers' do
-        allow(Auth).to receive(:encode).and_return('encoded-string')
-        stub = stub_request(:get, test_url).with(
-          headers: {
-            'Origin' => 'http://zapp.nl',
-            'X-NPO-Date' => Time.now.rfc822,
-            'Authorization' => 'NPO key:encoded-string'
-          }
-        )
-        subject.execute
-        expect(stub).to have_been_requested
-      end
-    end
-
-    describe PostRequest do
-      let(:test_url) { 'https://rs.poms.omroep.nl/v1/api/media' }
-      let(:uri) { Addressable::URI.parse(test_url) }
-      let(:credentials) do
-        OpenStruct.new(key: 'key', secret: 'secret', origin: 'http://zapp.nl')
+      it 'constructs get and post requests using custom constructor' do
+        expect(described_class.get('uri')).to be_get
+        expect(described_class.post('uri')).to be_post
       end
 
-      subject { described_class.new(uri, credentials, body: { foo: 'bar' }) }
-
-      it 'makes a post request' do
-        stub = stub_request(:post, test_url)
-        subject.execute
-        expect(stub).to have_been_requested
+      it 'can read header values' do
+        request = described_class.get('uri', nil, 'foo' => 'bar')
+        expect(request['foo']).to eql('bar')
+        expect(request['other key']).to be_nil
       end
 
-      it 'sets the post body' do
-        stub = stub_request(:post, test_url).with(body: { foo: 'bar' }.to_json)
-        subject.execute
-        expect(stub).to have_been_requested
+      it 'has an empty body by default' do
+        expect(described_class.get('uri').body).to be_empty
       end
 
-      it 'sets the correct headers' do
-        allow(Auth).to receive(:encode).and_return('encoded-string')
-        stub = stub_request(:post, test_url).with(
-          headers: {
-            'Origin' => 'http://zapp.nl',
-            'X-NPO-Date' => Time.now.rfc822,
-            'Authorization' => 'NPO key:encoded-string',
-            'Content-Type' => 'application/json'
-          }
-        )
-        subject.execute
-        expect(stub).to have_been_requested
+      it 'can write headers' do
+        request = described_class.get('uri')
+        expect {
+          request['foo'] = 'bar'
+        }.to change { request['foo'] }.from(nil).to('bar')
+      end
+
+      it 'can loop over all headers' do
+        request = described_class.get('uri', {}, 'foo' => 'bar')
+        expect { |b|
+          request.each_header(&b)
+        }.to yield_successive_args(['foo', 'bar'])
       end
     end
   end

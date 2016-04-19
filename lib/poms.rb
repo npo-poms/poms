@@ -1,7 +1,9 @@
 require 'active_support/all'
-require 'poms/api/media'
+require 'poms/api/uris'
+require 'poms/api/json_client'
 require 'poms/api/search'
 require 'poms/errors/authentication_error'
+require 'poms/api/search'
 require 'json'
 
 # Main interface for the POMS gem
@@ -22,25 +24,31 @@ module Poms
 
   # Returns the first result for a mid if it is not an error.
   #
-  # @param mid The mid to find
+  # @param [String] mid MID to find in POMS
   def first(mid)
-    item = fetch(mid)["items"][0]
-    item["result"] unless item.key?("error")
+    first!(mid)
+  rescue Api::Client::HttpMissingError
+    nil
+  end
+
+  def first!(mid)
+    Api::JsonClient.get(Api::URIs::Media.single(mid), credentials)
   end
 
   def fetch(arg)
-    request = Api::Media.multiple(Array(arg), credentials)
-    JSON.parse(request.execute.body)
+    Api::JsonClient.post(Api::URIs::Media.multiple, Array(arg), credentials)
   end
 
   def descendants(mid, search_params = {})
-    request = Api::Media.descendants(mid, credentials, search_params)
-    JSON.parse(request.execute.body)
+    Api::JsonClient.post(
+      Api::URIs::Media.descendants(mid),
+      Api::Search.build(search_params),
+      credentials
+    )
   end
 
   def members(mid)
-    request = Api::Media.members(mid, credentials)
-    JSON.parse(request.execute.body)
+    Api::JsonClient.get(Api::URIs::Media.members(mid), credentials)
   end
 
   private
