@@ -32,23 +32,23 @@ module Poms
   end
 
   def first!(mid)
-    Api::JsonClient.get(Api::URIs::Media.single(mid), credentials)
+    Api::JsonClient.get(Api::URIs::Media.single(mid, base_uri), credentials)
   end
 
   def fetch(arg)
-    Api::JsonClient.post(Api::URIs::Media.multiple, Array(arg), credentials)
+    Api::JsonClient.post(Api::URIs::Media.multiple(base_uri), Array(arg), credentials)
   end
 
   def descendants(mid, search_params = {})
     Api::JsonClient.post(
-      Api::URIs::Media.descendants(mid),
+      Api::URIs::Media.descendants(mid, base_uri),
       Api::Search.build(search_params),
       credentials
     )
   end
 
   def members(mid)
-    Api::JsonClient.get(Api::URIs::Media.members(mid), credentials)
+    Api::JsonClient.get(Api::URIs::Media.members(mid, base_uri), credentials)
   end
 
   private
@@ -62,7 +62,13 @@ module Poms
   end
 
   def config
-    @config ||= OpenStruct.new
+    @config ||= OpenStruct.new(
+      base_uri: Addressable::URI.parse(ENV['POMS_BASE_URI'])
+    )
+  end
+
+  def base_uri
+    config.base_uri
   end
 
   def credentials
