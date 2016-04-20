@@ -75,6 +75,10 @@ module Poms
     )
   end
 
+  def base_uri
+    config.base_uri
+  end
+
   def credentials
     @credentials ||= begin
       assert_credentials_presence
