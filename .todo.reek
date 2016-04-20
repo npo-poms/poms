@@ -7,6 +7,7 @@ UncommunicativeVariableName:
   - Poms::Fields#available_until
   - Poms::Fields#odi_streams
   - Poms::MergedSeries#serie_mids
+  - Poms::Api
 DuplicateMethodCall:
   exclude:
   - Poms::Api::RequestExecution#headers
@@ -32,9 +33,17 @@ NilCheck:
 TooManyStatements:
   exclude:
   - Poms::Fields#odi_streams
+  - Poms::Api::Client#sign
+  - Poms::Api::Drivers::NetHttp#attempt_request
 LongParameterList:
   exclude:
   - Poms::MergedSeries#serie_mids
+  - Poms::Api::Client#post
+  - Poms::Api::JsonClient#post
 FeatureEnvy:
   exclude:
   - Poms#first
+  - Poms::Api::Drivers::NetHttp#attempt_request
+  - Poms::Api::Drivers::NetHttp#execute
+  - Poms::Api::Drivers::NetHttp#prepare_request
+  - Poms::Api::Drivers::NetHttp#request_to_net_http_request

@@ -12,8 +12,13 @@ module Poms
     module Client
       extend Drivers::NetHttp
 
+      # Base exception for all Poms-specific HTTP errors.
       HttpError = Class.new(StandardError)
+
+      # Wrapper exception for dealing with driver-agnostic 404 responses.
       HttpMissingError = Class.new(HttpError)
+
+      # Wrapper exception for dealing with driver-agnostic 500 responses.
       HttpServerError = Class.new(HttpError)
 
       module_function
@@ -60,9 +65,10 @@ module Poms
 
       def sign(request, credentials, clock = Time.now)
         timestamp = clock.rfc822
-        message = Auth.message(request.uri, credentials.origin, timestamp)
+        origin = credentials.origin
+        message = Auth.message(request.uri, origin, timestamp)
         encoded_message = Auth.encode(credentials.secret, message)
-        request['Origin'] = credentials.origin
+        request['Origin'] = origin
         request['X-NPO-Date'] = timestamp
         request['Authorization'] = "NPO #{credentials.key}:#{encoded_message}"
         request
