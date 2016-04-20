@@ -68,12 +68,11 @@ module Poms
 
   def config
     @config ||= OpenStruct.new(
+      key: ENV['POMS_KEY'],
+      origin: ENV['POMS_ORIGIN'],
+      secret: ENV['POMS_SECRET'],
       base_uri: Addressable::URI.parse(ENV['POMS_BASE_URI'])
     )
-  end
-
-  def base_uri
-    config.base_uri
   end
 
   def credentials
