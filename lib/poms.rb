@@ -24,12 +24,18 @@ module Poms
   # Returns the first result for a mid if it is not an error.
   #
   # @param [String] mid MID to find in POMS
+  # @return [Hash, nil]
   def first(mid)
     first!(mid)
   rescue Api::Client::HttpMissingError
     nil
   end
 
+  # Like `first`, but raises `Api::Client::HttpMissingError` when the requested
+  # MID could not be found.
+  #
+  # @param [String] mid
+  # @raise Api::Client::HttpMissingError
   def first!(mid)
     Api::JsonClient.get(Api::URIs::Media.single(mid, base_uri), credentials)
   end
