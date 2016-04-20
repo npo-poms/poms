@@ -1,7 +1,9 @@
 require 'active_support/all'
-require 'poms/api/media'
-require 'poms/api/search'
+require 'poms/api/uris'
+require 'poms/api/json_client'
 require 'poms/errors/authentication_error'
+require 'poms/errors/missing_configuration_error'
+require 'poms/api/search'
 require 'json'
 
 # Main interface for the POMS gem
@@ -22,25 +24,41 @@ module Poms
 
   # Returns the first result for a mid if it is not an error.
   #
-  # @param mid The mid to find
+  # @param [String] mid MID to find in POMS
+  # @return [Hash, nil]
   def first(mid)
-    item = fetch(mid)["items"][0]
-    item["result"] unless item.key?("error")
+    first!(mid)
+  rescue Api::Client::HttpMissingError
+    nil
+  end
+
+  # Like `first`, but raises `Api::Client::HttpMissingError` when the requested
+  # MID could not be found.
+  #
+  # @param [String] mid
+  # @raise Api::Client::HttpMissingError
+  def first!(mid)
+    Api::JsonClient.get(Api::URIs::Media.single(mid, base_uri), credentials)
   end
 
   def fetch(arg)
-    request = Api::Media.multiple(Array(arg), credentials)
-    JSON.parse(request.execute.body)
+    Api::JsonClient.post(Api::URIs::Media.multiple(base_uri), Array(arg), credentials)
   end
 
   def descendants(mid, search_params = {})
-    request = Api::Media.descendants(mid, credentials, search_params)
-    JSON.parse(request.execute.body)
+    Api::JsonClient.post(
+      Api::URIs::Media.descendants(mid, base_uri),
+      Api::Search.build(search_params),
+      credentials
+    )
   end
 
   def members(mid)
-    request = Api::Media.members(mid, credentials)
-    JSON.parse(request.execute.body)
+    Api::JsonClient.get(Api::URIs::Media.members(mid, base_uri), credentials)
+  end
+
+  def reset_config
+    @config = OpenStruct.new
   end
 
   private
@@ -57,8 +75,14 @@ module Poms
     @config ||= OpenStruct.new(
       key: ENV['POMS_KEY'],
       origin: ENV['POMS_ORIGIN'],
-      secret: ENV['POMS_SECRET']
+      secret: ENV['POMS_SECRET'],
+      base_uri: Addressable::URI.parse(ENV['POMS_BASE_URI'])
     )
+  end
+
+  def base_uri
+    config.base_uri or
+      raise Errors::MissingConfigurationError, 'base_uri must be supplied'
   end
 
   def credentials

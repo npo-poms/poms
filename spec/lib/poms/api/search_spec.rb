@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'poms/api/search'
 
 module Poms
   module Api

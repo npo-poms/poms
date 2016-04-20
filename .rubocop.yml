@@ -17,3 +17,11 @@ Style/ModuleFunction:
     - 'lib/poms/fields.rb'
     - 'lib/poms/merged_series.rb'
     - 'lib/poms/views.rb'
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Style/AndOr:
+  Exclude:
+    - 'lib/poms.rb' # here we do rely on how `or` has lower precedence than `||`
