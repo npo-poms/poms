@@ -1,4 +1,5 @@
 require 'net/https'
+require 'poms/api/response'
 
 module Poms
   module Api
@@ -26,7 +27,7 @@ module Poms
             request_description.uri,
             prepare_request(request_description)
           )
-          [response.code, response.body, response.to_hash]
+          Response.new(response.code, response.body, response.to_hash)
         end
 
         private

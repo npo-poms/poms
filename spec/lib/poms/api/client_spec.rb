@@ -51,7 +51,7 @@ module Poms
         response = described_class.execute(
           described_class.prepare_get(uri)
         )
-        expect(response[1]).to eql('stubbed response')
+        expect(response.body).to eql('stubbed response')
       end
 
       it 'uses #get to prepare and execute a GET request' do
@@ -60,7 +60,7 @@ module Poms
           .to_return(body: 'stubbed response', status: 200)
         expect(
           described_class.get(uri, credentials)
-        ).to eql(['200', 'stubbed response', {}])
+        ).to eql(Poms::Api::Response.new(200, 'stubbed response', {}))
       end
 
       it 'uses #post to prepare and execute a POST request' do
@@ -69,7 +69,7 @@ module Poms
           .to_return(body: 'stubbed response', status: 200)
         expect(
           described_class.post(uri, 'my body', credentials)
-        ).to eql(['200', 'stubbed response', {}])
+        ).to eql(Poms::Api::Response.new(200, 'stubbed response', {}))
       end
 
       it 'raises HttpMissingError given a 404 response' do

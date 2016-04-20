@@ -46,8 +46,7 @@ module Poms
       end
 
       def handle_response(response)
-        code, _body, _headers = response
-        case code.to_i
+        case response.code
         when 400..499 then raise HttpMissingError
         when 500..599 then raise HttpServerError
         else

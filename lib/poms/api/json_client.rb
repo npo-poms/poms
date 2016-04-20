@@ -18,7 +18,7 @@ module Poms
           credentials,
           DEFAULT_HEADERS.merge(headers)
         )
-        JSON.parse(response[1])
+        JSON.parse(response.body)
       end
 
       def post(uri, body, credentials, headers = {})
@@ -28,7 +28,7 @@ module Poms
           credentials,
           DEFAULT_HEADERS.merge(headers)
         )
-        JSON.parse(response[1])
+        JSON.parse(response.body)
       end
     end
   end
