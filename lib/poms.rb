@@ -2,6 +2,7 @@ require 'active_support/all'
 require 'poms/api/uris'
 require 'poms/api/json_client'
 require 'poms/errors/authentication_error'
+require 'poms/errors/missing_configuration_error'
 require 'poms/api/search'
 require 'json'
 
@@ -56,6 +57,10 @@ module Poms
     Api::JsonClient.get(Api::URIs::Media.members(mid, base_uri), credentials)
   end
 
+  def reset_config
+    @config = OpenStruct.new
+  end
+
   private
 
   def assert_credentials_presence
@@ -76,7 +81,8 @@ module Poms
   end
 
   def base_uri
-    config.base_uri
+    config.base_uri or
+      raise Errors::MissingConfigurationError, 'base_uri must be supplied'
   end
 
   def credentials
