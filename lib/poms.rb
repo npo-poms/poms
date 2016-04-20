@@ -54,7 +54,11 @@ module Poms
   end
 
   def config
-    @config ||= OpenStruct.new
+    @config ||= OpenStruct.new(
+      key: ENV['POMS_KEY'],
+      origin: ENV['POMS_ORIGIN'],
+      secret: ENV['POMS_SECRET']
+    )
   end
 
   def credentials
