@@ -25,3 +25,4 @@ Style/BlockDelimiters:
 Style/AndOr:
   Exclude:
     - 'lib/poms.rb' # here we do rely on how `or` has lower precedence than `||`
+    - 'lib/poms/configuration.rb' # here we do rely on how `or` has lower precedence than `||`

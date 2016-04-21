@@ -1,9 +1,9 @@
 require 'active_support/all'
 require 'poms/api/uris'
 require 'poms/api/json_client'
-require 'poms/errors/authentication_error'
-require 'poms/errors/missing_configuration_error'
+require 'poms/errors/not_configured'
 require 'poms/api/search'
+require 'poms/configuration'
 require 'json'
 
 # Main interface for the POMS gem
@@ -14,11 +14,11 @@ require 'json'
 # 3 -- Parse responded JSON. Extract fields if necessary
 module Poms
   extend self
-  REQUIRED_CREDENTIAL_KEYS = [:key, :origin, :secret].freeze
 
   def configure
-    yield config
-    config.freeze
+    @config = Configuration.new do |config|
+      yield config
+    end
     nil
   end
 
@@ -38,61 +38,32 @@ module Poms
   # @param [String] mid
   # @raise Api::Client::HttpMissingError
   def first!(mid)
-    Api::JsonClient.get(Api::URIs::Media.single(mid, base_uri), credentials)
+    Api::JsonClient.get(Api::URIs::Media.single(mid, config.base_uri), config)
   end
 
   def fetch(arg)
-    Api::JsonClient.post(Api::URIs::Media.multiple(base_uri), Array(arg), credentials)
+    Api::JsonClient.post(Api::URIs::Media.multiple(config.base_uri), Array(arg), config)
   end
 
   def descendants(mid, search_params = {})
     Api::JsonClient.post(
-      Api::URIs::Media.descendants(mid, base_uri),
+      Api::URIs::Media.descendants(mid, config.base_uri),
       Api::Search.build(search_params),
-      credentials
+      config
     )
   end
 
   def members(mid)
-    Api::JsonClient.get(Api::URIs::Media.members(mid, base_uri), credentials)
+    Api::JsonClient.get(Api::URIs::Media.members(mid, base_uri), config)
   end
 
   def reset_config
-    @config = OpenStruct.new
+    @config = nil
   end
 
   private
 
-  def assert_credentials_presence
-    REQUIRED_CREDENTIAL_KEYS.each do |key|
-      value = config.send(key)
-      next if value.present?
-      raise Errors::AuthenticationError, "#{key} must be supplied"
-    end
-  end
-
   def config
-    @config ||= OpenStruct.new(
-      key: ENV['POMS_KEY'],
-      origin: ENV['POMS_ORIGIN'],
-      secret: ENV['POMS_SECRET'],
-      base_uri: Addressable::URI.parse(ENV['POMS_BASE_URI'])
-    )
-  end
-
-  def base_uri
-    config.base_uri or
-      raise Errors::MissingConfigurationError, 'base_uri must be supplied'
-  end
-
-  def credentials
-    @credentials ||= begin
-      assert_credentials_presence
-      OpenStruct.new(
-        key: config.key,
-        origin: config.origin,
-        secret: config.secret
-      )
-    end
+    @config or raise Errors::NotConfigured
   end
 end
