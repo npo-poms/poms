@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'poms/fields'
 
 describe Poms::Fields do
   let(:poms_data) { JSON.parse File.read('spec/fixtures/poms_broadcast.json') }
