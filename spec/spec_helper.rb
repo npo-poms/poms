@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'webmock/rspec'
-require 'fabrication'
 require 'vcr'
 require 'timecop'
 require 'active_support/all'
