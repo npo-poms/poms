@@ -15,6 +15,7 @@ require 'json'
 module Poms
   extend self
   REQUIRED_CREDENTIAL_KEYS = [:key, :origin, :secret].freeze
+  DEFAULT_BASE_URI = 'https://rs.poms.omroep.nl'.freeze
 
   def configure
     yield config
@@ -58,7 +59,18 @@ module Poms
   end
 
   def reset_config
-    @config = OpenStruct.new
+    @config = nil
+  end
+
+  def default_config
+    OpenStruct.new(
+      key: ENV['POMS_KEY'],
+      origin: ENV['POMS_ORIGIN'],
+      secret: ENV['POMS_SECRET'],
+      base_uri: Addressable::URI.parse(
+        ENV.fetch('POMS_BASE_URI', DEFAULT_BASE_URI)
+      )
+    )
   end
 
   private
@@ -72,12 +84,7 @@ module Poms
   end
 
   def config
-    @config ||= OpenStruct.new(
-      key: ENV['POMS_KEY'],
-      origin: ENV['POMS_ORIGIN'],
-      secret: ENV['POMS_SECRET'],
-      base_uri: Addressable::URI.parse(ENV['POMS_BASE_URI'])
-    )
+    @config ||= default_config
   end
 
   def base_uri
