@@ -4,24 +4,19 @@ module Poms
     AuthenticationError = Class.new(StandardError)
 
     # Base exception for all Poms-specific HTTP errors.
-    class HttpError < StandardError
-    end
+    HttpError = Class.new(StandardError)
 
     # Wrapper exception for dealing with driver-agnostic 404 responses.
-    class HttpMissingError < HttpError
-    end
+    HttpMissingError = Class.new(HttpError)
 
     # Wrapper exception for dealing with driver-agnostic 500 responses.
-    class HttpServerError < HttpError
-    end
+    HttpServerError = Class.new(HttpError)
 
     # Custom error than can be used to indicate a required configuration value
     # is missing.
-    class MissingConfigurationError < StandardError
-    end
+    MissingConfigurationError = Class.new(StandardError)
 
     # Custom error to indicate that the gem has not been configured at all.
-    class NotConfigured < StandardError
-    end
+    NotConfigured = Class.new(StandardError)
   end
 end
