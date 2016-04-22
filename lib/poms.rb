@@ -1,7 +1,7 @@
 require 'active_support/all'
 require 'poms/api/uris'
 require 'poms/api/json_client'
-require 'poms/errors/not_configured'
+require 'poms/errors'
 require 'poms/api/search'
 require 'poms/configuration'
 require 'json'

@@ -1,5 +1,4 @@
-require 'poms/errors/authentication_error'
-require 'poms/errors/missing_configuration_error'
+require 'poms/errors'
 
 module Poms
   # The configuration is a container for configuration values that control the
