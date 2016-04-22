@@ -35,12 +35,12 @@ module Poms
         ].compact.join(',')
       end
 
-      private
-
       def self.params_string(params)
         return unless params
-        params.map { |k,v| "#{k}:#{v}" }.sort.join(',')
+        params.map { |k, v| "#{k}:#{v}" }.sort.join(',')
       end
+
+      private_class_method :params_string
     end
   end
 end

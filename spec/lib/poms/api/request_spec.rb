@@ -44,7 +44,7 @@ module Poms
         request = described_class.get('uri', {}, 'foo' => 'bar')
         expect { |b|
           request.each_header(&b)
-        }.to yield_successive_args(['foo', 'bar'])
+        }.to yield_successive_args(%w(foo bar))
       end
     end
   end
