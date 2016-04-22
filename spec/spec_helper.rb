@@ -2,7 +2,6 @@ require 'rubygems'
 require 'bundler/setup'
 require 'webmock/rspec'
 require 'vcr'
-require 'timecop'
 require 'active_support/all'
 
 WebMock.disable_net_connect!
@@ -26,9 +25,5 @@ RSpec.configure do |config|
              .underscore.gsub(%r{[^\w\/]+}, '_')
       VCR.use_cassette(name, options, &example)
     end
-  end
-
-  config.before(:suite) do
-    Timecop.freeze Time.utc(2015, 10, 6, 12)
   end
 end
