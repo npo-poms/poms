@@ -57,7 +57,7 @@ module Poms
           if request_description.get?
             Net::HTTP::Get.new(uri)
           elsif request_description.post?
-            Net::HTTP::Post.new(uri.path)
+            Net::HTTP::Post.new(uri)
           else
             raise ArgumentError,
                   'can only execute GET or POST requests'

@@ -7,10 +7,19 @@ module Poms
     module PaginationClient
       module_function
 
-      def all(uri, config)
+      def get(uri, config)
+        execute(uri) { |page_uri| Api::JsonClient.get(page_uri, config) }
+      end
+
+      def post(uri, body, config)
+        execute(uri) { |page_uri| Api::JsonClient.post(page_uri, body, config) }
+      end
+
+      def execute(uri)
         Enumerator.new do |yielder|
-          page = Page.new(uri, config)
+          page = Page.new(uri)
           loop do
+            page.execute { |page_uri| yield page_uri }
             page.items.each { |item| yielder << item }
             raise StopIteration if page.final?
             page = page.next_page
@@ -20,14 +29,14 @@ module Poms
 
       # Keep track of number of items and how many have been retrieved
       class Page
-        def initialize(uri, config, offset = 0)
+        def initialize(uri, offset = 0)
+          uri.query_values = { offset: offset }
           @uri = uri
-          @config = config
           @offset = offset
         end
 
         def next_page
-          self.class.new(uri, config, next_index)
+          self.class.new(uri, next_index)
         end
 
         def final?
@@ -38,16 +47,13 @@ module Poms
           response['items']
         end
 
+        def execute
+          @response = yield uri
+        end
+
         private
 
-        attr_reader :config, :offset, :uri
-
-        def response
-          @response ||= begin
-            uri.query_values = { offset: offset }
-            Api::JsonClient.get(uri, config)
-          end
-        end
+        attr_reader :response, :offset, :uri
 
         def next_index
           response['offset'] + response['max']
