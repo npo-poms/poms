@@ -9,15 +9,24 @@ module Poms
       module_function
 
       def all(uri, config)
-        uri.query_values = { max: 100 }
-        response = Api::JsonClient.get(uri, config)
-        response['items']
+        # uri.query_values = { max: 100 }
+        index = 0
+        Enumerator.new do |yielder|
+          loop do
+            uri.query_values = { offset: index }
+            p uri
+            response = Api::JsonClient.get(uri, config)
+            total = response['total']
+            offset = response['offset']
+            amount = response['max']
+            response['items'].each do |item|
+              yielder.yield item
+            end
+            raise StopIteration if offset+amount >= total
+            index = amount+index
+          end
+        end
       end
-
-      # response['total']
-
-      # response['offset']
-      # response['max']
     end
   end
 end
