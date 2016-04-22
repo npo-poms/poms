@@ -1,3 +1,5 @@
+[ ![Codeship Status for brightin/poms](https://codeship.com/projects/c2baf9b0-ea8d-0132-2258-628e55ad70cc/status?branch=master)](https://codeship.com/projects/83157)
+
 # Poms
 
 The Poms gem provides an interface to the Dutch public broadcaster API: POMS. It
