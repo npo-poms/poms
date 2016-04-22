@@ -1,6 +1,6 @@
 require 'net/https'
 require 'poms/api/response'
-require 'poms/errors/http_error'
+require 'poms/errors'
 
 module Poms
   module Api

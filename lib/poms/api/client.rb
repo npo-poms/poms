@@ -1,8 +1,7 @@
 require 'poms/api/drivers/net_http'
 require 'poms/api/request'
 require 'poms/api/auth'
-require 'poms/errors/http_missing_error'
-require 'poms/errors/http_server_error'
+require 'poms/errors'
 
 module Poms
   module Api
