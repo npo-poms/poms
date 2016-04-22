@@ -54,7 +54,10 @@ module Poms
   end
 
   def members(mid)
-    Api::JsonClient.get(Api::URIs::Media.members(mid, base_uri), config)
+    Api::PaginationClient.all(
+      Api::URIs::Media.members(mid, config.base_uri),
+      config
+    )
   end
 
   def reset_config
