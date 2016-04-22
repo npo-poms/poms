@@ -54,11 +54,11 @@ module Poms
         end
 
         def request_to_net_http_request(request_description)
-          path = request_description.uri.path
+          uri = request_description.uri
           if request_description.get?
-            Net::HTTP::Get.new(path)
+            Net::HTTP::Get.new(uri)
           elsif request_description.post?
-            Net::HTTP::Post.new(path)
+            Net::HTTP::Post.new(uri)
           else
             raise ArgumentError,
                   'can only execute GET or POST requests'

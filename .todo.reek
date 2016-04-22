@@ -35,6 +35,7 @@ TooManyStatements:
   - Poms::Fields#odi_streams
   - Poms::Api::Client#sign
   - Poms::Api::Drivers::NetHttp#attempt_request
+  - Poms::Api::PaginationClient#execute
 LongParameterList:
   exclude:
   - Poms::MergedSeries#serie_mids
@@ -47,6 +48,10 @@ FeatureEnvy:
   - Poms::Api::Drivers::NetHttp#execute
   - Poms::Api::Drivers::NetHttp#prepare_request
   - Poms::Api::Drivers::NetHttp#request_to_net_http_request
+  - Poms::Api::PaginationClient#execute
+NestedIterators:
+  exclude:
+  - Poms::Api::PaginationClient#execute
 Attribute:
   exclude:
   - Poms::Configuration#base_uri

@@ -46,7 +46,7 @@ module Poms
   end
 
   def descendants(mid, search_params = {})
-    Api::JsonClient.post(
+    Api::PaginationClient.post(
       Api::URIs::Media.descendants(mid, config.base_uri),
       Api::Search.build(search_params),
       config
@@ -54,7 +54,10 @@ module Poms
   end
 
   def members(mid)
-    Api::JsonClient.get(Api::URIs::Media.members(mid, base_uri), config)
+    Api::PaginationClient.get(
+      Api::URIs::Media.members(mid, config.base_uri),
+      config
+    )
   end
 
   def reset_config

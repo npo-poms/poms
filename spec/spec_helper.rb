@@ -2,13 +2,15 @@ require 'rubygems'
 require 'bundler/setup'
 require 'webmock/rspec'
 require 'vcr'
-require 'timecop'
 require 'active_support/all'
 
 WebMock.disable_net_connect!
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  config.filter_sensitive_data("<POMS_ORIGIN>") { ENV["POMS_ORIGIN"] }
+  config.filter_sensitive_data("<POMS_KEY>") { ENV["POMS_KEY"] }
+  config.filter_sensitive_data("<POMS_SECRET>") { ENV["POMS_SECRET"] }
   config.hook_into :webmock
 end
 
@@ -23,9 +25,5 @@ RSpec.configure do |config|
              .underscore.gsub(%r{[^\w\/]+}, '_')
       VCR.use_cassette(name, options, &example)
     end
-  end
-
-  config.before(:suite) do
-    Timecop.freeze Time.utc(2015, 10, 6, 12)
   end
 end
