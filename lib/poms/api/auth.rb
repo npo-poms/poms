@@ -11,27 +11,20 @@ module Poms
       # consisting of a message that is hashed with a secret.
       #
       # @see message
-      # @param secret The Poms API secret key
-      # @param message The message that needs to be hashed.
-
-
-      def self.encode(secret, message)
-        sha256 = OpenSSL::Digest.new('sha256')
-        digest = OpenSSL::HMAC.digest(sha256, secret, message)
-        Base64.encode64(digest).strip
-      end
-
+      # @param uri An instance of an Addressable::URI of the requested uri
+      # @param credentials The Poms API credentials
+      # @param timestamp The time as an RFC822 string
       def self.encoded_message(uri, credentials, timestamp)
         message = message(uri, credentials.origin, timestamp)
-        encode(credentials.secret, message)
+        sha256 = OpenSSL::Digest.new('sha256')
+        digest = OpenSSL::HMAC.digest(sha256, credentials.secret, message)
+        Base64.encode64(digest).strip
       end
 
       # Creates the header that is used for authenticating a request to the Poms
       # API.
       #
-      # @param uri An instance of an Addressable::URI of the requested uri
       # @param origin The origin header
-      # @param timestamp The time as an RFC822 string
       # @param params The url params as a ruby hash
       def self.message(uri, origin, timestamp)
         [

@@ -7,13 +7,6 @@ module Poms
     RSpec.describe Auth do
       let(:timestamp) { Date.parse('2015-01-01') }
 
-      describe '.encode' do
-        it 'encodes the message with the secret' do
-          expect(described_class.encode('secret', 'message'))
-            .to eq('i19IcCmVwVmMVz2x4hhmqbgl1KeU0WnXBgoDYFeWNgs=')
-        end
-      end
-
       describe '.message' do
         it 'creates a message' do
           message = described_class.message(
