@@ -25,6 +25,10 @@ module Poms
       freeze
     end
 
+    def credentials
+      @credentials ||= OpenStruct.new(key: key, origin: origin, secret: secret)
+    end
+
     private
 
     def validate
@@ -45,6 +49,7 @@ module Poms
     end
 
     def reset
+      @credentials = nil
       self.key = ENV['POMS_KEY']
       self.origin = ENV['POMS_ORIGIN']
       self.secret = ENV['POMS_SECRET']
