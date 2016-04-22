@@ -24,7 +24,7 @@ module Poms
             raise StopIteration if page.final?
             page = page.next_page
           end
-        end
+        end.lazy
       end
 
       # Keep track of number of items and how many have been retrieved
