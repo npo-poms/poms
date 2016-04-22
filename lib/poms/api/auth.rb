@@ -9,6 +9,15 @@ module Poms
     module Auth
       module_function
 
+      def sign(request, credentials, clock = Time.now)
+        timestamp = clock.rfc822
+        encoded_message = encode_message(request.uri, credentials, timestamp)
+        request['Origin'] = credentials.origin
+        request['X-NPO-Date'] = timestamp
+        request['Authorization'] = "NPO #{credentials.key}:#{encoded_message}"
+        request
+      end
+
       # Create an auth header for the Poms API. This is a codified string
       # consisting of a message that is hashed with a secret.
       #
@@ -16,7 +25,7 @@ module Poms
       # @param uri An instance of an Addressable::URI of the requested uri
       # @param credentials The Poms API credentials
       # @param timestamp The time as an RFC822 string
-      def encoded_message(uri, credentials, timestamp)
+      def encode_message(uri, credentials, timestamp)
         sha256 = OpenSSL::Digest.new('sha256')
         message = generate_message(uri, credentials.origin, timestamp)
         digest = OpenSSL::HMAC.digest(sha256, credentials.secret, message)
@@ -42,7 +51,7 @@ module Poms
         params.map { |key, value| "#{key}:#{value}" }.sort.join(',')
       end
 
-      private_class_method :generate_message, :params_string
+      private_class_method :generate_message, :params_string, :encode_message
     end
   end
 end

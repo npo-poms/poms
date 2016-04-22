@@ -18,7 +18,7 @@ module Poms
       def get(uri, credentials, headers = {})
         handle_response(
           execute(
-            sign(
+            Auth.sign(
               prepare_get(uri, headers),
               credentials
             )
@@ -29,7 +29,7 @@ module Poms
       def post(uri, body, credentials, headers = {})
         handle_response(
           execute(
-            sign(
+            Auth.sign(
               prepare_post(uri, body, headers),
               credentials
             )
@@ -52,15 +52,6 @@ module Poms
 
       def prepare_post(uri, body, headers = {})
         Request.post(uri, body, headers)
-      end
-
-      def sign(request, credentials, clock = Time.now)
-        timestamp = clock.rfc822
-        encoded_message = Auth.encoded_message(request.uri, credentials, timestamp)
-        request['Origin'] = credentials.origin
-        request['X-NPO-Date'] = timestamp
-        request['Authorization'] = "NPO #{credentials.key}:#{encoded_message}"
-        request
       end
     end
   end
