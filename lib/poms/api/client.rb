@@ -1,6 +1,8 @@
 require 'poms/api/drivers/net_http'
 require 'poms/api/request'
 require 'poms/api/auth'
+require 'poms/errors/http_missing_error'
+require 'poms/errors/http_server_error'
 
 module Poms
   module Api
@@ -11,15 +13,6 @@ module Poms
     # @see Poms::Api::Drivers::NetHttp
     module Client
       extend Drivers::NetHttp
-
-      # Base exception for all Poms-specific HTTP errors.
-      HttpError = Class.new(StandardError)
-
-      # Wrapper exception for dealing with driver-agnostic 404 responses.
-      HttpMissingError = Class.new(HttpError)
-
-      # Wrapper exception for dealing with driver-agnostic 500 responses.
-      HttpServerError = Class.new(HttpError)
 
       module_function
 
@@ -47,8 +40,8 @@ module Poms
 
       def handle_response(response)
         case response.code
-        when 400..499 then raise HttpMissingError
-        when 500..599 then raise HttpServerError
+        when 400..499 then raise Errors::HttpMissingError
+        when 500..599 then raise Errors::HttpServerError
         else
           response
         end

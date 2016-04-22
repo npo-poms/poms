@@ -1,5 +1,6 @@
 require 'net/https'
 require 'poms/api/response'
+require 'poms/errors/http_error'
 
 module Poms
   module Api
@@ -39,7 +40,7 @@ module Poms
             http.request(request)
           end
         rescue *NET_HTTP_ERRORS => e
-          raise HttpError,
+          raise Errors::HttpError,
                 "An error (#{e.class}) occured while processing your request."
         end
 

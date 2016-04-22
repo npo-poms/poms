@@ -76,14 +76,21 @@ module Poms
         stub_request(:get, 'https://example.com/some/uri').to_return(status: 404)
         expect {
           described_class.get(uri, credentials)
-        }.to raise_error(Poms::Api::Client::HttpMissingError)
+        }.to raise_error(Poms::Errors::HttpMissingError)
       end
 
       it 'raises HttpServerError given a 500 response' do
         stub_request(:get, 'https://example.com/some/uri').to_return(status: 500)
         expect {
           described_class.get(uri, credentials)
-        }.to raise_error(Poms::Api::Client::HttpServerError)
+        }.to raise_error(Poms::Errors::HttpServerError)
+      end
+
+      it 'raises a generic HttpError when the driver fails' do
+        allow(Net::HTTP).to receive(:start).and_raise(Timeout::Error)
+        expect {
+          described_class.get(uri, credentials)
+        }.to raise_error(Poms::Errors::HttpError)
       end
     end
   end
