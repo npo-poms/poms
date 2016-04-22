@@ -56,10 +56,8 @@ module Poms
 
       def sign(request, credentials, clock = Time.now)
         timestamp = clock.rfc822
-        origin = credentials.origin
-        message = Auth.message(request.uri, origin, timestamp)
-        encoded_message = Auth.encode(credentials.secret, message)
-        request['Origin'] = origin
+        encoded_message = Auth.encoded_message(request.uri, credentials, timestamp)
+        request['Origin'] = credentials.origin
         request['X-NPO-Date'] = timestamp
         request['Authorization'] = "NPO #{credentials.key}:#{encoded_message}"
         request

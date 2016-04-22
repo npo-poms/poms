@@ -1,9 +1,6 @@
 ---
 UncommunicativeVariableName:
   exclude:
-  - Poms::Api::Auth#self.encode
-  - Poms::Api::Auth#self.params_string
-  - Poms::Api::Auth#self.params_string
   - Poms::Fields#available_until
   - Poms::Fields#odi_streams
   - Poms::MergedSeries#serie_mids
