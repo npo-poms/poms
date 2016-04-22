@@ -7,6 +7,8 @@ module Poms
     #
     # see: http://wiki.publiekeomroep.nl/display/npoapi/Algemeen
     module Auth
+      module_function
+
       # Create an auth header for the Poms API. This is a codified string
       # consisting of a message that is hashed with a secret.
       #
@@ -14,9 +16,9 @@ module Poms
       # @param uri An instance of an Addressable::URI of the requested uri
       # @param credentials The Poms API credentials
       # @param timestamp The time as an RFC822 string
-      def self.encoded_message(uri, credentials, timestamp)
-        message = message(uri, credentials.origin, timestamp)
+      def encoded_message(uri, credentials, timestamp)
         sha256 = OpenSSL::Digest.new('sha256')
+        message = generate_message(uri, credentials.origin, timestamp)
         digest = OpenSSL::HMAC.digest(sha256, credentials.secret, message)
         Base64.encode64(digest).strip
       end
@@ -26,7 +28,7 @@ module Poms
       #
       # @param origin The origin header
       # @param params The url params as a ruby hash
-      def self.message(uri, origin, timestamp)
+      def generate_message(uri, origin, timestamp)
         [
           "origin:#{origin}",
           "x-npo-date:#{timestamp}",
@@ -35,12 +37,12 @@ module Poms
         ].compact.join(',')
       end
 
-      def self.params_string(params)
+      def params_string(params)
         return unless params
         params.map { |key, value| "#{key}:#{value}" }.sort.join(',')
       end
 
-      private_class_method :params_string
+      private_class_method :generate_message, :params_string
     end
   end
 end
