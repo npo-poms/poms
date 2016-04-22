@@ -17,7 +17,7 @@ module Poms
 
   def configure
     @config = Configuration.new do |config|
-      yield config
+      yield config if block_given?
     end
     nil
   end
@@ -28,7 +28,7 @@ module Poms
   # @return [Hash, nil]
   def first(mid)
     first!(mid)
-  rescue Api::Client::HttpMissingError
+  rescue Errors::HttpMissingError
     nil
   end
 
