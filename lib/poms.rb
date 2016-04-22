@@ -60,6 +60,14 @@ module Poms
     )
   end
 
+  # Gets the merged serie mids as a hash. Expects a JSON response from
+  # the server with a `map` key.
+  #
+  # @return [Hash] a hash with old_mid => new_mid pairs
+  def merged_series
+    Api::JsonClient.get(Api::URIs::Media.redirects(config.base_uri), config).fetch('map')
+  end
+
   def reset_config
     @config = nil
   end
