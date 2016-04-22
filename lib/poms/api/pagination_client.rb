@@ -7,12 +7,16 @@ module Poms
     module PaginationClient
       module_function
 
-      def get(uri, config)
-        execute(uri) { |page_uri| Api::JsonClient.get(page_uri, config) }
+      def get(uri, credentials)
+        execute(uri) do |page_uri|
+          Api::JsonClient.get(page_uri, credentials)
+        end
       end
 
-      def post(uri, body, config)
-        execute(uri) { |page_uri| Api::JsonClient.post(page_uri, body, config) }
+      def post(uri, body, credentials)
+        execute(uri) do |page_uri|
+          Api::JsonClient.post(page_uri, body, credentials)
+        end
       end
 
       def execute(uri)

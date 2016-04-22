@@ -38,25 +38,32 @@ module Poms
   # @param [String] mid
   # @raise Api::Client::HttpMissingError
   def first!(mid)
-    Api::JsonClient.get(Api::URIs::Media.single(mid, config.base_uri), config)
+    Api::JsonClient.get(
+      Api::URIs::Media.single(mid, config.base_uri),
+      config.credentials
+    )
   end
 
   def fetch(arg)
-    Api::JsonClient.post(Api::URIs::Media.multiple(config.base_uri), Array(arg), config)
+    Api::JsonClient.post(
+      Api::URIs::Media.multiple(config.base_uri),
+      Array(arg),
+      config.credentials
+    )
   end
 
   def descendants(mid, search_params = {})
     Api::PaginationClient.post(
       Api::URIs::Media.descendants(mid, config.base_uri),
       Api::Search.build(search_params),
-      config
+      config.credentials
     )
   end
 
   def members(mid)
     Api::PaginationClient.get(
       Api::URIs::Media.members(mid, config.base_uri),
-      config
+      config.credentials
     )
   end
 
