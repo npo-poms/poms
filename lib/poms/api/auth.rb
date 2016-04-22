@@ -9,35 +9,34 @@ module Poms
     module Auth
       module_function
 
+      extend SingleForwardable
+
+      delegate %i(origin secret key) => :@credentials
+
+      # @param credentials The Poms API credentials
+      # @param request The prepared request
       def sign(request, credentials, clock = Time.now)
+        @credentials = credentials
         timestamp = clock.rfc822
-        encoded_message = encode_message(request.uri, credentials, timestamp)
-        request['Origin'] = credentials.origin
+        message = generate_message(request.uri, timestamp)
+
+        request['Origin'] = origin
         request['X-NPO-Date'] = timestamp
-        request['Authorization'] = "NPO #{credentials.key}:#{encoded_message}"
+        request['Authorization'] = "NPO #{key}:#{encoded_message(message)}"
         request
       end
 
       # Create an auth header for the Poms API. This is a codified string
       # consisting of a message that is hashed with a secret.
-      #
-      # @see message
-      # @param uri An instance of an Addressable::URI of the requested uri
-      # @param credentials The Poms API credentials
-      # @param timestamp The time as an RFC822 string
-      def encode_message(uri, credentials, timestamp)
+      def encoded_message(message)
         sha256 = OpenSSL::Digest.new('sha256')
-        message = generate_message(uri, credentials.origin, timestamp)
-        digest = OpenSSL::HMAC.digest(sha256, credentials.secret, message)
+        digest = OpenSSL::HMAC.digest(sha256, secret, message)
         Base64.encode64(digest).strip
       end
 
       # Creates the header that is used for authenticating a request to the Poms
       # API.
-      #
-      # @param origin The origin header
-      # @param params The url params as a ruby hash
-      def generate_message(uri, origin, timestamp)
+      def generate_message(uri, timestamp)
         [
           "origin:#{origin}",
           "x-npo-date:#{timestamp}",
@@ -51,7 +50,7 @@ module Poms
         params.map { |key, value| "#{key}:#{value}" }.sort.join(',')
       end
 
-      private_class_method :generate_message, :params_string, :encode_message
+      private_class_method :generate_message, :encoded_message, :params_string
     end
   end
 end

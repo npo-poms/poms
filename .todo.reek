@@ -41,9 +41,6 @@ LongParameterList:
 FeatureEnvy:
   exclude:
   - Poms#first
-  - Poms::Api::Auth#sign
-  - Poms::Api::Auth#encode_message
-  - Poms::Api::Auth#generate_message
   - Poms::Api::Drivers::NetHttp#attempt_request
   - Poms::Api::Drivers::NetHttp#execute
   - Poms::Api::Drivers::NetHttp#prepare_request
