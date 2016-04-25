@@ -17,7 +17,7 @@ module Poms
 
   def configure
     @config = Configuration.new do |config|
-      yield config
+      yield config if block_given?
     end
     nil
   end
@@ -28,7 +28,7 @@ module Poms
   # @return [Hash, nil]
   def first(mid)
     first!(mid)
-  rescue Api::Client::HttpMissingError
+  rescue Errors::HttpMissingError
     nil
   end
 
@@ -65,6 +65,14 @@ module Poms
       Api::URIs::Media.members(mid, config.base_uri),
       config.credentials
     )
+  end
+
+  # Gets the merged serie mids as a hash. Expects a JSON response from
+  # the server with a `map` key.
+  #
+  # @return [Hash] a hash with old_mid => new_mid pairs
+  def merged_series
+    Api::JsonClient.get(Api::URIs::Media.redirects(config.base_uri), config).fetch('map')
   end
 
   def reset_config

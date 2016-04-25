@@ -27,6 +27,11 @@ module Poms
           uri_for_path("/#{mid}/members", base_uri)
         end
 
+        # URI for merged series
+        def redirects(base_uri)
+          uri_for_path('/redirects/', base_uri)
+        end
+
         def uri_for_path(path, base_uri)
           base_uri.merge path: "#{PATH_PREFIX}#{path}"
         end
