@@ -5,6 +5,7 @@ module Poms
   # Poms gem.
   class Configuration
     attr_accessor :key, :origin, :secret, :base_uri
+    attr_reader :credentials
 
     # The fallback base URI in case none is explicitly specified.
     DEFAULT_BASE_URI = 'https://rs.poms.omroep.nl'.freeze
@@ -22,11 +23,8 @@ module Poms
       reset
       yield self if block_given?
       validate
+      @credentials = OpenStruct.new(key: key, origin: origin, secret: secret)
       freeze
-    end
-
-    def credentials
-      @credentials ||= OpenStruct.new(key: key, origin: origin, secret: secret)
     end
 
     private

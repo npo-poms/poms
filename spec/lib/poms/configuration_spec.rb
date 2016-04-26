@@ -69,5 +69,19 @@ module Poms
       expect(config.origin).to eql('c')
       expect(config.base_uri.to_s).to eql('d')
     end
+
+    describe '.credentials' do
+      let(:credentials) { subject.credentials }
+
+      it 'returns the credentials in a struct' do
+        expect(credentials.key).to eql('a')
+        expect(credentials.secret).to eql('b')
+        expect(credentials.origin).to eql('c')
+      end
+
+      it 'does not have the base_uri' do
+        expect(credentials.base_uri).not_to be_present
+      end
+    end
   end
 end
