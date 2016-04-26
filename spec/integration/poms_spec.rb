@@ -39,6 +39,19 @@ RSpec.describe Poms do
     end
   end
 
+  describe '.fetch' do
+    subject { described_class.fetch(['VPWON_1251179']) }
+
+    it 'returns a hash with the results' do
+      expect(subject).to be_a(Hash)
+      expect(subject).to include('items')
+    end
+
+    it 'finds the right hash' do
+      expect(subject['items'].first['result']['mid']).to eq('VPWON_1251179')
+    end
+  end
+
   describe '.members' do
     subject { described_class.members('POMS_S_NTR_2448585') }
 
