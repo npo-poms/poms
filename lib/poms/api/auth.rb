@@ -13,8 +13,9 @@ module Poms
 
       delegate %i(origin secret key) => :@credentials
 
-      # @param credentials The Poms API credentials
       # @param request The prepared request
+      # @param credentials The Poms API credentials
+      # @param clock Defaults to current time, but can be provided as Time
       def sign(request, credentials, clock = Time.now)
         @credentials = credentials
         timestamp = clock.rfc822
@@ -22,20 +23,22 @@ module Poms
 
         request['Origin'] = origin
         request['X-NPO-Date'] = timestamp
-        request['Authorization'] = "NPO #{key}:#{encoded_message(message)}"
+        request['Authorization'] = "NPO #{key}:#{encrypt(message)}"
         request
       end
 
-      # Create an auth header for the Poms API. This is a codified string
-      # consisting of a message that is hashed with a secret.
-      def encoded_message(message)
+      # Create a message for the Authorization header. This is an encrypted
+      # stringconsisting of a message that is hashed with a shared secret.
+      def encrypt(message)
         sha256 = OpenSSL::Digest.new('sha256')
         digest = OpenSSL::HMAC.digest(sha256, secret, message)
         Base64.encode64(digest).strip
       end
 
-      # Creates the header that is used for authenticating a request to the Poms
-      # API.
+      # Creates a message in the required format as specified by POMS
+      # documentation.
+      # @param uri The Addressable::URI
+      # @param timestamp An rfc822 formatted timestamp
       def generate_message(uri, timestamp)
         [
           "origin:#{origin}",
@@ -45,12 +48,13 @@ module Poms
         ].compact.join(',')
       end
 
+      # Convert a hash of parameters to the format expected by the message
       def params_string(params)
         return unless params
         params.map { |key, value| "#{key}:#{value}" }.sort.join(',')
       end
 
-      private_class_method :generate_message, :encoded_message, :params_string
+      private_class_method :generate_message, :encrypt, :params_string
     end
   end
 end
