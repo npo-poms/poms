@@ -1,0 +1,150 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://rs.poms.omroep.nl/v1/api/media/ABCD
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Origin:
+      - "<POMS_ORIGIN>"
+      X-Npo-Date:
+      - Tue, 26 Apr 2016 14:08:40 +0200
+      Authorization:
+      - NPO <POMS_KEY>:gr6S6eG/0E3uZZIqWx3TwgwV6SdZx5bdC6WGplnZxyM=
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Tue, 26 Apr 2016 12:08:43 GMT
+      Server:
+      - Apache/2.4.20 (Unix) OpenSSL/1.0.2g
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - accept, authorization, content-type, cookie, origin, x-http-method-override,
+        x-requested-with, x-npo-date, x-npo-mid, x-npo-url, x-origin
+      Access-Control-Allow-Methods:
+      - GET, HEAD, OPTIONS, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "<POMS_ORIGIN>"
+      Content-Type:
+      - application/json;charset=utf-8
+      X-Proxyinstancename:
+      - poms1a
+      Set-Cookie:
+      - balancer://poms8cluster=balancer.poms8aas; path=/;
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"message":"No media for mid ABCD","cause":"javax.ws.rs.NotFoundException:
+        No media for mid ABCD\n\tat nl.vpro.api.rs.v3.exception.Exceptions.notFound(Exceptions.java:21)\n\tat
+        nl.vpro.api.rs.v3.media.MediaRestServiceImpl.getMediaHandleNotFound(MediaRestServiceImpl.java:626)\n\tat
+        nl.vpro.api.rs.v3.media.MediaRestServiceImpl.load(MediaRestServiceImpl.java:153)\n\tat
+        sun.reflect.GeneratedMethodAccessor237.invoke(Unknown Source)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat
+        java.lang.reflect.Method.invoke(Method.java:497)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)\n\tat
+        org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)\n\tat
+        org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)\n\tat
+        org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:52)\n\tat
+        org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\n\tat
+        org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)\n\tat
+        org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\n\tat
+        org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)\n\tat
+        com.sun.proxy.$Proxy183.load(Unknown Source)\n\tat sun.reflect.GeneratedMethodAccessor237.invoke(Unknown
+        Source)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat
+        java.lang.reflect.Method.invoke(Method.java:497)\n\tat org.jboss.resteasy.core.MethodInjectorImpl.invoke(MethodInjectorImpl.java:137)\n\tat
+        org.jboss.resteasy.core.ResourceMethodInvoker.invokeOnTarget(ResourceMethodInvoker.java:296)\n\tat
+        org.jboss.resteasy.core.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:250)\n\tat
+        org.jboss.resteasy.core.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:237)\n\tat
+        org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:356)\n\tat
+        org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:179)\n\tat
+        org.jboss.resteasy.plugins.server.servlet.ServletContainerDispatcher.service(ServletContainerDispatcher.java:220)\n\tat
+        org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:56)\n\tat
+        org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:51)\n\tat
+        javax.servlet.http.HttpServlet.service(HttpServlet.java:729)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291)\n\tat
+        org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)\n\tat
+        org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)\n\tat
+        org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)\n\tat
+        org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:316)\n\tat
+        org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)\n\tat
+        org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:114)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:122)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:168)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:48)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        nl.vpro.api.security.ApiAuthenticationFilter.successfulAuthentication(ApiAuthenticationFilter.java:94)\n\tat
+        org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:245)\n\tat
+        nl.vpro.api.security.ApiAuthenticationFilter.doFilter(ApiAuthenticationFilter.java:54)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:205)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.jasig.cas.client.session.SingleSignOutFilter.doFilter(SingleSignOutFilter.java:100)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:64)\n\tat
+        org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:53)\n\tat
+        org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:91)\n\tat
+        org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)\n\tat
+        org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:213)\n\tat
+        org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:176)\n\tat
+        org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:344)\n\tat
+        org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:261)\n\tat
+        org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)\n\tat
+        org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)\n\tat
+        nl.vpro.api.rs.v3.filter.MediaFilterThreadLocalFilter.doFilter(MediaFilterThreadLocalFilter.java:37)\n\tat
+        org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)\n\tat
+        org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)\n\tat
+        org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)\n\tat
+        org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)\n\tat
+        org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)\n\tat
+        org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)\n\tat
+        org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)\n\tat
+        org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)\n\tat
+        org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)\n\tat
+        org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:521)\n\tat
+        org.apache.coyote.ajp.AbstractAjpProcessor.process(AbstractAjpProcessor.java:850)\n\tat
+        org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:674)\n\tat
+        org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)\n\tat
+        org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)\n\tat
+        java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat
+        java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat
+        org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)\n\tat
+        java.lang.Thread.run(Thread.java:745)\n","status":404}'
+    http_version: 
+  recorded_at: Tue, 26 Apr 2016 12:08:43 GMT
+recorded_with: VCR 2.9.3

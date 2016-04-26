@@ -6,6 +6,39 @@ RSpec.describe Poms do
     described_class.configure
   end
 
+  describe '.first' do
+    subject { described_class.first('POMS_S_NTR_2448585') }
+
+    it 'returns a hash of the found object' do
+      expect(subject).to be_a(Hash)
+    end
+
+    it 'finds the right hash' do
+      expect(subject['mid']).to eq('POMS_S_NTR_2448585')
+    end
+
+    it 'returns nil if not found' do
+      expect(described_class.first('ABCD')).to be_nil
+    end
+  end
+
+  describe '.first!' do
+    subject { described_class.first!('POMS_S_NTR_2448585') }
+
+    it 'returns a hash of the found object' do
+      expect(subject).to be_a(Hash)
+    end
+
+    it 'finds the right hash' do
+      expect(subject['mid']).to eq('POMS_S_NTR_2448585')
+    end
+
+    it 'returns nil if not found' do
+      expect { described_class.first!('ABCD') }
+        .to raise_error { Poms::Errors::HttpMissingError }
+    end
+  end
+
   describe '.members' do
     subject { described_class.members('POMS_S_NTR_2448585') }
 
