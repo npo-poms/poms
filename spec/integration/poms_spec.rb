@@ -2,14 +2,26 @@ require 'spec_helper'
 require 'poms'
 
 RSpec.describe Poms do
+  before do
+    described_class.configure
+  end
+
+  describe '.members' do
+    subject { described_class.members('POMS_S_NTR_2448585') }
+
+    it 'returns an enumerable of hashes' do
+      expect(subject).to all(be_a(Hash))
+    end
+
+    it 'finds the right members' do
+      expect(subject.first['mid']).to eq('WO_NTR_3665130')
+    end
+  end
+
   describe '.merged_series' do
     let(:url) do
       Poms::Api::URIs::Media.redirects(
         Addressable::URI.parse('https://rs.poms.omroep.nl'))
-    end
-
-    before do
-      described_class.configure
     end
 
     it 'turns the json into a hash' do

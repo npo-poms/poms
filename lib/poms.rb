@@ -1,6 +1,7 @@
 require 'active_support/all'
 require 'poms/api/uris'
 require 'poms/api/json_client'
+require 'poms/api/pagination_client'
 require 'poms/errors'
 require 'poms/api/search'
 require 'poms/configuration'
