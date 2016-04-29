@@ -32,6 +32,10 @@ module Poms
       image_id(images(item).first)
     end
 
+    def mid(item)
+      item['mid']
+    end
+
     # Returns the revision from a Poms hash.
     def rev(item)
       item['_rev'].to_i
