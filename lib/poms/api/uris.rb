@@ -11,7 +11,7 @@ module Poms
 
         module_function
 
-        def single(mid, base_uri)
+        def single(base_uri, mid)
           uri_for_path(base_uri, "/#{mid}")
         end
 
@@ -19,11 +19,11 @@ module Poms
           uri_for_path(base_uri, '/multiple')
         end
 
-        def descendants(mid, base_uri)
+        def descendants(base_uri, mid)
           uri_for_path(base_uri, "/#{mid}/descendants")
         end
 
-        def members(mid, base_uri)
+        def members(base_uri, mid)
           uri_for_path(base_uri, "/#{mid}/members")
         end
 
@@ -33,7 +33,7 @@ module Poms
         end
 
         def uri_for_path(base_uri, path)
-          base_uri.merge path: "#{API_PATH}#{path}"
+          base_uri.merge(path: "#{API_PATH}#{path}")
         end
       end
 

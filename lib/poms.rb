@@ -40,7 +40,7 @@ module Poms
   # @raise Api::Client::HttpMissingError
   def first!(mid)
     Api::JsonClient.get(
-      Api::URIs::Media.single(mid, config.base_uri),
+      Api::URIs::Media.single(config.base_uri, mid),
       config.credentials
     )
   end
@@ -55,7 +55,7 @@ module Poms
 
   def descendants(mid, search_params = {})
     Api::PaginationClient.post(
-      Api::URIs::Media.descendants(mid, config.base_uri),
+      Api::URIs::Media.descendants(config.base_uri, mid),
       Api::Search.build(search_params),
       config.credentials
     )
@@ -63,7 +63,7 @@ module Poms
 
   def members(mid)
     Api::PaginationClient.get(
-      Api::URIs::Media.members(mid, config.base_uri),
+      Api::URIs::Media.members(config.base_uri, mid),
       config.credentials
     )
   end
@@ -73,7 +73,10 @@ module Poms
   #
   # @return [Hash] a hash with old_mid => new_mid pairs
   def merged_series
-    Api::JsonClient.get(Api::URIs::Media.redirects(config.base_uri), config).fetch('map')
+    Api::JsonClient.get(
+      Api::URIs::Media.redirects(config.base_uri),
+      config
+    ).fetch('map')
   end
 
   def reset_config
