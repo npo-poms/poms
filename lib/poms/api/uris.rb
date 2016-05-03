@@ -7,33 +7,33 @@ module Poms
     module URIs
       # Builds uri's for /media endpoints
       module Media
-        PATH_PREFIX = '/v1/api/media'.freeze
+        API_PATH = '/v1/api/media'.freeze
 
         module_function
 
         def single(mid, base_uri)
-          uri_for_path("/#{mid}", base_uri)
+          uri_for_path(base_uri, "/#{mid}")
         end
 
         def multiple(base_uri)
-          uri_for_path('/multiple', base_uri)
+          uri_for_path(base_uri, '/multiple')
         end
 
         def descendants(mid, base_uri)
-          uri_for_path("/#{mid}/descendants", base_uri)
+          uri_for_path(base_uri, "/#{mid}/descendants")
         end
 
         def members(mid, base_uri)
-          uri_for_path("/#{mid}/members", base_uri)
+          uri_for_path(base_uri, "/#{mid}/members")
         end
 
         # URI for merged series
         def redirects(base_uri)
-          uri_for_path('/redirects/', base_uri)
+          uri_for_path(base_uri, '/redirects/')
         end
 
-        def uri_for_path(path, base_uri)
-          base_uri.merge path: "#{PATH_PREFIX}#{path}"
+        def uri_for_path(base_uri, path)
+          base_uri.merge path: "#{API_PATH}#{path}"
         end
       end
 
