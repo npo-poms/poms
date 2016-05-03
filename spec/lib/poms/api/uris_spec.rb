@@ -27,6 +27,15 @@ module Poms
           expect(uri.to_s).to eql('https://rs.poms.omroep.nl/v1/api/media/the-mid/members')
         end
       end
+
+      RSpec.describe Schedule do
+        let(:base_uri) { Addressable::URI.parse('https://rs.poms.omroep.nl') }
+
+        it 'returns the correct uri for channel' do
+          uri = described_class.channel(base_uri, 'OPVO')
+          expect(uri.to_s).to eql('https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO')
+        end
+      end
     end
   end
 end

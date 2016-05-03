@@ -36,6 +36,21 @@ module Poms
           base_uri.merge path: "#{PATH_PREFIX}#{path}"
         end
       end
+
+      # URI for the /schedule API
+      module Schedule
+        API_PATH = '/v1/api/schedule'.freeze
+
+        module_function
+
+        def channel(base_uri, channel)
+          uri_for_path(base_uri, "/channel/#{channel}")
+        end
+
+        def uri_for_path(base_uri, path = nil)
+          base_uri.merge(path: "#{API_PATH}#{path}")
+        end
+      end
     end
   end
 end
