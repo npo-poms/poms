@@ -34,8 +34,9 @@ RSpec.describe Poms do
     end
 
     it 'returns nil if not found' do
-      expect { described_class.first!('ABCD') }
-        .to raise_error { Poms::Errors::HttpMissingError }
+      expect {
+        described_class.first!('ABCD')
+      }.to raise_error { Poms::Errors::HttpMissingError }
     end
   end
 
@@ -78,8 +79,9 @@ RSpec.describe Poms do
 
     it 'throws an error on a network error' do
       stub_request(:any, url).to_return(body: '{}', status: 500)
-      expect { described_class.merged_series }
-        .to raise_error(Poms::Errors::HttpServerError)
+      expect {
+        described_class.merged_series
+      }.to raise_error(Poms::Errors::HttpServerError)
     end
 
     it 'throws an error on invalid json' do
