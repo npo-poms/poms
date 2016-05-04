@@ -7,6 +7,7 @@ UncommunicativeVariableName:
   - Poms
 DuplicateMethodCall:
   exclude:
+  - Poms::Api::Client#handle_response
   - Poms::Api::RequestExecution#headers
   - Poms::Builderless::Clip#position
   - Poms::Builderless::Clip#video_url
@@ -32,6 +33,7 @@ LongParameterList:
 FeatureEnvy:
   exclude:
   - Poms#first
+  - Poms::Api::Client#handle_response
   - Poms::Api::Drivers::NetHttp#attempt_request
   - Poms::Api::Drivers::NetHttp#execute
   - Poms::Api::Drivers::NetHttp#prepare_request

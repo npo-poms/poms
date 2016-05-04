@@ -39,8 +39,8 @@ module Poms
 
       def handle_response(response)
         case response.code
-        when 400..499 then raise Errors::HttpMissingError
-        when 500..599 then raise Errors::HttpServerError
+        when 400..499 then raise Errors::HttpMissingError, response.code
+        when 500..599 then raise Errors::HttpServerError, response.code
         else
           response
         end

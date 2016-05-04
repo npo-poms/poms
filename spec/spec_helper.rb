@@ -3,6 +3,7 @@ require 'bundler/setup'
 require 'webmock/rspec'
 require 'vcr'
 require 'active_support/all'
+require 'timecop'
 
 WebMock.disable_net_connect!
 

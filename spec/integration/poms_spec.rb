@@ -34,8 +34,9 @@ RSpec.describe Poms do
     end
 
     it 'returns nil if not found' do
-      expect { described_class.first!('ABCD') }
-        .to raise_error { Poms::Errors::HttpMissingError }
+      expect {
+        described_class.first!('ABCD')
+      }.to raise_error { Poms::Errors::HttpMissingError }
     end
   end
 
@@ -66,7 +67,7 @@ RSpec.describe Poms do
 
   describe '.merged_series' do
     let(:url) do
-      Poms::Api::URIs::Media.redirects(
+      Poms::Api::Uris::Media.redirects(
         Addressable::URI.parse('https://rs.poms.omroep.nl'))
     end
 
@@ -78,8 +79,9 @@ RSpec.describe Poms do
 
     it 'throws an error on a network error' do
       stub_request(:any, url).to_return(body: '{}', status: 500)
-      expect { described_class.merged_series }
-        .to raise_error(Poms::Errors::HttpServerError)
+      expect {
+        described_class.merged_series
+      }.to raise_error(Poms::Errors::HttpServerError)
     end
 
     it 'throws an error on invalid json' do
@@ -90,6 +92,30 @@ RSpec.describe Poms do
     it 'throws an error on timeout' do
       stub_request(:any, url).to_timeout
       expect { described_class.merged_series }.to raise_error(Poms::Errors::HttpError)
+    end
+  end
+
+  describe '.fetch_current_broadcast' do
+    before do
+      Timecop.freeze(Time.new(2016, 5, 2, 16, 0, 0, '+02:00'))
+    end
+
+    after do
+      Timecop.return
+    end
+
+    subject { described_class.fetch_current_broadcast('OPVO') }
+
+    it 'only returns a result for the current channel' do
+      expect(subject['channel']).to eq('OPVO')
+    end
+
+    it 'only returns broadcasts' do
+      expect(subject['media']['type']).to eq('BROADCAST')
+    end
+
+    it 'has a mid' do
+      expect(subject['media']['mid']).not_to be_nil
     end
   end
 end

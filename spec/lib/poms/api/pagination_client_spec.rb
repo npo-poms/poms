@@ -12,7 +12,7 @@ module Poms
       describe '.get' do
         it 'returns all members in one Array' do
           result = described_class.get(
-            Api::URIs::Media.members('POMS_S_NTR_2448585', config.base_uri),
+            Api::Uris::Media.members(config.base_uri, 'POMS_S_NTR_2448585'),
             config
           )
           expect(result.count).to eq(16)
@@ -23,7 +23,7 @@ module Poms
         it 'returns all members in one Array' do
           search_params = { starts_at: DateTime.new(2014, 12, 1) }
           result = described_class.post(
-            Api::URIs::Media.members('POMS_S_NTR_2448585', config.base_uri),
+            Api::Uris::Media.members(config.base_uri, 'POMS_S_NTR_2448585'),
             Api::Search.build(search_params),
             config
           )
