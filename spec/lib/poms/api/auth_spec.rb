@@ -1,33 +1,36 @@
 require 'poms/api/auth'
+require 'poms/configuration'
 require 'spec_helper'
 
-RSpec.describe Poms::Api::Auth do
-  describe '.encode' do
-    it 'encodes the message with the secret' do
-      expect(described_class.encode('secret', 'message'))
-        .to eq('i19IcCmVwVmMVz2x4hhmqbgl1KeU0WnXBgoDYFeWNgs=')
-    end
-  end
+module Poms
+  module Api
+    RSpec.describe Auth do
+      let(:timestamp) { Time.new(2016, 4, 19, 7, 48, 46, '+02:00') }
+      let(:uri) { Addressable::URI.parse('/v1/api/media/') }
+      let(:credentials) do
+        double(
+          'Credentials',
+          origin: 'my origin',
+          key: 'mykey',
+          secret: 'mysecret'
+        )
+      end
 
-  describe '.message' do
-    it 'creates a message' do
-      message = described_class.message(
-        Addressable::URI.parse('/v1/api/media/redirects/'),
-        'http://zapp.nl',
-        Date.parse('2015-01-01').rfc822)
-      expect(message).to eq(
-        'origin:http://zapp.nl,x-npo-date:Thu, 1 Jan 2015 00:00:00 '\
-        '+0000,uri:/v1/api/media/redirects/')
-    end
+      describe '.sign' do
+        it 'signs requests' do
+          headers = {}
+          request = Request.get(uri, nil, headers)
+          signed_request = described_class.sign(request, credentials, timestamp)
 
-    it 'sorts the params' do
-      message = described_class.message(
-        Addressable::URI.parse('/v1/api/media/redirects/?b=1&a=2'),
-        'http://zapp.nl',
-        Date.parse('2015-01-01').rfc822)
-      expect(message).to eq(
-        'origin:http://zapp.nl,x-npo-date:Thu, 1 Jan 2015 00:00:00 '\
-        '+0000,uri:/v1/api/media/redirects/,a:2,b:1')
+          expect(signed_request['Origin']).to eql('my origin')
+          expect(signed_request['X-NPO-Date']).to eql(
+            'Tue, 19 Apr 2016 07:48:46 +0200'
+          )
+          expect(signed_request['Authorization']).to eql(
+            'NPO mykey:PfeMP5/G9NmyprlaCsxiGU2F8l85OWRbDOj+kLbvuFA='
+          )
+        end
+      end
     end
   end
 end

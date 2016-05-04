@@ -60,8 +60,7 @@ module Poms
           elsif request_description.post?
             Net::HTTP::Post.new(uri)
           else
-            raise ArgumentError,
-                  'can only execute GET or POST requests'
+            raise ArgumentError, 'can only execute GET or POST requests'
           end
         end
       end
