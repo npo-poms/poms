@@ -10,7 +10,8 @@ require 'json'
 # Main interface for the POMS gem
 #
 # Strategy
-# 1 -- Build a request object that can be executed (PostRequest || GetRequest object)
+# 1 -- Build a request object that can be executed
+#      (PostRequest || GetRequest object)
 # 2 -- Execute the request. Retry on failures (max 10?)
 # 3 -- Parse responded JSON. Extract fields if necessary
 module Poms

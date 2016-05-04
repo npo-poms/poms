@@ -3,7 +3,9 @@ require 'poms/fields'
 
 module Poms
   describe Fields do
-    let(:poms_data) { JSON.parse File.read('spec/fixtures/poms_broadcast.json') }
+    let(:poms_data) do
+      JSON.parse File.read('spec/fixtures/poms_broadcast.json')
+    end
 
     describe '.title' do
       it 'returns the first MAIN title' do

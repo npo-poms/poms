@@ -15,7 +15,8 @@ module Poms
       end
 
       it 'formats outgoing POST requests as JSON' do
-        stub_request(:post, 'https://example.com/some/uri').to_return(body: '{}')
+        stub_request(:post, 'https://example.com/some/uri')
+          .to_return(body: '{}')
         described_class.post(uri, { 'key' => 'value' }, credentials)
         expect(WebMock).to have_requested(
           :post,

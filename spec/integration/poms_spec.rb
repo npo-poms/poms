@@ -86,12 +86,14 @@ RSpec.describe Poms do
 
     it 'throws an error on invalid json' do
       stub_request(:any, url).to_return(body: 'Test')
-      expect { described_class.merged_series }.to raise_error(JSON::ParserError)
+      expect { described_class.merged_series }
+        .to raise_error(JSON::ParserError)
     end
 
     it 'throws an error on timeout' do
       stub_request(:any, url).to_timeout
-      expect { described_class.merged_series }.to raise_error(Poms::Errors::HttpError)
+      expect { described_class.merged_series }
+        .to raise_error(Poms::Errors::HttpError)
     end
   end
 

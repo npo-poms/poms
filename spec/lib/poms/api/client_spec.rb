@@ -60,14 +60,16 @@ module Poms
       end
 
       it 'raises HttpMissingError given a 404 response' do
-        stub_request(:get, 'https://example.com/some/uri').to_return(status: 404)
+        stub_request(:get, 'https://example.com/some/uri')
+          .to_return(status: 404)
         expect {
           described_class.get(uri, credentials)
         }.to raise_error(Poms::Errors::HttpMissingError)
       end
 
       it 'raises HttpServerError given a 500 response' do
-        stub_request(:get, 'https://example.com/some/uri').to_return(status: 500)
+        stub_request(:get, 'https://example.com/some/uri')
+          .to_return(status: 500)
         expect {
           described_class.get(uri, credentials)
         }.to raise_error(Poms::Errors::HttpServerError)
