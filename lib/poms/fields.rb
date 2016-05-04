@@ -72,8 +72,7 @@ module Poms
     end
 
     def schedule_events(item)
-      events = item['scheduleEvents']
-      return if events.blank?
+      events = item.fetch('scheduleEvents', [])
       events.map do |event|
         {
           'starts_at' => Timestamp.convert(event['start']),
