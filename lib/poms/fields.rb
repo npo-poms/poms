@@ -1,3 +1,5 @@
+require 'poms/timestamp'
+
 module Poms
   # This module contains functions to extract things from a Poms hash that may
   # be harder to access, or are accessed in multiple places.
@@ -32,6 +34,10 @@ module Poms
       image_id(images(item).first)
     end
 
+    def mid(item)
+      item['mid']
+    end
+
     # Returns the revision from a Poms hash.
     def rev(item)
       item['_rev'].to_i
@@ -56,13 +62,23 @@ module Poms
       internetvod = item['predictions']
                     .find { |p| p['platform'] == 'INTERNETVOD' }
       return unless internetvod
-      Poms::Timestamp.convert(internetvod['publishStop'])
+      Timestamp.convert(internetvod['publishStop'])
     end
 
     # Returns the position in the parent context if it is present.
     def position(item)
       parent = item['memberOf']
       parent.first['index'] if parent.present?
+    end
+
+    def schedule_events(item)
+      events = item.fetch('scheduleEvents', [])
+      events.map do |event|
+        {
+          'starts_at' => Timestamp.convert(event['start']),
+          'ends_at' => Timestamp.convert(event['start'] + event['duration'])
+        }
+      end
     end
 
     private
