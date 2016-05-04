@@ -3,7 +3,7 @@ require 'poms/api/uris/media'
 
 module Poms
   module Api
-    module URIs
+    module Uris
       RSpec.describe Media do
         let(:base_uri) { Addressable::URI.parse('https://rs.poms.omroep.nl') }
 

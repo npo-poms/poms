@@ -2,7 +2,7 @@ require 'addressable/uri'
 
 module Poms
   module Api
-    module URIs
+    module Uris
       # URI for the /schedule API
       module Schedule
         API_PATH = '/v1/api/schedule'.freeze

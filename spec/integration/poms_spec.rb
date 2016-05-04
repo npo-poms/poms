@@ -66,7 +66,7 @@ RSpec.describe Poms do
 
   describe '.merged_series' do
     let(:url) do
-      Poms::Api::URIs::Media.redirects(
+      Poms::Api::Uris::Media.redirects(
         Addressable::URI.parse('https://rs.poms.omroep.nl'))
     end
 
@@ -96,7 +96,7 @@ RSpec.describe Poms do
   describe '.fetch_current_broadcast' do
     before do
       # VCR currently matches on URI and this URI changes depending on the time
-      allow(described_class::Api::URIs::Schedule)
+      allow(described_class::Api::Uris::Schedule)
         .to receive(:default_channel_params)
         .and_return(
           max: 1,

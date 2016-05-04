@@ -3,7 +3,7 @@ require 'poms/api/uris/schedule'
 
 module Poms
   module Api
-    module URIs
+    module Uris
       RSpec.describe Schedule do
         let(:base_uri) { Addressable::URI.parse('https://rs.poms.omroep.nl') }
 

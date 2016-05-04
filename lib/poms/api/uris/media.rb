@@ -2,7 +2,7 @@ require 'addressable/uri'
 
 module Poms
   module Api
-    module URIs
+    module Uris
       # Builds uri's for /media endpoints
       module Media
         API_PATH = '/v1/api/media'.freeze
