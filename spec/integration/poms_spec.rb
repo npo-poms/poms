@@ -95,15 +95,11 @@ RSpec.describe Poms do
 
   describe '.fetch_current_broadcast' do
     before do
-      # VCR currently matches on URI and this URI changes depending on the time
-      allow(described_class::Api::Uris::Schedule)
-        .to receive(:default_channel_params)
-        .and_return(
-          max: 1,
-          sort: 'desc',
-          start: Time.new(2016, 5, 1, 16, 0, 0).iso8601,
-          stop: Time.new(2016, 5, 2, 16, 0, 0).iso8601
-        )
+      Timecop.freeze(Time.new(2016, 5, 2, 16, 0, 0, '+02:00'))
+    end
+
+    after do
+      Timecop.return
     end
 
     subject { described_class.fetch_current_broadcast('OPVO') }
