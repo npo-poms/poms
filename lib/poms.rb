@@ -14,7 +14,7 @@ require 'json'
 # 2 -- Execute the request. Retry on failures (max 10?)
 # 3 -- Parse responded JSON. Extract fields if necessary
 module Poms
-  extend self
+  module_function
 
   def configure
     @config = Configuration.new do |config|
@@ -93,9 +93,9 @@ module Poms
     @config = nil
   end
 
-  private
-
   def config
     @config or raise Errors::NotConfigured
   end
+
+  private_class_method :config
 end
