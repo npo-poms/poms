@@ -4,7 +4,7 @@ module Poms
   # This module contains functions to extract things from a Poms hash that may
   # be harder to access, or are accessed in multiple places.
   module Fields
-    extend self
+    module_function
 
     # Returns the title, main by default
     def title(item, type = 'MAIN')
@@ -81,8 +81,6 @@ module Poms
       end
     end
 
-    private
-
     # Poms has arrays of hashes for some types that have a value and type. This
     # is a way to access those simply.
     #
@@ -99,5 +97,7 @@ module Poms
       return unless res
       res['value']
     end
+
+    private_class_method :value_of_type
   end
 end
