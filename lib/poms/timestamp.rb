@@ -5,10 +5,10 @@ module Poms
 
     def convert(timestamp)
       # Deprecate this method
-      to_ruby_datetime(timestamp)
+      to_datetime(timestamp)
     end
 
-    def to_ruby_datetime(timestamp)
+    def to_datetime(timestamp)
       return unless timestamp
       Time.at(timestamp / 1000).to_datetime
     end
