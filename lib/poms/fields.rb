@@ -62,7 +62,7 @@ module Poms
       internetvod = item['predictions']
                     .find { |p| p['platform'] == 'INTERNETVOD' }
       return unless internetvod
-      Timestamp.convert(internetvod['publishStop'])
+      Timestamp.to_datetime(internetvod['publishStop'])
     end
 
     # Returns the position in the parent context if it is present.
@@ -75,8 +75,8 @@ module Poms
       events = item.fetch('scheduleEvents', [])
       events.map do |event|
         {
-          'starts_at' => Timestamp.convert(event['start']),
-          'ends_at' => Timestamp.convert(event['start'] + event['duration'])
+          'starts_at' => Timestamp.to_datetime(event['start']),
+          'ends_at' => Timestamp.to_datetime(event['start'] + event['duration'])
         }
       end
     end

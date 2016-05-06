@@ -102,8 +102,8 @@ naar hun loods, maar is dat wel een goed idee?")
         expect(described_class.schedule_events(poms_data)).to eq(
           [
             {
-              'starts_at' => Timestamp.convert(1_369_757_335_000),
-              'ends_at' => Timestamp.convert(1_369_758_384_000)
+              'starts_at' => Timestamp.to_datetime(1_369_757_335_000),
+              'ends_at' => Timestamp.to_datetime(1_369_758_384_000)
 
             }
           ]
