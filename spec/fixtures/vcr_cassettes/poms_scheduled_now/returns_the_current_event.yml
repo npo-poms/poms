@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO?max=1&sort=desc&start=2016-05-01T16:00:00%2B02:00&stop=2016-05-02T16:00:00%2B02:00
+    uri: https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/now
     body:
       encoding: US-ASCII
       string: ''
@@ -18,16 +18,16 @@ http_interactions:
       Origin:
       - "<POMS_ORIGIN>"
       X-Npo-Date:
-      - Tue, 03 May 2016 16:49:30 +0200
+      - Fri, 06 May 2016 15:20:57 +0200
       Authorization:
-      - NPO <POMS_KEY>:FXdtqUk9M5d2jpQR1HdtkEYuDCyVl8JG8XhQmN3OBjM=
+      - NPO <POMS_KEY>:X2dGRXB0W/9B+nG+GK7OeujbFQlQIj9NvbfBkh7OL2s=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Tue, 03 May 2016 14:49:30 GMT
+      - Fri, 06 May 2016 13:20:57 GMT
       Server:
       - Apache/2.4.20 (Unix) OpenSSL/1.0.2g
       Cache-Control:
@@ -54,16 +54,15 @@ http_interactions:
       Content-Type:
       - application/json
       X-Proxyinstancename:
-      - poms1a
+      - poms1b
       Set-Cookie:
       - balancer://poms8cluster=balancer.poms8aas; path=/;
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"total":104,"offset":0,"max":1,"items":[{"textSubtitles":"Teletekst
-        ondertitels","guideDay":1462140000000,"start":1462197600000,"duration":754000,"channel":"OPVO","urnRef":"urn:vpro:media:program:75115165","midRef":"T_POW_00835305","media":{"objectType":"program","mid":"T_POW_00835305","type":"BROADCAST","avType":"VIDEO","sortDate":1462197600000,"urn":"urn:vpro:media:program:75115165","embeddable":true,"broadcasters":[{"id":"VARA","value":"VARA"}],"titles":[{"value":"De
-        Smurfen","owner":"MIS","type":"MAIN"},{"value":"Een potig hart","owner":"MIS","type":"SUB"}],"genres":[],"countries":[],"languages":[]}}]}'
+      string: '{"guideDay":1462485600000,"start":1462540500000,"duration":870000,"channel":"OPVO","urnRef":"urn:vpro:media:program:71174223","midRef":"T_POW_00468217","media":{"objectType":"program","mid":"T_POW_00468217","type":"BROADCAST","avType":"VIDEO","sortDate":1457531100000,"urn":"urn:vpro:media:program:71174223","embeddable":true,"broadcasters":[{"id":"TROS","value":"TROS"}],"titles":[{"value":"De
+        Wereld van K3","owner":"MIS","type":"MAIN"},{"value":"Memobord","owner":"MIS","type":"SUB"}],"genres":[],"countries":[],"languages":[]}}'
     http_version: 
-  recorded_at: Tue, 03 May 2016 14:49:30 GMT
+  recorded_at: Fri, 06 May 2016 13:20:57 GMT
 recorded_with: VCR 3.0.1

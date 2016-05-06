@@ -79,14 +79,24 @@ module Poms
     ).fetch('map')
   end
 
-  # Fetches a single current broadcast for the provided channel
+  # Fetches the event for current broadcast on the given channel
   #
   # @param channel The channel name
-  def fetch_current_broadcast(channel)
+  def scheduled_now(channel)
     Poms::Api::JsonClient.get(
-      Poms::Api::Uris::Schedule.channel(config.base_uri, channel),
+      Poms::Api::Uris::Schedule.now(config.base_uri, channel),
       config.credentials
-    ).fetch('items').first
+    )
+  end
+
+  # Fetches the event for the next broadcast on a given channel
+  #
+  # @param channel The channel name
+  def scheduled_next(channel)
+    Poms::Api::JsonClient.get(
+      Poms::Api::Uris::Schedule.next(config.base_uri, channel),
+      config.credentials
+    )
   end
 
   def reset_config
