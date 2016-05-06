@@ -79,7 +79,7 @@ module Poms
     ).fetch('map')
   end
 
-  # Fetches a the event now playing on the given channel
+  # Fetches the event for current broadcast on the given channel
   #
   # @param channel The channel name
   def scheduled_now(channel)
@@ -89,7 +89,7 @@ module Poms
     )
   end
 
-  # Fetches a the event up next on the given channel
+  # Fetches the event for the next broadcast on a given channel
   #
   # @param channel The channel name
   def scheduled_next(channel)
