@@ -83,10 +83,14 @@ module Poms
   #
   # @param channel The channel name
   def fetch_current_broadcast(channel)
+    scheduled_now(channel)
+  end
+
+  def scheduled_now(channel)
     Poms::Api::JsonClient.get(
-      Poms::Api::Uris::Schedule.channel(config.base_uri, channel),
+      Poms::Api::Uris::Schedule.now(config.base_uri, channel),
       config.credentials
-    ).fetch('items').first
+    )
   end
 
   def reset_config
