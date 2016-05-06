@@ -7,20 +7,20 @@ module Poms
       RSpec.describe Schedule do
         let(:base_uri) { Addressable::URI.parse('https://rs.poms.omroep.nl') }
 
-        it 'returns the correct uri for channel' do
-          uri = described_class.channel(base_uri, 'OPVO', {})
-          expect(uri.to_s).to eql('https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO?')
+        describe '.now' do
+          it 'returns the correct uri for channel' do
+            uri = described_class.now(base_uri, 'OPVO')
+            expect(uri.to_s).to eql(
+              'https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/now'
+            )
+          end
         end
 
-        it 'sets default params when none are provided' do
-          Timecop.freeze(Time.new(2016, 3, 31, 12, 0, 0, '+02:00')) do
-            uri = described_class.channel(base_uri, 'OPVO')
+        describe '.next' do
+          it 'returns the correct uri for channel' do
+            uri = described_class.next(base_uri, 'OPVO')
             expect(uri.to_s).to eql(
-              'https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO?' \
-                'max=1' \
-                '&sort=desc' \
-                '&start=2016-03-30T12%3A00%3A00%2B02%3A00' \
-                '&stop=2016-03-31T12%3A00%3A00%2B02%3A00'
+              'https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/next'
             )
           end
         end

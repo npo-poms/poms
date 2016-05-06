@@ -13,8 +13,8 @@ module Poms
           uri_for_path(base_uri, "/channel/#{channel}/now")
         end
 
-        def uri_for_path(base_uri, path = nil)
-          base_uri.merge(path: "#{API_PATH}#{path}")
+        def next(base_uri, channel)
+          uri_for_path(base_uri, "/channel/#{channel}/next")
         end
 
         def uri_for_path(base_uri, path = nil)

@@ -95,22 +95,6 @@ RSpec.describe Poms do
     end
   end
 
-  describe '.fetch_current_broadcast' do
-    subject { described_class.fetch_current_broadcast('OPVO') }
-
-    it 'only returns a result for the current channel' do
-      expect(subject['channel']).to eq('OPVO')
-    end
-
-    it 'only returns broadcasts' do
-      expect(subject['media']['type']).to eq('BROADCAST')
-    end
-
-    it 'has a mid' do
-      expect(subject['media']['mid']).not_to be_nil
-    end
-  end
-
   describe '.scheduled_now' do
     subject { described_class.scheduled_now('OPVO') }
 
