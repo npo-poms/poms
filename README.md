@@ -3,7 +3,7 @@
 # Poms
 
 The Poms gem provides an interface to the Dutch public broadcaster API: POMS. It
-is a couchdb service that is publicly available.
+reads from the Frontend API.
 
 ## Installation
 
@@ -19,18 +19,51 @@ Or install it yourself as:
 
     $ gem install poms
 
+## Configuration
+
+The Poms API is only accessible to authenticated accounts. In order to make authenticated requests to the service, the module needs to be configured before making requests. This can be done in a Rails initializer for instance.
+
+In order to configure the module:
+
+    Poms.configure do |config|
+      config.key    = '**poms key**'
+      config.origin = '**poms origin**'
+      config.secret = '**poms secret**'
+    end
+
+`configure` can also read environment variables. `ENV['POMS_KEY']`,  `ENV['POMS_ORIGIN']`, `ENV['POMS_SECRET']` are used in this case.
+
+The `configure` function can also be provided with the `base_url` in case you want to access the test environment for instance.
+
 ## Usage
 
-The `Poms` module contains various ways to query the Poms CouchDB service. The simplest way to get something is to use the `fetch` function, which takes a MID.
+The `Poms` module contains various ways to interact with the Poms service based on the API it exposes. The simplest way to get something is to use the `first` of `first!` function, which takes a MID (Media ID) used internally to identify all objects.
 
-    Poms.fetch('mid')
+    Poms.first('mid')
 
-This returns an OpenStruct-like object that wraps the json of the Poms response.
+This returns a Hash of the json of the response provided by the Poms service. In this case this is a single object from Poms.
 
-For some more advanced querying, you can use functions like `fetch_clip` which also takes a MID, but returns a `Clip` object, that is a little easier to work with.
+In order to do more advanced querying you might want to get the members or descendants of an object. `members` simply returns all objects that are members of the object with the requested mid.
 
-You can also query collections in a way to get back multiple episodes. This is tied to the views in the Poms CouchDB service and is documented on the wiki of the NPO.
+    Poms.members('mid')
 
+The result is a lazy enumerator (as the results are paginated on Poms) that contains all the members.
+
+The `descendants` function allows query parameters to be entered that are taken in account by the Poms service.
+
+    Poms.descendants('mid', {})
+
+The result is similar to the members function, but each item contains metadata from the search query and the actual result is in the `result` key of the item hash.
+
+The `poms` module contains a number of other functions that may be useful when you want to get some specific info from Poms. Also take a look at the examples in the `examples` directory of this project.
+
+## Fields
+
+The hashes that are returned from Poms can be nested to a high degree, making it harder to get some specific fields from them. The `Poms::Fields` module provides helper functions to access things like title, descriptions and images.
+
+    Poms::Fields.title(poms_item)
+
+This will return the title with the `MAIN` type.
 
 ## Searching
 
