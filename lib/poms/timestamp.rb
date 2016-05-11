@@ -3,11 +3,7 @@ module Poms
   module Timestamp
     module_function
 
-    def convert(timestamp)
-      # Deprecate this method
-      to_datetime(timestamp)
-    end
-
+    # Convert unix timestamp in milliseconds to datetime
     def to_datetime(timestamp)
       return unless timestamp
       Time.at(timestamp / 1000).to_datetime
