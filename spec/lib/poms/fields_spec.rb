@@ -52,6 +52,16 @@ naar hun loods, maar is dat wel een goed idee?")
       end
     end
 
+    describe '.mid' do
+      it 'returns the mid' do
+        expect(described_class.mid(poms_data)).to eq('KRO_1614405')
+      end
+
+      it 'returns nil if it cannot be found' do
+        expect(described_class.mid({})).to be_nil
+      end
+    end
+
     describe '.rev' do
       it 'returns the current Poms revision' do
         expect(described_class.rev(poms_data)).to eq(60)

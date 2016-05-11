@@ -18,3 +18,7 @@ Style/AndOr:
   Exclude:
     - 'lib/poms.rb' # here we do rely on how `or` has lower precedence than `||`
     - 'lib/poms/configuration.rb' # here we do rely on how `or` has lower precedence than `||`
+
+ModuleLength:
+  Exclude:
+    - spec/**/*_spec.rb # specs are only in module for easier access to functions
