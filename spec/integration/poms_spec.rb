@@ -53,6 +53,18 @@ RSpec.describe Poms do
     end
   end
 
+  describe '.descendants' do
+    subject { described_class.descendants('POMS_S_NTR_2448585') }
+
+    it 'returns an enumerable of hashes' do
+      expect(subject).to all(be_a(Hash))
+    end
+
+    it 'finds the right members' do
+      expect(subject.first['result']['mid']).to eq('WO_NTR_3665130')
+    end
+  end
+
   describe '.members' do
     subject { described_class.members('POMS_S_NTR_2448585') }
 
