@@ -7,10 +7,10 @@ Poms.configure do |config|
   config.secret = '**poms secret**'
 end
 
-# Fetch an entity from POMS by mid
-Poms.fetch('POMS_S_NTR_2342303')
+# Get a single entity from POMS by mid
+Poms.first('POMS_S_NTR_2342303')
 # => A hash representing the data corresponding to the given MID
 
 # Fetch multiple entities
 Poms.fetch(%w(WO_TELEAC_003061 POMS_EO_622912))
-# => An array of hashes representing data corresponding to those MID's
+# => An array of hashes representing data corresponding to those MIDs

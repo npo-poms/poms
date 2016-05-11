@@ -53,6 +53,18 @@ RSpec.describe Poms do
     end
   end
 
+  describe '.descendants' do
+    subject { described_class.descendants('POMS_S_NTR_2448585') }
+
+    it 'returns an enumerable of hashes' do
+      expect(subject).to all(be_a(Hash))
+    end
+
+    it 'finds the right members' do
+      expect(subject.first['result']['mid']).to eq('WO_NTR_3665130')
+    end
+  end
+
   describe '.members' do
     subject { described_class.members('POMS_S_NTR_2448585') }
 
@@ -99,6 +111,22 @@ RSpec.describe Poms do
 
   describe '.scheduled_now' do
     subject { described_class.scheduled_now('OPVO') }
+
+    it 'returns the current event' do
+      expect(subject['channel']).to eq('OPVO')
+    end
+
+    it 'only returns broadcasts' do
+      expect(subject['media']['type']).to eq('BROADCAST')
+    end
+
+    it 'has a mid' do
+      expect(subject['media']['mid']).not_to be_nil
+    end
+  end
+
+  describe '.scheduled_next' do
+    subject { described_class.scheduled_next('OPVO') }
 
     it 'returns the current event' do
       expect(subject['channel']).to eq('OPVO')
