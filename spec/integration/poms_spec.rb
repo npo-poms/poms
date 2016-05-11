@@ -124,4 +124,20 @@ RSpec.describe Poms do
       expect(subject['media']['mid']).not_to be_nil
     end
   end
+
+  describe '.scheduled_next' do
+    subject { described_class.scheduled_next('OPVO') }
+
+    it 'returns the current event' do
+      expect(subject['channel']).to eq('OPVO')
+    end
+
+    it 'only returns broadcasts' do
+      expect(subject['media']['type']).to eq('BROADCAST')
+    end
+
+    it 'has a mid' do
+      expect(subject['media']['mid']).not_to be_nil
+    end
+  end
 end
