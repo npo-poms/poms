@@ -1,5 +1,14 @@
 # Poms Release notes
 
+## 2.0.0
+
+Complete rewrite of the Poms gem, which now interfaces with the Frontend API instead of CouchDB. Check the new documentation in the Readme and examples for ways in which the new API works. A short overview:
+
+* The `Poms` module has a much smaller set of ways to get data from Poms, but these should be enough to get what you need now.
+* These functions generally return a Hash or a LazyEnumerator for multiple results.
+* Credentials for the Poms service are set in a config function.
+* More fields can be accessed from the `Fields` module.
+
 ## 1.2.2
 
 * Fix issue with description type that did not exist.
