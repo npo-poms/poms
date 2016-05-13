@@ -15,6 +15,10 @@ module Poms
       it 'returns nil if no title can be found' do
         expect(described_class.title(poms_data, 'NONEXISTANTTYPE')).to be_nil
       end
+
+      it 'returns nil if there is no title' do
+        expect(described_class.title({})).to be_nil
+      end
     end
 
     describe '.description' do
@@ -28,6 +32,10 @@ naar hun loods, maar is dat wel een goed idee?")
       it 'returns nil if no description can be found' do
         expect(described_class.description(poms_data, 'NONEXISTANTTYPE'))
           .to be_nil
+      end
+
+      it 'returns nil if there is no description' do
+        expect(described_class.description({})).to be_nil
       end
     end
 
