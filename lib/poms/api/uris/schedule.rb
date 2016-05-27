@@ -9,11 +9,19 @@ module Poms
 
         module_function
 
-        def now(base_uri, channel)
+        def now(base_uri)
+          uri_for_path(base_uri, "/net/ZAPP/now")
+        end
+
+        def now_for_channel(base_uri, channel)
           uri_for_path(base_uri, "/channel/#{channel}/now")
         end
 
-        def next(base_uri, channel)
+        def next(base_uri)
+          uri_for_path(base_uri, "/net/ZAPP/next")
+        end
+
+        def next_for_channel(base_uri, channel)
           uri_for_path(base_uri, "/channel/#{channel}/next")
         end
 
