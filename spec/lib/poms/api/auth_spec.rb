@@ -8,7 +8,7 @@ module Poms
       let(:timestamp) { Time.new(2016, 4, 19, 7, 48, 46, '+02:00') }
       let(:uri) { Addressable::URI.parse('/v1/api/media/') }
       let(:credentials) do
-        double(
+        instance_double(
           'Credentials',
           origin: 'my origin',
           key: 'mykey',

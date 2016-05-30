@@ -83,7 +83,8 @@ naar hun loods, maar is dat wel een goed idee?")
     describe '.odi_streams' do
       it 'returns an array of stream types' do
         expect(described_class.odi_streams(poms_data)).to match_array(
-          %w(adaptive h264_sb h264_bb h264_std wvc1_std wmv_sb wmv_bb))
+          %w(adaptive h264_sb h264_bb h264_std wvc1_std wmv_sb wmv_bb)
+        )
       end
 
       it 'returns an empty array of no stream types are found' do
@@ -101,8 +102,10 @@ naar hun loods, maar is dat wel een goed idee?")
         expect(
           described_class.available_until(
             'predictions' => [
-              { 'state' => 'REALIZED', 'platform' => 'INTERNETVOD' }]))
-          .to be_nil
+              { 'state' => 'REALIZED', 'platform' => 'INTERNETVOD' }
+            ]
+          )
+        ).to be_nil
       end
     end
 

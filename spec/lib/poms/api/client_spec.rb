@@ -7,7 +7,7 @@ module Poms
       let(:uri) { Addressable::URI.parse('http://example.com/some/uri') }
 
       let(:credentials) do
-        double(
+        instance_double(
           'Credentials',
           origin: 'my origin',
           key: 'mykey',

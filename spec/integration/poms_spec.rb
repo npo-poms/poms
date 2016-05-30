@@ -79,8 +79,8 @@ RSpec.describe Poms do
 
   describe '.merged_series' do
     let(:url) do
-      Poms::Api::Uris::Media.redirects(
-        Addressable::URI.parse('https://rs.poms.omroep.nl'))
+      Poms::Api::Uris::Media
+        .redirects(Addressable::URI.parse('https://rs.poms.omroep.nl'))
     end
 
     it 'turns the json into a hash' do

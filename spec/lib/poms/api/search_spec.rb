@@ -54,25 +54,34 @@ module Poms
           )
         end
 
-        it 'works correctly with a multitude of options' do
-          subject = described_class.build(
-            starts_at: now,
-            ends_at: next_week,
-            type: 'BROADCAST'
-          )
-          expect(subject).to eql(
-            'searches' => {
-              'sortDates' => {
-                'begin' => Timestamp.to_unix_ms(now),
-                'end' => Timestamp.to_unix_ms(next_week)
-              }
-            },
-            'facets' => {
-              'subsearch' => {
-                'types' => 'BROADCAST'
+        describe 'with a multitude of options' do
+          subject do
+            described_class.build(
+              starts_at: now,
+              ends_at: next_week,
+              type: 'BROADCAST'
+            )
+          end
+
+          let(:result) do
+            {
+              'searches' => {
+                'sortDates' => {
+                  'begin' => Timestamp.to_unix_ms(now),
+                  'end' => Timestamp.to_unix_ms(next_week)
+                }
+              },
+              'facets' => {
+                'subsearch' => {
+                  'types' => 'BROADCAST'
+                }
               }
             }
-          )
+          end
+
+          it 'works correctly with a multitude of options' do
+            expect(subject).to eql(result)
+          end
         end
       end
     end
