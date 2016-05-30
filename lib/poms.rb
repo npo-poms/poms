@@ -83,27 +83,21 @@ module Poms
   # Fetches the event for current broadcast on the given channel
   #
   # @param channel The channel name
-  def scheduled_now(channel = nil)
-    base_uri = config.base_uri
-    uri = if channel
-            Api::Uris::Schedule.now_for_channel(base_uri, channel)
-          else
-            Api::Uris::Schedule.now(base_uri)
-          end
-    Api::JsonClient.get(uri, config.credentials)
+  def scheduled_now(channel)
+    Poms::Api::JsonClient.get(
+      Poms::Api::Uris::Schedule.now(config.base_uri, channel),
+      config.credentials
+    )
   end
 
   # Fetches the event for the next broadcast on a given channel
   #
   # @param channel The channel name
-  def scheduled_next(channel = nil)
-    base_uri = config.base_uri
-    uri = if channel
-            Api::Uris::Schedule.next_for_channel(base_uri, channel)
-          else
-            Api::Uris::Schedule.next(base_uri)
-          end
-    Api::JsonClient.get(uri, config.credentials)
+  def scheduled_next(channel)
+    Poms::Api::JsonClient.get(
+      Poms::Api::Uris::Schedule.next(config.base_uri, channel),
+      config.credentials
+    )
   end
 
   def reset_config

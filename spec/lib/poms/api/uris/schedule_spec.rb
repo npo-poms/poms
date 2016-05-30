@@ -9,16 +9,7 @@ module Poms
 
         describe '.now' do
           it 'returns the correct uri for channel' do
-            uri = described_class.now(base_uri)
-            expect(uri.to_s).to eql(
-              'https://rs.poms.omroep.nl/v1/api/schedule/net/ZAPP/now'
-            )
-          end
-        end
-
-        describe '.now' do
-          it 'returns the correct uri for channel' do
-            uri = described_class.now_for_channel(base_uri, 'OPVO')
+            uri = described_class.now(base_uri, 'OPVO')
             expect(uri.to_s).to eql(
               'https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/now'
             )
@@ -27,16 +18,7 @@ module Poms
 
         describe '.next' do
           it 'returns the correct uri for channel' do
-            uri = described_class.next(base_uri)
-            expect(uri.to_s).to eql(
-              'https://rs.poms.omroep.nl/v1/api/schedule/net/ZAPP/next'
-            )
-          end
-        end
-
-        describe '.next_for_channel' do
-          it 'returns the correct uri for channel' do
-            uri = described_class.next_for_channel(base_uri, 'OPVO')
+            uri = described_class.next(base_uri, 'OPVO')
             expect(uri.to_s).to eql(
               'https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/next'
             )
