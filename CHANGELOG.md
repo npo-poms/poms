@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 2.0.1
+
+* Fix search parameter `type`. This didn't get picked up properly before, but is now used in the search.
+
 ## 2.0.0
 
 Complete rewrite of the Poms gem, which now interfaces with the Frontend API instead of CouchDB. Check the new documentation in the Readme and examples for ways in which the new API works. A short overview:

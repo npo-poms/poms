@@ -46,10 +46,8 @@ module Poms
 
         it 'returns the correct facet for a given type' do
           expect(described_class.build(type: 'BROADCAST')).to eql(
-            'facets' => {
-              'subsearch' => {
-                'types' => 'BROADCAST'
-              }
+            'searches' => {
+              'types' => 'BROADCAST'
             }
           )
         end
@@ -69,12 +67,8 @@ module Poms
                 'sortDates' => {
                   'begin' => Timestamp.to_unix_ms(now),
                   'end' => Timestamp.to_unix_ms(next_week)
-                }
-              },
-              'facets' => {
-                'subsearch' => {
-                  'types' => 'BROADCAST'
-                }
+                },
+                'types' => 'BROADCAST'
               }
             }
           end

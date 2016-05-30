@@ -16,7 +16,7 @@ module Poms
           when :starts_at, :ends_at
             time_params(key, value)
           when :type
-            { 'facets' => { 'subsearch' => { 'types' => value } } }
+            { 'searches' => { 'types' => value } }
           end
         end
         all.reduce(&:deep_merge)
