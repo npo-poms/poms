@@ -8,19 +8,37 @@ module Poms
         let(:base_uri) { Addressable::URI.parse('https://rs.poms.omroep.nl') }
 
         describe '.now' do
-          it 'returns the correct uri for channel' do
-            uri = described_class.now(base_uri, 'OPVO')
-            expect(uri.to_s).to eql(
-              'https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/now'
+          subject { described_class.now(base_uri, 'OPVO') }
+
+          it 'returns the correct uri path for channel' do
+            expect(subject.path).to eql(
+              '/v1/api/schedule/channel/OPVO'
+            )
+          end
+
+          it 'returns the correct query' do
+            expect(subject.query_values).to include("stop")
+            expect(subject.query_values).to include(
+              "max" => "1",
+              "sort" => "desc"
             )
           end
         end
 
         describe '.next' do
+          subject { described_class.next(base_uri, 'OPVO') }
+
           it 'returns the correct uri for channel' do
-            uri = described_class.next(base_uri, 'OPVO')
-            expect(uri.to_s).to eql(
-              'https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/next'
+            expect(subject.path).to eql(
+              '/v1/api/schedule/channel/OPVO'
+            )
+          end
+
+          it 'returns the correct query' do
+            expect(subject.query_values).to include("start")
+            expect(subject.query_values).to include(
+              "max" => "1",
+              "sort" => "asc"
             )
           end
         end

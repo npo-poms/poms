@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/next
+    uri: https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO?max=1&sort=asc&start=2016-01-01T12:00:00%2B01:00
     body:
       encoding: US-ASCII
       string: ''
@@ -18,16 +18,16 @@ http_interactions:
       Origin:
       - "<POMS_ORIGIN>"
       X-Npo-Date:
-      - Wed, 11 May 2016 10:59:28 +0200
+      - Fri, 01 Jan 2016 12:00:00 +0100
       Authorization:
-      - NPO <POMS_KEY>:lFrmAf28OYVUrRugU+WQ2ysoQR8pD1c9V6pTGNJxlvs=
+      - NPO <POMS_KEY>:zg6Ooxcpe/4Ov+2/96L6Fx9StqLzHYpzdMuU1xsEqkw=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 11 May 2016 08:59:28 GMT
+      - Fri, 03 Jun 2016 15:43:30 GMT
       Server:
       - Apache/2.4.20 (Unix) OpenSSL/1.0.2g
       Cache-Control:
@@ -54,14 +54,15 @@ http_interactions:
       Content-Type:
       - application/json
       X-Proxyinstancename:
-      - poms1b
+      - poms1a
       Set-Cookie:
-      - balancer://poms8cluster=balancer.poms8bas; path=/;
+      - balancer://poms8cluster=balancer.poms8aas; path=/;
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"textSubtitles":"Teletekst ondertitels","guideDay":1462917600000,"start":1462957800000,"duration":960000,"channel":"OPVO","urnRef":"urn:vpro:media:program:73684990","midRef":"T_POW_03080274","media":{"objectType":"program","mid":"T_POW_03080274","type":"BROADCAST","avType":"VIDEO","sortDate":1462945500000,"urn":"urn:vpro:media:program:73684990","embeddable":true,"broadcasters":[{"id":"AVTR","value":"AVROTROS"}],"titles":[{"value":"Zappsport","owner":"MIS","type":"MAIN"}],"genres":[],"countries":[],"languages":[]}}'
+      string: '{"total":7451,"offset":0,"max":1,"items":[{"guideDay":1451602800000,"start":1451651100000,"duration":663000,"channel":"OPVO","urnRef":"urn:vpro:media:program:67285612","midRef":"T_POW_00655909","media":{"objectType":"program","mid":"T_POW_00655909","type":"BROADCAST","avType":"VIDEO","sortDate":1451627400000,"urn":"urn:vpro:media:program:67285612","embeddable":true,"broadcasters":[{"id":"AVRO","value":"AVRO"}],"titles":[{"value":"Twisted
+        Whiskers","owner":"MIS","type":"MAIN"},{"value":"Oost west-thuis best","owner":"MIS","type":"SUB"}],"genres":[],"countries":[],"languages":[]}}]}'
     http_version: 
-  recorded_at: Wed, 11 May 2016 08:59:28 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Fri, 01 Jan 2016 11:00:00 GMT
+recorded_with: VCR 3.0.3

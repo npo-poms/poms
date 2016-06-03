@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO/now
+    uri: https://rs.poms.omroep.nl/v1/api/schedule/channel/OPVO?max=1&sort=desc&stop=2016-01-01T12:00:00%2B01:00
     body:
       encoding: US-ASCII
       string: ''
@@ -18,16 +18,16 @@ http_interactions:
       Origin:
       - "<POMS_ORIGIN>"
       X-Npo-Date:
-      - Fri, 06 May 2016 15:20:57 +0200
+      - Fri, 01 Jan 2016 12:00:00 +0100
       Authorization:
-      - NPO <POMS_KEY>:X2dGRXB0W/9B+nG+GK7OeujbFQlQIj9NvbfBkh7OL2s=
+      - NPO <POMS_KEY>:SrS7KcCnKPjpYjCia+nxiMH1q3kQ0DcfKrRLdvYVXeg=
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 May 2016 13:20:57 GMT
+      - Fri, 03 Jun 2016 15:43:29 GMT
       Server:
       - Apache/2.4.20 (Unix) OpenSSL/1.0.2g
       Cache-Control:
@@ -61,8 +61,8 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"guideDay":1462485600000,"start":1462540500000,"duration":870000,"channel":"OPVO","urnRef":"urn:vpro:media:program:71174223","midRef":"T_POW_00468217","media":{"objectType":"program","mid":"T_POW_00468217","type":"BROADCAST","avType":"VIDEO","sortDate":1457531100000,"urn":"urn:vpro:media:program:71174223","embeddable":true,"broadcasters":[{"id":"TROS","value":"TROS"}],"titles":[{"value":"De
-        Wereld van K3","owner":"MIS","type":"MAIN"},{"value":"Memobord","owner":"MIS","type":"SUB"}],"genres":[],"countries":[],"languages":[]}}'
+      string: '{"total":6144,"offset":0,"max":1,"items":[{"guideDay":1451602800000,"start":1451640300000,"duration":1380000,"channel":"OPVO","urnRef":"urn:vpro:media:program:34611931","midRef":"T_POW_00753962","media":{"objectType":"program","mid":"T_POW_00753962","type":"BROADCAST","avType":"VIDEO","sortDate":1388809260000,"urn":"urn:vpro:media:program:34611931","embeddable":true,"broadcasters":[{"id":"TROS","value":"TROS"}],"titles":[{"value":"Mickey
+        Mouse clubhuis","owner":"MIS","type":"MAIN"},{"value":"De doorzetters","owner":"MIS","type":"SUB"}],"genres":[],"countries":[],"languages":[]}}]}'
     http_version: 
-  recorded_at: Fri, 06 May 2016 13:20:57 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Fri, 01 Jan 2016 11:00:00 GMT
+recorded_with: VCR 3.0.3

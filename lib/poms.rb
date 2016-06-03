@@ -87,7 +87,7 @@ module Poms
     Poms::Api::JsonClient.get(
       Poms::Api::Uris::Schedule.now(config.base_uri, channel),
       config.credentials
-    )
+    )['items'].first
   end
 
   # Fetches the event for the next broadcast on a given channel
@@ -97,7 +97,7 @@ module Poms
     Poms::Api::JsonClient.get(
       Poms::Api::Uris::Schedule.next(config.base_uri, channel),
       config.credentials
-    )
+    )['items'].first
   end
 
   def reset_config
