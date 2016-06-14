@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - bin/*
     - poms.gemspec
+    - vendor/**/*
 
 Style/Documentation:
   Exclude:
