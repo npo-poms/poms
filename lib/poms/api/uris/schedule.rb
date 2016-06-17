@@ -10,11 +10,23 @@ module Poms
         module_function
 
         def now(base_uri, channel)
-          uri_for_path(base_uri, "/channel/#{channel}", {stop: Time.now.iso8601, sort: 'desc', max: 1})
+          uri_for_path(
+            base_uri,
+            "/channel/#{channel}",
+            stop: Time.now.iso8601,
+            sort: 'desc',
+            max: 1
+          )
         end
 
         def next(base_uri, channel)
-          uri_for_path(base_uri, "/channel/#{channel}", {start: Time.now.iso8601, sort: 'asc', max: 1})
+          uri_for_path(
+            base_uri,
+            "/channel/#{channel}",
+            start: Time.now.iso8601,
+            sort: 'asc',
+            max: 1
+          )
         end
 
         def uri_for_path(base_uri, path = nil, query = {})

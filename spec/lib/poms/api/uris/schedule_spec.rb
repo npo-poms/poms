@@ -17,10 +17,10 @@ module Poms
           end
 
           it 'returns the correct query' do
-            expect(subject.query_values).to include("stop")
+            expect(subject.query_values).to include('stop')
             expect(subject.query_values).to include(
-              "max" => "1",
-              "sort" => "desc"
+              'max' => '1',
+              'sort' => 'desc'
             )
           end
         end
@@ -35,10 +35,10 @@ module Poms
           end
 
           it 'returns the correct query' do
-            expect(subject.query_values).to include("start")
+            expect(subject.query_values).to include('start')
             expect(subject.query_values).to include(
-              "max" => "1",
-              "sort" => "asc"
+              'max' => '1',
+              'sort' => 'asc'
             )
           end
         end
