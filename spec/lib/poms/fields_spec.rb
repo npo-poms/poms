@@ -121,12 +121,40 @@ naar hun loods, maar is dat wel een goed idee?")
     end
 
     describe '.schedule_events' do
+      it 'returns an empty array if there are no scheduled events' do
+        expect(described_class.schedule_events({})).to eq([])
+      end
+
+      it 'raises keyerror when the events do not have the right keys' do
+        expect {
+          described_class.schedule_events(
+            'scheduleEvents' => [{ 'start' => 10 }]
+          )
+        }.to raise_error(KeyError)
+      end
+
       it 'returns a collection of objects with a start and end time' do
-        expect(described_class.schedule_events(poms_data)).to include(
-          {
-            'starts_at' => Timestamp.to_datetime(1_369_757_335_000),
-            'ends_at' => Timestamp.to_datetime(1_369_758_384_000)
-          }
+        expect(described_class.schedule_events(poms_data)).to match_array(
+          [
+            {
+              'starts_at' => Timestamp.to_datetime(1_369_757_335_000),
+              'ends_at' => Timestamp.to_datetime(1_369_758_384_000)
+            },
+            {
+              'starts_at' => Timestamp.to_datetime(1_464_792_900_000),
+              'ends_at' => Timestamp.to_datetime(1_464_794_169_000)
+            }
+          ]
+        )
+      end
+
+      it 'accepts a block with events' do
+        result = described_class.schedule_events(poms_data) do |events|
+          events.reject { |e| e['channel'] == 'BVNT' }
+        end
+        expect(result).not_to include(
+          'starts_at' => Timestamp.to_datetime(1_464_792_900_000),
+          'ends_at' => Timestamp.to_datetime(1_464_794_169_000)
         )
       end
     end

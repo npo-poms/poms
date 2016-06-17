@@ -71,15 +71,27 @@ module Poms
       parent.first['index'] if parent.present?
     end
 
+    # Returns an array of start and end times for the  scheduled events for
+    # this item. It returns an empty array if no events are found. You can pass
+    # in a block to filter the events on data that is not returned, like
+    # channel.
+    #
+    # @param item The Poms hash
     def schedule_events(item)
       events = item.fetch('scheduleEvents', [])
-      events.map do |event|
-        {
-          'starts_at' => Timestamp.to_datetime(event['start']),
-          'ends_at' => Timestamp.to_datetime(event['start'] + event['duration'])
-        }
-      end
+      events = yield(events) if block_given?
+      events.map { |event| hash_event(event) }
     end
+
+    # Turns the event into a hash.
+    def hash_event(event)
+      {
+        'starts_at' => Timestamp.to_datetime(event.fetch('start')),
+        'ends_at' => Timestamp.to_datetime(event.fetch('start') +
+          event.fetch('duration'))
+      }
+    end
+    private_class_method :hash_event
 
     # Poms has arrays of hashes for some types that have a value and type. This
     # is a way to access those simply.
@@ -98,7 +110,6 @@ module Poms
       return unless res
       res['value']
     end
-
     private_class_method :value_of_type
   end
 end
