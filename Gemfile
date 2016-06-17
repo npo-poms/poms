@@ -4,5 +4,5 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
-  require 'pry'
+  gem 'pry'
 end

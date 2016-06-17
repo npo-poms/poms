@@ -1,4 +1,6 @@
 ---
+exclude_paths:
+  - vendor
 UncommunicativeVariableName:
   exclude:
   - Poms::Fields#available_until
