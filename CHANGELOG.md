@@ -2,6 +2,7 @@
 
 ## 2.1.0
 
+* Allow `schedule_events` to accept a block which allows you to filter the events.
 * The `scheduled_now` and `scheduled_next` functions always return the most recent and upcoming shows. They shouldn't return nil anymore, even if something is not live at the moment (during a commercial break for instance).
 
 ## 2.0.1
