@@ -10,15 +10,29 @@ module Poms
         module_function
 
         def now(base_uri, channel)
-          uri_for_path(base_uri, "/channel/#{channel}/now")
+          uri_for_path(
+            base_uri,
+            "/channel/#{channel}",
+            stop: Time.now.iso8601,
+            sort: 'desc',
+            max: 1
+          )
         end
 
         def next(base_uri, channel)
-          uri_for_path(base_uri, "/channel/#{channel}/next")
+          uri_for_path(
+            base_uri,
+            "/channel/#{channel}",
+            start: Time.now.iso8601,
+            sort: 'asc',
+            max: 1
+          )
         end
 
-        def uri_for_path(base_uri, path = nil)
-          base_uri.merge(path: "#{API_PATH}#{path}")
+        def uri_for_path(base_uri, path = nil, query = {})
+          uri = base_uri.merge(path: "#{API_PATH}#{path}")
+          uri.query_values = query
+          uri
         end
 
         private_class_method :uri_for_path

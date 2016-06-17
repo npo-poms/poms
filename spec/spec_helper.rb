@@ -4,6 +4,7 @@ SimpleCov.start
 require 'rubygems'
 require 'bundler/setup'
 require 'webmock/rspec'
+require 'timecop'
 require 'vcr'
 require 'active_support/all'
 

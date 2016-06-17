@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 2.1.0
+
+* The `scheduled_now` and `scheduled_next` functions always return the most recent and upcoming shows. They shouldn't return nil anymore, even if something is not live at the moment (during a commercial break for instance).
+
 ## 2.0.1
 
 * Fix search parameter `type`. This didn't get picked up properly before, but is now used in the search.

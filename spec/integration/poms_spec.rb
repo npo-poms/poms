@@ -110,6 +110,14 @@ RSpec.describe Poms do
   end
 
   describe '.scheduled_now' do
+    before do
+      Timecop.freeze(Time.local(2016, 1, 1, 12, 0, 0))
+    end
+
+    after do
+      Timecop.return
+    end
+
     subject { described_class.scheduled_now('OPVO') }
 
     it 'returns the current event' do
@@ -126,6 +134,14 @@ RSpec.describe Poms do
   end
 
   describe '.scheduled_next' do
+    before do
+      Timecop.freeze(Time.local(2016, 1, 1, 12, 0, 0))
+    end
+
+    after do
+      Timecop.return
+    end
+
     subject { described_class.scheduled_next('OPVO') }
 
     it 'returns the current event' do
