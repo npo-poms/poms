@@ -122,14 +122,11 @@ naar hun loods, maar is dat wel een goed idee?")
 
     describe '.schedule_events' do
       it 'returns a collection of objects with a start and end time' do
-        expect(described_class.schedule_events(poms_data)).to eq(
-          [
-            {
-              'starts_at' => Timestamp.to_datetime(1_369_757_335_000),
-              'ends_at' => Timestamp.to_datetime(1_369_758_384_000)
-
-            }
-          ]
+        expect(described_class.schedule_events(poms_data)).to include(
+          {
+            'starts_at' => Timestamp.to_datetime(1_369_757_335_000),
+            'ends_at' => Timestamp.to_datetime(1_369_758_384_000)
+          }
         )
       end
     end

@@ -271,6 +271,19 @@
             "poSeriesID": "KRO_1521173",
             "start": 1369757335000,
             "urnRef": "urn:vpro:media:program:25215266"
+        },
+        {
+            "repeat": {
+                "isRerun": true
+            },
+            "textSubtitles": "Teletekst ondertitels",
+            "guideDay": 1464732000000,
+            "start": 1464792900000,
+            "duration": 1269000,
+            "poProgID": "KRO_1614405",
+            "channel": "BVNT",
+            "urnRef": "urn:vpro:media:program:47289723",
+            "midRef": "KRO_1614405"
         }
     ],
     "segments": [],
