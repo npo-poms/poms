@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 2.1.1
+
+* Add `addressable` to gemspec.
+
 ## 2.1.0
 
 * Allow `schedule_events` to accept a block which allows you to filter the events.
