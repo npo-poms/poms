@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 2.2.0
+
+* Remove `Poms::Fields#rev` as it wasn't provided by the Poms data anyway.
+
 ## 2.1.1
 
 * Add `addressable` to gemspec.
