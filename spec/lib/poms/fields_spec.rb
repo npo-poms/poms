@@ -71,11 +71,11 @@ naar hun loods, maar is dat wel een goed idee?")
     end
 
     describe '.rev' do
-      it 'returns the current Poms revision' do
+      xit 'returns the current Poms revision' do
         expect(described_class.rev(poms_data)).to eq(60)
       end
 
-      it 'returns 0 if it cannot be found' do
+      xit 'returns 0 if it cannot be found' do
         expect(described_class.rev({})).to eq(0)
       end
     end
@@ -139,10 +139,6 @@ naar hun loods, maar is dat wel een goed idee?")
             {
               'starts_at' => Timestamp.to_datetime(1_369_757_335_000),
               'ends_at' => Timestamp.to_datetime(1_369_758_384_000)
-            },
-            {
-              'starts_at' => Timestamp.to_datetime(1_464_792_900_000),
-              'ends_at' => Timestamp.to_datetime(1_464_794_169_000)
             }
           ]
         )
