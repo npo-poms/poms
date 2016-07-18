@@ -70,7 +70,8 @@ module Poms
     # index. Else, when a parent is found with matching member_of
     # midref, it returns that index. Else returns nil.
     # @param item The Poms Hash
-    # @param optional :member_of The midref of parent for which we seek the index
+    # @param optional :member_of The midref of parent for which we
+    # seek the index
     def position(item, member_of: nil)
       parents = Array(item['memberOf'])
       return if parents.empty?
