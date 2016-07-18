@@ -73,10 +73,21 @@ module Poms
     # @param optional :member_of The midref of parent for which we
     # seek the index
     def position(item, member_of: nil)
+      parent(item, midref: member_of).try(:[], 'index')
+    end
+
+    # Finds a parent the data is "member of". If :midref is given, it
+    # will look for the parent that matches that mid and return nil if
+    # not found. Without the :midref it will return the first parent
+    # @param item The Poms Hash
+    # @param optional midref The midref of parent we seek.
+    def parent(item, midref: nil)
       parents = Array(item['memberOf'])
-      return if parents.empty?
-      return parents.first['index'] if member_of.blank?
-      Hash(parents.find { |parent| parent['midRef'] == member_of })['index']
+      if midref
+        parents.find { |parent| parent['midRef'] == midref }
+      else
+        parents.first
+      end
     end
 
     # Returns an array of start and end times for the  scheduled events for
