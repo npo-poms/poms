@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 2.1.2
+
+* Extend Poms::Fields.position target specified parent
+
 ## 2.1.1
 
 * Add `addressable` to gemspec.
