@@ -58,12 +58,19 @@
   ],
   "memberOf": [
     {
-      "midRef": "POMS_S_NPO_818759",
-      "urnRef": "urn:vpro:media:group:53045541",
+      "midRef": "POMS_S_ZAPP_4101943",
+      "urnRef": "urn:vpro:media:group:77721008",
+      "type": "SERIES",
+      "index": 31,
+      "highlighted": false,
+      "added": 1467374331588},
+    {
+      "midRef": "POMS_S_ZAPP_4110813",
+      "urnRef": "urn:vpro:media:group:77777901",
       "type": "PLAYLIST",
       "index": 1,
       "highlighted": false,
-      "added": 1427284134408
+      "added": 1467374346116
     }
   ],
   "locations": [

@@ -65,10 +65,34 @@ module Poms
       Timestamp.to_datetime(internetvod['publishStop'])
     end
 
-    # Returns the position in the parent context if it is present.
-    def position(item)
-      parent = item['memberOf']
-      parent.first['index'] if parent.present?
+    # Returns the index at which it is in the parent. When no
+    # :member_of keyword is given, it will return the first found
+    # index. Else, when a parent is found with matching member_of
+    # midref, it returns that index. Else returns nil.
+    # @param item The Poms Hash
+    # @param optional :member_of The midref of parent for which we
+    # seek the index
+    def position(item, member_of: nil)
+      parent(item, midref: member_of).try(:[], 'index')
+    end
+
+    # Finds a parent the data is "member of". If :midref is given, it
+    # will look for the parent that matches that mid and return nil if
+    # not found. Without the :midref it will return the first parent.
+    # @param item The Poms Hash
+    # @param optional midref The midref of parent we seek.
+    def parent(item, midref: nil)
+      if midref
+        parents(item).find { |parent| parent['midRef'] == midref }
+      else
+        parents(item).first
+      end
+    end
+
+    # Returns the parents that the element is member of. Will always
+    # return an array.
+    def parents(item)
+      Array(item['memberOf'])
     end
 
     # Returns an array of start and end times for the  scheduled events for

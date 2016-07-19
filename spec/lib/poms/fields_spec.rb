@@ -110,13 +110,30 @@ naar hun loods, maar is dat wel een goed idee?")
     end
 
     describe '.position' do
-      it 'returns the position' do
-        clip = JSON.parse File.read('spec/fixtures/poms_clip.json')
-        expect(described_class.position(clip)).to eq(1)
+      let(:clip) { JSON.parse(File.read('spec/fixtures/poms_clip.json')) }
+
+      context 'with no extra arguments' do
+        it "returns the clip's index for his first parent" do
+          expect(described_class.position(clip)).to eq(31)
+        end
       end
 
-      it 'returns nil if it not a member of anything' do
-        expect(described_class.position(poms_data)).to be_nil
+      context 'with no parents' do
+        it 'returns nil' do
+          expect(described_class.position('memberOf' => [])).to be_nil
+          expect(described_class.position({})).to be_nil
+        end
+      end
+
+      context 'When given an ancestor midRef' do
+        it "returns the clip's index in that parent" do
+          pos = described_class.position(clip, member_of: 'POMS_S_ZAPP_4110813')
+          expect(pos).to eql(1)
+        end
+
+        it 'returns nil if no matching parent found' do
+          expect(described_class.position(clip, member_of: 'nobody')).to be_nil
+        end
       end
     end
 
