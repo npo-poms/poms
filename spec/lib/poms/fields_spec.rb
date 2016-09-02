@@ -128,7 +128,7 @@ naar hun loods, maar is dat wel een goed idee?")
       context 'When given an ancestor midRef' do
         it "returns the clip's index in that parent" do
           pos = described_class.position(clip, member_of: 'POMS_S_ZAPP_4110813')
-          expect(pos).to eql(1)
+          expect(pos).to be(1)
         end
 
         it 'returns nil if no matching parent found' do
