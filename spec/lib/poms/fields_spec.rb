@@ -19,6 +19,10 @@ module Poms
       it 'returns nil if there is no title' do
         expect(described_class.title({})).to be_nil
       end
+
+      it 'does not throw an error when item is nil' do
+        expect { described_class.title(nil) }.not_to raise_error
+      end
     end
 
     describe '.description' do

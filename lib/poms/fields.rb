@@ -129,7 +129,7 @@ module Poms
     # @param key The key of the array we want to look in
     # @param type The type to select
     def value_of_type(item, key, type)
-      return unless item[key]
+      return unless item && item[key]
       res = item[key].find { |value| value['type'] == type }
       return unless res
       res['value']
