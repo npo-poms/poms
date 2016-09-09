@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 2.1.2.1
+
+* Fix a minor bug on `Poms::Fields.title`. This could be triggered when a result from a Poms query would be empty. `nil` would be sumitted and the provided key would be called on `nil` which caused an error. Now it will simply return `nil` as a title.
+
 ## 2.1.2
 
 * Extend Poms::Fields.position target specified parent
