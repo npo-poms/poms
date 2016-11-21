@@ -46,7 +46,7 @@ naar hun loods, maar is dat wel een goed idee?")
     describe '.image_id' do
       it 'returns the id of the image' do
         expect(described_class.image_id(poms_data['images'].first))
-          .to eq('184169')
+          .to eq('187003')
       end
 
       it 'returns nil if there is no image' do
@@ -56,7 +56,7 @@ naar hun loods, maar is dat wel een goed idee?")
 
     describe '.first_image_id' do
       it 'returns the id of the first image' do
-        expect(described_class.first_image_id(poms_data)).to eq('184169')
+        expect(described_class.first_image_id(poms_data)).to eq('187003')
       end
 
       it 'returns nil if there is no image' do
