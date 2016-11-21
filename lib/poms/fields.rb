@@ -6,6 +6,8 @@ module Poms
   module Fields
     module_function
 
+    IMAGE_TYPE_PRIORITY = %w(PROMO_LANDSCAPE PICTURE).freeze
+
     # Returns the title, main by default
     def title(item, type = 'MAIN')
       value_of_type(item, 'titles', type)
@@ -18,7 +20,9 @@ module Poms
 
     # Returns the images from the hash
     def images(item)
-      item['images']
+      item['images'].try(:sort_by) do |i|
+        image_order_index(i)
+      end
     end
 
     # Extracts the image id from an image hash
@@ -28,7 +32,11 @@ module Poms
       image['imageUri'].split(':').last
     end
 
-    # Returns the id of the first image of nil if there are none.
+    def image_order_index(image)
+      IMAGE_TYPE_PRIORITY.index(image['type']) || IMAGE_TYPE_PRIORITY.size
+    end
+
+    # Returns the id of the first image or nil if there are none.
     def first_image_id(item)
       return unless images(item)
       image_id(images(item).first)

@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 2.1.3
+
+* Order images array by likelyhood of a higher quality image (type: PROMO_LANDSCAPE > PICTURE > STILL).
+
 ## 2.1.2.1
 
 * Fix a minor bug on `Poms::Fields.title`. This could be triggered when a result from a Poms query would be empty. `nil` would be sumitted and the provided key would be called on `nil` which caused an error. Now it will simply return `nil` as a title.
