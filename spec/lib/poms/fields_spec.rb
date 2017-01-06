@@ -19,6 +19,10 @@ module Poms
       it 'returns nil if there is no title' do
         expect(described_class.title({})).to be_nil
       end
+
+      it 'does not throw an error when item is nil' do
+        expect { described_class.title(nil) }.not_to raise_error
+      end
     end
 
     describe '.description' do
@@ -39,10 +43,37 @@ naar hun loods, maar is dat wel een goed idee?")
       end
     end
 
+    describe '.images' do
+      it 'returns an array of 4 items' do
+        expect(described_class.images(poms_data).count).to eq 4
+      end
+
+      it 'orders the items by type' do
+        types = described_class.images(poms_data).map { |i| i['type'] }
+        expect(types).to eq(%w(PROMO_LANDSCAPE PICTURE STILL STILL))
+      end
+    end
+
+    describe '.image_order_index' do
+      it 'returns 0 when PROMO_LANDSCAPE' do
+        expect(described_class.image_order_index('type' => 'PROMO_LANDSCAPE'))
+          .to eq 0
+      end
+
+      it 'returns 1 when PICTURE' do
+        expect(described_class.image_order_index('type' => 'PICTURE')).to eq 1
+      end
+
+      it 'returns 2 for everything else' do
+        expect(described_class.image_order_index('type' => 'STILL')).to eq 2
+        expect(described_class.image_order_index('type' => 'BOGUS')).to eq 2
+      end
+    end
+
     describe '.image_id' do
       it 'returns the id of the image' do
         expect(described_class.image_id(poms_data['images'].first))
-          .to eq('184169')
+          .to eq('187003')
       end
 
       it 'returns nil if there is no image' do
@@ -52,7 +83,7 @@ naar hun loods, maar is dat wel een goed idee?")
 
     describe '.first_image_id' do
       it 'returns the id of the first image' do
-        expect(described_class.first_image_id(poms_data)).to eq('184169')
+        expect(described_class.first_image_id(poms_data)).to eq('187005')
       end
 
       it 'returns nil if there is no image' do
@@ -100,13 +131,30 @@ naar hun loods, maar is dat wel een goed idee?")
     end
 
     describe '.position' do
-      it 'returns the position' do
-        clip = JSON.parse File.read('spec/fixtures/poms_clip.json')
-        expect(described_class.position(clip)).to eq(1)
+      let(:clip) { JSON.parse(File.read('spec/fixtures/poms_clip.json')) }
+
+      context 'with no extra arguments' do
+        it "returns the clip's index for his first parent" do
+          expect(described_class.position(clip)).to eq(31)
+        end
       end
 
-      it 'returns nil if it not a member of anything' do
-        expect(described_class.position(poms_data)).to be_nil
+      context 'with no parents' do
+        it 'returns nil' do
+          expect(described_class.position('memberOf' => [])).to be_nil
+          expect(described_class.position({})).to be_nil
+        end
+      end
+
+      context 'When given an ancestor midRef' do
+        it "returns the clip's index in that parent" do
+          pos = described_class.position(clip, member_of: 'POMS_S_ZAPP_4110813')
+          expect(pos).to be(1)
+        end
+
+        it 'returns nil if no matching parent found' do
+          expect(described_class.position(clip, member_of: 'nobody')).to be_nil
+        end
       end
     end
 

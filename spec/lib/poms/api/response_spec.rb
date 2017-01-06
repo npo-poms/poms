@@ -7,7 +7,7 @@ module Poms
       subject { described_class.new('200', nil, nil) }
 
       it 'converts code to integer' do
-        expect(subject.code).to eql(200)
+        expect(subject.code).to be(200)
       end
 
       it 'converts body to string' do

@@ -73,18 +73,6 @@
     ],
     "images": [
         {
-            "creationDate": 1368815299665,
-            "description": "VRijland",
-            "highlighted": false,
-            "imageUri": "urn:vpro:image:184169",
-            "lastModified": 1368815299705,
-            "owner": "BROADCASTER",
-            "title": "VRijland",
-            "type": "PICTURE",
-            "urn": "urn:vpro:media:image:25765753",
-            "workflow": "PUBLISHED"
-        },
-        {
             "creationDate": 1369760424862,
             "description": "Li biedt Barry een baantje aan bij de uitdragerij en vraagt zich meteen af of dat wel zo slim was. Timon en Joep zien de criminele organisatie de Rijland Angels. Timon wil naar hun loods, maar is dat wel een goed idee?\n\t&nbsp;",
             "highlighted": false,
@@ -109,6 +97,18 @@
             "workflow": "PUBLISHED"
         },
         {
+            "creationDate": 1368815299665,
+            "description": "VRijland",
+            "highlighted": false,
+            "imageUri": "urn:vpro:image:184169",
+            "lastModified": 1368815299705,
+            "owner": "BROADCASTER",
+            "title": "VRijland",
+            "type": "PICTURE",
+            "urn": "urn:vpro:media:image:25765753",
+            "workflow": "PUBLISHED"
+        },
+        {
             "creationDate": 1369760431388,
             "description": "Li biedt Barry een baantje aan bij de uitdragerij en vraagt zich meteen af of dat wel zo slim was. Timon en Joep zien de criminele organisatie de Rijland Angels. Timon wil naar hun loods, maar is dat wel een goed idee?\n\t&nbsp;",
             "highlighted": false,
@@ -116,7 +116,7 @@
             "lastModified": 1369760431468,
             "owner": "NEBO",
             "title": "VRijland",
-            "type": "STILL",
+            "type": "PROMO_LANDSCAPE",
             "urn": "urn:vpro:media:image:26079442",
             "workflow": "PUBLISHED"
         }

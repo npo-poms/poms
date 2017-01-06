@@ -4,6 +4,18 @@
 
 * Remove `Poms::Fields#rev` as it wasn't provided by the Poms data anyway.
 
+## 2.1.3
+
+* Order images array by likelyhood of a higher quality image (type: PROMO_LANDSCAPE > PICTURE > STILL).
+
+## 2.1.2.1
+
+* Fix a minor bug on `Poms::Fields.title`. This could be triggered when a result from a Poms query would be empty. `nil` would be sumitted and the provided key would be called on `nil` which caused an error. Now it will simply return `nil` as a title.
+
+## 2.1.2
+
+* Extend Poms::Fields.position target specified parent
+
 ## 2.1.1
 
 * Add `addressable` to gemspec.

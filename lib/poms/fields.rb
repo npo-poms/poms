@@ -6,6 +6,8 @@ module Poms
   module Fields
     module_function
 
+    IMAGE_TYPE_PRIORITY = %w(PROMO_LANDSCAPE PICTURE).freeze
+
     # Returns the title, main by default
     def title(item, type = 'MAIN')
       value_of_type(item, 'titles', type)
@@ -18,7 +20,9 @@ module Poms
 
     # Returns the images from the hash
     def images(item)
-      item['images']
+      item['images'].try(:sort_by) do |i|
+        image_order_index(i)
+      end
     end
 
     # Extracts the image id from an image hash
@@ -28,7 +32,11 @@ module Poms
       image['imageUri'].split(':').last
     end
 
-    # Returns the id of the first image of nil if there are none.
+    def image_order_index(image)
+      IMAGE_TYPE_PRIORITY.index(image['type']) || IMAGE_TYPE_PRIORITY.size
+    end
+
+    # Returns the id of the first image or nil if there are none.
     def first_image_id(item)
       return unless images(item)
       image_id(images(item).first)
@@ -60,10 +68,34 @@ module Poms
       Timestamp.to_datetime(internetvod['publishStop'])
     end
 
-    # Returns the position in the parent context if it is present.
-    def position(item)
-      parent = item['memberOf']
-      parent.first['index'] if parent.present?
+    # Returns the index at which it is in the parent. When no
+    # :member_of keyword is given, it will return the first found
+    # index. Else, when a parent is found with matching member_of
+    # midref, it returns that index. Else returns nil.
+    # @param item The Poms Hash
+    # @param optional :member_of The midref of parent for which we
+    # seek the index
+    def position(item, member_of: nil)
+      parent(item, midref: member_of).try(:[], 'index')
+    end
+
+    # Finds a parent the data is "member of". If :midref is given, it
+    # will look for the parent that matches that mid and return nil if
+    # not found. Without the :midref it will return the first parent.
+    # @param item The Poms Hash
+    # @param optional midref The midref of parent we seek.
+    def parent(item, midref: nil)
+      if midref
+        parents(item).find { |parent| parent['midRef'] == midref }
+      else
+        parents(item).first
+      end
+    end
+
+    # Returns the parents that the element is member of. Will always
+    # return an array.
+    def parents(item)
+      Array(item['memberOf'])
     end
 
     # Returns an array of start and end times for the  scheduled events for
@@ -100,7 +132,7 @@ module Poms
     # @param key The key of the array we want to look in
     # @param type The type to select
     def value_of_type(item, key, type)
-      return unless item[key]
+      return unless item && item[key]
       res = item[key].find { |value| value['type'] == type }
       return unless res
       res['value']
