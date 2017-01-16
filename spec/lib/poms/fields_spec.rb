@@ -101,16 +101,6 @@ naar hun loods, maar is dat wel een goed idee?")
       end
     end
 
-    describe '.rev' do
-      it 'returns the current Poms revision' do
-        expect(described_class.rev(poms_data)).to eq(60)
-      end
-
-      it 'returns 0 if it cannot be found' do
-        expect(described_class.rev({})).to eq(0)
-      end
-    end
-
     describe '.odi_streams' do
       it 'returns an array of stream types' do
         expect(described_class.odi_streams(poms_data)).to match_array(

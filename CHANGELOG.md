@@ -1,5 +1,9 @@
 # Poms Release notes
 
+## 2.2.0
+
+* Remove `Poms::Fields#rev` as it wasn't provided by the Poms data anyway.
+
 ## 2.1.3
 
 * Order images array by likelyhood of a higher quality image (type: PROMO_LANDSCAPE > PICTURE > STILL).
