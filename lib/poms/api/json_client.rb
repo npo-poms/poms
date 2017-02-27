@@ -13,20 +13,26 @@ module Poms
       module_function
 
       def get(uri, credentials, headers = {})
-        response = Client.get(
-          uri,
-          credentials,
-          DEFAULT_HEADERS.merge(headers)
+        response = Client.execute(
+          Request.new(
+            method: :get,
+            uri: uri,
+            headers: DEFAULT_HEADERS.merge(headers),
+            credentials: credentials
+          )
         )
         JSON.parse(response.body)
       end
 
       def post(uri, body, credentials, headers = {})
-        response = Client.post(
-          uri,
-          body.to_json,
-          credentials,
-          DEFAULT_HEADERS.merge(headers)
+        response = Client.execute(
+          Request.new(
+            method: :post,
+            uri: uri,
+            body: body.to_json,
+            headers: DEFAULT_HEADERS.merge(headers),
+            credentials: credentials
+          )
         )
         JSON.parse(response.body)
       end

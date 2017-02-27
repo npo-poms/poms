@@ -20,7 +20,11 @@ module Poms
           .with(headers: { 'Origin' => 'my origin' })
           .to_return(body: 'stubbed response', status: 200)
         expect(
-          described_class.get(uri, credentials)
+          described_class.execute(Poms::Api::Request.new(
+            method: :get,
+            uri: uri,
+            credentials: credentials
+          ))
         ).to eql(Poms::Api::Response.new(200, 'stubbed response', {}))
       end
 
@@ -29,7 +33,12 @@ module Poms
           .with(headers: { 'Origin' => 'my origin' }, body: 'my body')
           .to_return(body: 'stubbed response', status: 200)
         expect(
-          described_class.post(uri, 'my body', credentials)
+          described_class.execute(Poms::Api::Request.new(
+            method: :post,
+            uri: uri,
+            body: 'my body',
+            credentials: credentials
+          ))
         ).to eql(Poms::Api::Response.new(200, 'stubbed response', {}))
       end
 
@@ -37,7 +46,11 @@ module Poms
         stub_request(:get, 'https://example.com/some/uri')
           .to_return(status: 404)
         expect {
-          described_class.get(uri, credentials)
+          described_class.execute(Poms::Api::Request.new(
+            method: :get,
+            uri: uri,
+            credentials: credentials
+          ))
         }.to raise_error(Poms::Errors::HttpMissingError)
       end
 
@@ -45,14 +58,22 @@ module Poms
         stub_request(:get, 'https://example.com/some/uri')
           .to_return(status: 500)
         expect {
-          described_class.get(uri, credentials)
+          described_class.execute(Poms::Api::Request.new(
+            method: :get,
+            uri: uri,
+            credentials: credentials
+          ))
         }.to raise_error(Poms::Errors::HttpServerError)
       end
 
       it 'raises a generic HttpError when the driver fails' do
         allow(Net::HTTP).to receive(:start).and_raise(Timeout::Error)
         expect {
-          described_class.get(uri, credentials)
+          described_class.execute(Poms::Api::Request.new(
+            method: :get,
+            uri: uri,
+            credentials: credentials
+          ))
         }.to raise_error(Poms::Errors::HttpError)
       end
     end

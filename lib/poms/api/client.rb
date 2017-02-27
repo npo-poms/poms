@@ -13,35 +13,8 @@ module Poms
     module Client
       module_function
 
-      def get(uri, credentials, headers = {})
-        handle_response(
-          Drivers::NetHttp.execute(
-            Auth.sign(
-              Request.new(
-                method: :get,
-                uri: uri,
-                headers: headers,
-                credentials: credentials
-              )
-            )
-          )
-        )
-      end
-
-      def post(uri, body, credentials, headers = {})
-        handle_response(
-          Drivers::NetHttp.execute(
-            Auth.sign(
-              Request.new(
-                method: :post,
-                uri: uri,
-                body: body,
-                headers: headers,
-                credentials: credentials
-              )
-            )
-          )
-        )
+      def execute(request)
+        handle_response(Drivers::NetHttp.execute(Auth.sign(request)))
       end
 
       def handle_response(response)
