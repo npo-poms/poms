@@ -42,7 +42,6 @@ module Poms
   # @raise Api::Client::HttpMissingError
   def first!(mid)
     Api::JsonClient.execute(build_request(
-      method: :get,
       uri: Api::Uris::Media.single(config.base_uri, mid),
     ))
   end
@@ -65,7 +64,6 @@ module Poms
 
   def members(mid)
     Api::PaginationClient.execute(build_request(
-      method: :get,
       uri: Api::Uris::Media.members(config.base_uri, mid),
     ))
   end
@@ -76,7 +74,6 @@ module Poms
   # @return [Hash] a hash with old_mid => new_mid pairs
   def merged_series
     Api::JsonClient.execute(build_request(
-      method: :get,
       uri: Api::Uris::Media.redirects(config.base_uri),
     )).fetch('map')
   end
@@ -86,7 +83,6 @@ module Poms
   # @param channel The channel name
   def scheduled_now(channel)
     Api::JsonClient.execute(build_request(
-      method: :get,
       uri: Api::Uris::Schedule.now(config.base_uri, channel),
     )).fetch('items').first
   end
@@ -96,7 +92,6 @@ module Poms
   # @param channel The channel name
   def scheduled_next(channel)
     Api::JsonClient.execute(build_request(
-      method: :get,
       uri: Api::Uris::Schedule.next(config.base_uri, channel),
     )).fetch('items').first
   end

@@ -12,12 +12,12 @@ module Poms
 
       attr_reader :method, :uri, :credentials, :body, :headers
 
-      def initialize(method:, uri:, credentials: nil, body: nil, headers: {})
+      def initialize(uri:, method: :get, credentials: nil, body: nil, headers: {})
+        @uri = uri
         @method = method.to_sym
         unless %i(get post).include?(@method)
           raise ArgumentError, 'method should be :get or :post'
         end
-        @uri = uri
         @body = body || ''
         @headers = headers.to_h.freeze
         @credentials = credentials

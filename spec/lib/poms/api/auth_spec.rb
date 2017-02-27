@@ -20,7 +20,6 @@ module Poms
         it 'signs requests' do
           headers = {}
           request = Request.new(
-            method: :get,
             uri: uri,
             headers: headers,
             credentials: credentials

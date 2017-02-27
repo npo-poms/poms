@@ -21,7 +21,6 @@ module Poms
           .to_return(body: 'stubbed response', status: 200)
         expect(
           described_class.execute(Poms::Api::Request.new(
-            method: :get,
             uri: uri,
             credentials: credentials
           ))
@@ -47,7 +46,6 @@ module Poms
           .to_return(status: 404)
         expect {
           described_class.execute(Poms::Api::Request.new(
-            method: :get,
             uri: uri,
             credentials: credentials
           ))
@@ -59,7 +57,6 @@ module Poms
           .to_return(status: 500)
         expect {
           described_class.execute(Poms::Api::Request.new(
-            method: :get,
             uri: uri,
             credentials: credentials
           ))
@@ -70,7 +67,6 @@ module Poms
         allow(Net::HTTP).to receive(:start).and_raise(Timeout::Error)
         expect {
           described_class.execute(Poms::Api::Request.new(
-            method: :get,
             uri: uri,
             credentials: credentials
           ))

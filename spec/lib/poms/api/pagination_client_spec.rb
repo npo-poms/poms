@@ -11,7 +11,6 @@ module Poms
 
       it 'returns all members of get in one Array' do
         result = described_class.execute(Request.new(
-          method: :get,
           uri: Api::Uris::Media.members(config.base_uri, 'POMS_S_NTR_2448585'),
           credentials: config.credentials
         ))

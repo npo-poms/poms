@@ -55,7 +55,6 @@ module Poms
       it 'formats outgoing GET requests as JSON' do
         stub_request(:get, 'https://example.com/some/uri').to_return(body: '{}')
         described_class.execute(Request.new(
-          method: :get,
           uri: uri,
           credentials: credentials
         ))
@@ -78,7 +77,6 @@ module Poms
           status: 200
         )
         response = described_class.execute(Request.new(
-          method: :get,
           uri: uri,
           credentials: credentials
         ))
