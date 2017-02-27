@@ -15,7 +15,7 @@ module Poms
         )
       end
 
-      it 'uses #get to prepare and execute a GET request' do
+      it 'uses #execute to prepare and execute a GET request' do
         stub_request(:get, 'https://example.com/some/uri')
           .with(headers: { 'Origin' => 'my origin' })
           .to_return(body: 'stubbed response', status: 200)
@@ -28,7 +28,7 @@ module Poms
         ).to eql(Poms::Api::Response.new(200, 'stubbed response', {}))
       end
 
-      it 'uses #post to prepare and execute a POST request' do
+      it 'uses #execute to prepare and execute a POST request' do
         stub_request(:post, 'https://example.com/some/uri')
           .with(headers: { 'Origin' => 'my origin' }, body: 'my body')
           .to_return(body: 'stubbed response', status: 200)
