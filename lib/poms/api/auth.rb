@@ -21,10 +21,13 @@ module Poms
         timestamp = clock.rfc822
         message = generate_message(request.uri, timestamp)
 
-        request['Origin'] = origin
-        request['X-NPO-Date'] = timestamp
-        request['Authorization'] = "NPO #{key}:#{encrypt(message)}"
-        request
+        request.merge(
+          headers: request.headers.merge(
+            'Origin' => origin,
+            'X-NPO-Date' => timestamp,
+            'Authorization' => "NPO #{key}:#{encrypt(message)}"
+          )
+        )
       end
 
       # Create a message for the Authorization header. This is an encrypted

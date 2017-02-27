@@ -28,11 +28,12 @@ module Poms
         expect(described_class.new(method: :get, uri: 'uri').body).to be_empty
       end
 
-      it 'can write headers' do
+      it 'can merge attributes' do
         request = described_class.new(method: :get, uri: 'uri')
-        expect {
-          request['foo'] = 'bar'
-        }.to change { request['foo'] }.from(nil).to('bar')
+        new_request = request.merge(method: :post, body: 'body')
+        expect(new_request).to be_post
+        expect(new_request.uri).to eq 'uri'
+        expect(new_request.body).to eq 'body'
       end
 
       it 'can loop over all headers' do

@@ -7,7 +7,7 @@ module Poms
     # headers.
     class Request
       extend Forwardable
-      def_delegators :@headers, :[], :[]=
+      def_delegators :@headers, :[]
       def_delegator :@headers, :each, :each_header
 
       attr_reader :method, :uri, :credentials, :body, :headers
@@ -19,8 +19,9 @@ module Poms
         end
         @uri = uri
         @body = body || ''
-        @headers = headers.to_h
+        @headers = headers.to_h.freeze
         @credentials = credentials
+        freeze
       end
 
       def merge(new_attributes)
