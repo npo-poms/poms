@@ -11,15 +11,13 @@ module Poms
     #
     # @see Poms::Api::Drivers::NetHttp
     module Client
-      extend Drivers::NetHttp
-
       module_function
 
       def get(uri, credentials, headers = {})
         handle_response(
-          execute(
+          Drivers::NetHttp.execute(
             Auth.sign(
-              prepare_get(uri, headers),
+              Request.new(:get, uri, nil, headers),
               credentials
             )
           )
@@ -28,9 +26,9 @@ module Poms
 
       def post(uri, body, credentials, headers = {})
         handle_response(
-          execute(
+          Drivers::NetHttp.execute(
             Auth.sign(
-              prepare_post(uri, body, headers),
+              Request.new(:post, uri, body, headers),
               credentials
             )
           )
@@ -44,14 +42,6 @@ module Poms
         else
           response
         end
-      end
-
-      def prepare_get(uri, headers = {})
-        Request.get(uri, nil, headers)
-      end
-
-      def prepare_post(uri, body, headers = {})
-        Request.post(uri, body, headers)
       end
     end
   end

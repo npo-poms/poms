@@ -22,6 +22,7 @@ module Poms
           Net::HTTPHeaderSyntaxError,
           Net::ProtocolError
         ].freeze
+        module_function
 
         def execute(request_description)
           response = attempt_request(
@@ -30,8 +31,6 @@ module Poms
           )
           Response.new(response.code, response.body, response.to_hash)
         end
-
-        private
 
         def attempt_request(uri, request)
           Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
@@ -63,6 +62,8 @@ module Poms
             raise ArgumentError, 'can only execute GET or POST requests'
           end
         end
+
+        private_class_method :attempt_request, :prepare_request, :request_to_net_http_request
       end
     end
   end
