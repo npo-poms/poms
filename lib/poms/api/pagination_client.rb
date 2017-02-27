@@ -13,9 +13,7 @@ module Poms
           page = Page.new(request.uri)
           loop do
             page.execute do |page_uri|
-              Api::JsonClient.execute(Api::Request.new(
-                request.attributes.merge(uri: page_uri)
-              ))
+              Api::JsonClient.execute(request.merge(uri: page_uri))
             end
             page.items.each { |item| yielder << item }
             raise StopIteration if page.final?

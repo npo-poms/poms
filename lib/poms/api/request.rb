@@ -23,6 +23,10 @@ module Poms
         @credentials = credentials
       end
 
+      def merge(new_attributes)
+        self.class.new(attributes.merge(new_attributes))
+      end
+
       def attributes
         {
           method: method,
