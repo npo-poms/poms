@@ -18,13 +18,11 @@ module Poms
         message = generate_message(request, timestamp)
         auth = "NPO #{credentials.key}:#{encrypt(credentials.secret, message)}"
 
-        request.merge(
-          headers: request.headers.merge(
-            'Origin' => credentials.origin,
-            'X-NPO-Date' => timestamp,
-            'Authorization' => auth
-          )
-        )
+        request.merge(headers: request.headers.merge(
+          'Origin' => credentials.origin,
+          'X-NPO-Date' => timestamp,
+          'Authorization' => auth
+        ))
       end
 
       # Create a message for the Authorization header. This is an encrypted
