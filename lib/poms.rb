@@ -84,8 +84,8 @@ module Poms
   #
   # @param channel The channel name
   def scheduled_now(channel)
-    Poms::Api::JsonClient.get(
-      Poms::Api::Uris::Schedule.now(config.base_uri, channel),
+    Api::JsonClient.get(
+      Api::Uris::Schedule.now(config.base_uri, channel),
       config.credentials
     ).fetch('items').first
   end
@@ -94,8 +94,8 @@ module Poms
   #
   # @param channel The channel name
   def scheduled_next(channel)
-    Poms::Api::JsonClient.get(
-      Poms::Api::Uris::Schedule.next(config.base_uri, channel),
+    Api::JsonClient.get(
+      Api::Uris::Schedule.next(config.base_uri, channel),
       config.credentials
     ).fetch('items').first
   end
