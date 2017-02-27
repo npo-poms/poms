@@ -16,8 +16,8 @@ module Poms
       # @param request The prepared request
       # @param credentials The Poms API credentials
       # @param clock Defaults to current time, but can be provided as Time
-      def sign(request, credentials, clock = Time.now)
-        @credentials = credentials
+      def sign(request, clock = Time.now)
+        @credentials = request.credentials
         timestamp = clock.rfc822
         message = generate_message(request.uri, timestamp)
 

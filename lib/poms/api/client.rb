@@ -20,9 +20,9 @@ module Poms
               Request.new(
                 method: :get,
                 uri: uri,
-                headers: headers
-              ),
-              credentials
+                headers: headers,
+                credentials: credentials
+              )
             )
           )
         )
@@ -36,9 +36,9 @@ module Poms
                 method: :post,
                 uri: uri,
                 body: body,
-                headers: headers
-              ),
-              credentials
+                headers: headers,
+                credentials: credentials
+              )
             )
           )
         )

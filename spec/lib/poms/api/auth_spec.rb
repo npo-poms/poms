@@ -20,11 +20,12 @@ module Poms
         it 'signs requests' do
           headers = {}
           request = Request.new(
-            method: :get, 
-            uri: uri, 
-            headers: headers
+            method: :get,
+            uri: uri,
+            headers: headers,
+            credentials: credentials
           )
-          signed_request = described_class.sign(request, credentials, timestamp)
+          signed_request = described_class.sign(request, timestamp)
 
           expect(signed_request['Origin']).to eql('my origin')
           expect(signed_request['X-NPO-Date']).to eql(
