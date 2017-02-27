@@ -9,7 +9,9 @@ module Poms
         ends_at: 'end'
       }.freeze
 
-      def self.build(options)
+      module_function
+
+      def build(options)
         return {} if options.empty?
         all = options.map do |key, value|
           case key
@@ -22,9 +24,7 @@ module Poms
         all.reduce(&:deep_merge)
       end
 
-      private_class_method
-
-      def self.time_params(key, value)
+      def time_params(key, value)
         {
           'searches' => {
             'sortDates' => {
@@ -33,6 +33,8 @@ module Poms
           }
         }
       end
+
+      private_class_method :time_params
     end
   end
 end
