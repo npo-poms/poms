@@ -47,7 +47,7 @@ module Poms
         def prepare_request(request_description)
           request = request_to_net_http_request(request_description)
           request.body = request_description.body.to_s
-          request_description.each_header do |key, value|
+          request_description.headers.each do |key, value|
             request[key] = value
           end
           request

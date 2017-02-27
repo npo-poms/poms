@@ -18,12 +18,6 @@ module Poms
         expect(described_class.new(method: :post, uri: 'uri')).to be_post
       end
 
-      it 'can read header values' do
-        request = described_class.new(uri: 'uri', headers: { 'foo' => 'bar' })
-        expect(request['foo']).to eql('bar')
-        expect(request['other key']).to be_nil
-      end
-
       it 'has an empty body by default' do
         expect(described_class.new(uri: 'uri').body).to be_empty
       end
@@ -34,17 +28,6 @@ module Poms
         expect(new_request).to be_post
         expect(new_request.uri).to eq 'uri'
         expect(new_request.body).to eq 'body'
-      end
-
-      it 'can loop over all headers' do
-        request = described_class.new(
-          uri: 'uri',
-          body: {},
-          headers: { 'foo' => 'bar' }
-        )
-        expect { |b|
-          request.each_header(&b)
-        }.to yield_successive_args(%w(foo bar))
       end
     end
   end

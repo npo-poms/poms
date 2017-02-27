@@ -6,10 +6,6 @@ module Poms
     # request, representing a combination of an HTTP method, URI, body and
     # headers.
     class Request
-      extend Forwardable
-      def_delegators :@headers, :[]
-      def_delegator :@headers, :each, :each_header
-
       attr_reader :method, :uri, :credentials, :body, :headers
 
       def initialize(
