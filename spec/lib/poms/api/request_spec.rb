@@ -5,38 +5,38 @@ module Poms
     RSpec.describe Request do
       it 'requires a valid HTTP method' do
         expect {
-          described_class.new('bla', 'uri')
+          described_class.new(method: 'bla', uri: 'uri')
         }.to raise_error(ArgumentError, 'method should be :get or :post')
 
         expect {
-          described_class.new('get', 'uri')
+          described_class.new(method: 'get', uri: 'uri')
         }.not_to raise_error
       end
 
       it 'indicates whether it is a get or post request' do
-        expect(described_class.new(:get, 'uri')).to be_get
-        expect(described_class.new(:post, 'uri')).to be_post
+        expect(described_class.new(method: :get, uri: 'uri')).to be_get
+        expect(described_class.new(method: :post, uri: 'uri')).to be_post
       end
 
       it 'can read header values' do
-        request = described_class.new(:get, 'uri', nil, 'foo' => 'bar')
+        request = described_class.new(method: :get, uri: 'uri', headers: {'foo' => 'bar'})
         expect(request['foo']).to eql('bar')
         expect(request['other key']).to be_nil
       end
 
       it 'has an empty body by default' do
-        expect(described_class.new(:get, 'uri').body).to be_empty
+        expect(described_class.new(method: :get, uri: 'uri').body).to be_empty
       end
 
       it 'can write headers' do
-        request = described_class.new(:get, 'uri')
+        request = described_class.new(method: :get, uri: 'uri')
         expect {
           request['foo'] = 'bar'
         }.to change { request['foo'] }.from(nil).to('bar')
       end
 
       it 'can loop over all headers' do
-        request = described_class.new(:get, 'uri', {}, 'foo' => 'bar')
+        request = described_class.new(method: :get, uri: 'uri', body: {}, headers: {'foo' => 'bar'})
         expect { |b|
           request.each_header(&b)
         }.to yield_successive_args(%w(foo bar))

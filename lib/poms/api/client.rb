@@ -17,7 +17,11 @@ module Poms
         handle_response(
           Drivers::NetHttp.execute(
             Auth.sign(
-              Request.new(:get, uri, nil, headers),
+              Request.new(
+                method: :get,
+                uri: uri,
+                headers: headers
+              ),
               credentials
             )
           )
@@ -28,7 +32,12 @@ module Poms
         handle_response(
           Drivers::NetHttp.execute(
             Auth.sign(
-              Request.new(:post, uri, body, headers),
+              Request.new(
+                method: :post,
+                uri: uri,
+                body: body,
+                headers: headers
+              ),
               credentials
             )
           )
