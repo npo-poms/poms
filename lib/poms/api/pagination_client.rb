@@ -8,32 +8,15 @@ module Poms
     module PaginationClient
       module_function
 
-      def get(uri, credentials)
-        execute(uri) do |page_uri|
-          Api::JsonClient.execute(Api::Request.new(
-            method: :get,
-            uri: page_uri,
-            credentials: credentials
-          ))
-        end
-      end
-
-      def post(uri, body, credentials)
-        execute(uri) do |page_uri|
-          Api::JsonClient.execute(Api::Request.new(
-            method: :post,
-            uri: page_uri,
-            body: body,
-            credentials: credentials
-          ))
-        end
-      end
-
-      def execute(uri)
+      def execute(request)
         Enumerator.new do |yielder|
-          page = Page.new(uri)
+          page = Page.new(request.uri)
           loop do
-            page.execute { |page_uri| yield page_uri }
+            page.execute do |page_uri|
+              Api::JsonClient.execute(Api::Request.new(
+                request.attributes.merge(uri: page_uri)
+              ))
+            end
             page.items.each { |item| yielder << item }
             raise StopIteration if page.final?
             page = page.next_page

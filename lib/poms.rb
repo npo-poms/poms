@@ -58,18 +58,20 @@ module Poms
   end
 
   def descendants(mid, search_params = {})
-    Api::PaginationClient.post(
-      Api::Uris::Media.descendants(config.base_uri, mid),
-      Api::Search.build(search_params),
-      config.credentials
-    )
+    Api::PaginationClient.execute(Api::Request.new(
+      method: :post,
+      uri: Api::Uris::Media.descendants(config.base_uri, mid),
+      body: Api::Search.build(search_params),
+      credentials: config.credentials
+    ))
   end
 
   def members(mid)
-    Api::PaginationClient.get(
-      Api::Uris::Media.members(config.base_uri, mid),
-      config.credentials
-    )
+    Api::PaginationClient.execute(Api::Request.new(
+      method: :get,
+      uri: Api::Uris::Media.members(config.base_uri, mid),
+      credentials: config.credentials
+    ))
   end
 
   # Gets the merged serie mids as a hash. Expects a JSON response from
