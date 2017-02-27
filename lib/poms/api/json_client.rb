@@ -13,10 +13,10 @@ module Poms
       module_function
 
       def execute(request)
-        request = request.merge({
+        request = request.merge(
           body: request.body.to_json,
           headers: DEFAULT_HEADERS.merge(request.headers)
-        })
+        )
         JSON.parse(Client.execute(request).body)
       end
     end

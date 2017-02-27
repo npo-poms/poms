@@ -19,7 +19,7 @@ module Poms
       end
 
       it 'can read header values' do
-        request = described_class.new(uri: 'uri', headers: {'foo' => 'bar'})
+        request = described_class.new(uri: 'uri', headers: { 'foo' => 'bar' })
         expect(request['foo']).to eql('bar')
         expect(request['other key']).to be_nil
       end
@@ -37,7 +37,11 @@ module Poms
       end
 
       it 'can loop over all headers' do
-        request = described_class.new(uri: 'uri', body: {}, headers: {'foo' => 'bar'})
+        request = described_class.new(
+          uri: 'uri',
+          body: {},
+          headers: { 'foo' => 'bar' }
+        )
         expect { |b|
           request.each_header(&b)
         }.to yield_successive_args(%w(foo bar))

@@ -63,7 +63,7 @@ module Poms
     def available_until(item)
       return if item['predictions'].blank?
       internetvod = item['predictions']
-                    .find { |p| p['platform'] == 'INTERNETVOD' }
+        .find { |p| p['platform'] == 'INTERNETVOD' }
       return unless internetvod
       Timestamp.to_datetime(internetvod['publishStop'])
     end

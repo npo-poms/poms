@@ -42,7 +42,7 @@ module Poms
   # @raise Api::Client::HttpMissingError
   def first!(mid)
     Api::JsonClient.execute(build_request(
-      uri: Api::Uris::Media.single(config.base_uri, mid),
+      uri: Api::Uris::Media.single(config.base_uri, mid)
     ))
   end
 
@@ -50,7 +50,7 @@ module Poms
     Api::JsonClient.execute(build_request(
       method: :post,
       uri: Api::Uris::Media.multiple(config.base_uri),
-      body: Array(arg),
+      body: Array(arg)
     ))
   end
 
@@ -58,13 +58,13 @@ module Poms
     Api::PaginationClient.execute(build_request(
       method: :post,
       uri: Api::Uris::Media.descendants(config.base_uri, mid),
-      body: Api::Search.build(search_params),
+      body: Api::Search.build(search_params)
     ))
   end
 
   def members(mid)
     Api::PaginationClient.execute(build_request(
-      uri: Api::Uris::Media.members(config.base_uri, mid),
+      uri: Api::Uris::Media.members(config.base_uri, mid)
     ))
   end
 
@@ -74,7 +74,7 @@ module Poms
   # @return [Hash] a hash with old_mid => new_mid pairs
   def merged_series
     Api::JsonClient.execute(build_request(
-      uri: Api::Uris::Media.redirects(config.base_uri),
+      uri: Api::Uris::Media.redirects(config.base_uri)
     )).fetch('map')
   end
 
@@ -83,7 +83,7 @@ module Poms
   # @param channel The channel name
   def scheduled_now(channel)
     Api::JsonClient.execute(build_request(
-      uri: Api::Uris::Schedule.now(config.base_uri, channel),
+      uri: Api::Uris::Schedule.now(config.base_uri, channel)
     )).fetch('items').first
   end
 
@@ -92,7 +92,7 @@ module Poms
   # @param channel The channel name
   def scheduled_next(channel)
     Api::JsonClient.execute(build_request(
-      uri: Api::Uris::Schedule.next(config.base_uri, channel),
+      uri: Api::Uris::Schedule.next(config.base_uri, channel)
     )).fetch('items').first
   end
 
@@ -105,9 +105,7 @@ module Poms
   end
 
   def build_request(attributes)
-    Api::Request.new(attributes.merge({
-      credentials: config.credentials
-    }))
+    Api::Request.new(attributes.merge(credentials: config.credentials))
   end
 
   private_class_method :config, :build_request

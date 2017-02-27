@@ -22,6 +22,7 @@ module Poms
           Net::HTTPHeaderSyntaxError,
           Net::ProtocolError
         ].freeze
+
         module_function
 
         def execute(request_description)
@@ -40,7 +41,7 @@ module Poms
           end
         rescue *NET_HTTP_ERRORS => e
           raise Errors::HttpError,
-                "An error (#{e.class}) occured while processing your request."
+            "An error (#{e.class}) occured while processing your request."
         end
 
         def prepare_request(request_description)
@@ -63,7 +64,8 @@ module Poms
           end
         end
 
-        private_class_method :attempt_request, :prepare_request, :request_to_net_http_request
+        private_class_method :attempt_request, :prepare_request,
+          :request_to_net_http_request
       end
     end
   end

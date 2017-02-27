@@ -12,15 +12,19 @@ module Poms
         Enumerator.new do |yielder|
           page = Page.new(request.uri)
           loop do
-            page.execute do |page_uri|
-              Api::JsonClient.execute(request.merge(uri: page_uri))
-            end
+            page.execute { |page_uri| client_execute(request, page_uri) }
             page.items.each { |item| yielder << item }
             raise StopIteration if page.final?
             page = page.next_page
           end
         end.lazy
       end
+
+      def client_execute(request, page_uri)
+        Api::JsonClient.execute(request.merge(uri: page_uri))
+      end
+
+      private_class_method :client_execute
 
       # Keep track of number of items and how many have been retrieved
       class Page
