@@ -41,36 +41,32 @@ module Poms
   # @param [String] mid
   # @raise Api::Client::HttpMissingError
   def first!(mid)
-    Api::JsonClient.execute(Api::Request.new(
+    Api::JsonClient.execute(build_request(
       method: :get,
       uri: Api::Uris::Media.single(config.base_uri, mid),
-      credentials: config.credentials
     ))
   end
 
   def fetch(arg)
-    Api::JsonClient.execute(Api::Request.new(
+    Api::JsonClient.execute(build_request(
       method: :post,
       uri: Api::Uris::Media.multiple(config.base_uri),
       body: Array(arg),
-      credentials: config.credentials
     ))
   end
 
   def descendants(mid, search_params = {})
-    Api::PaginationClient.execute(Api::Request.new(
+    Api::PaginationClient.execute(build_request(
       method: :post,
       uri: Api::Uris::Media.descendants(config.base_uri, mid),
       body: Api::Search.build(search_params),
-      credentials: config.credentials
     ))
   end
 
   def members(mid)
-    Api::PaginationClient.execute(Api::Request.new(
+    Api::PaginationClient.execute(build_request(
       method: :get,
       uri: Api::Uris::Media.members(config.base_uri, mid),
-      credentials: config.credentials
     ))
   end
 
@@ -79,10 +75,9 @@ module Poms
   #
   # @return [Hash] a hash with old_mid => new_mid pairs
   def merged_series
-    Api::JsonClient.execute(Api::Request.new(
+    Api::JsonClient.execute(build_request(
       method: :get,
       uri: Api::Uris::Media.redirects(config.base_uri),
-      credentials: config.credentials
     )).fetch('map')
   end
 
@@ -90,10 +85,9 @@ module Poms
   #
   # @param channel The channel name
   def scheduled_now(channel)
-    Api::JsonClient.execute(Api::Request.new(
+    Api::JsonClient.execute(build_request(
       method: :get,
       uri: Api::Uris::Schedule.now(config.base_uri, channel),
-      credentials: config.credentials
     )).fetch('items').first
   end
 
@@ -101,10 +95,9 @@ module Poms
   #
   # @param channel The channel name
   def scheduled_next(channel)
-    Api::JsonClient.execute(Api::Request.new(
+    Api::JsonClient.execute(build_request(
       method: :get,
       uri: Api::Uris::Schedule.next(config.base_uri, channel),
-      credentials: config.credentials
     )).fetch('items').first
   end
 
@@ -116,5 +109,11 @@ module Poms
     @config or raise Errors::NotConfigured
   end
 
-  private_class_method :config
+  def build_request(attributes)
+    Api::Request.new(attributes.merge({
+      credentials: config.credentials
+    }))
+  end
+
+  private_class_method :config, :build_request
 end
