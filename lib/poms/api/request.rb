@@ -10,7 +10,7 @@ module Poms
       def_delegators :@headers, :[], :[]=
       def_delegator :@headers, :each, :each_header
 
-      attr_reader :uri, :body, :credentials
+      attr_reader :method, :uri, :credentials, :body, :headers
 
       def initialize(method:, uri:, credentials: nil, body: nil, headers: {})
         @method = method.to_sym
@@ -18,9 +18,19 @@ module Poms
           raise ArgumentError, 'method should be :get or :post'
         end
         @uri = uri
-        @body = body.to_s
+        @body = body || ''
         @headers = headers.to_h
         @credentials = credentials
+      end
+
+      def attributes
+        {
+          method: method,
+          uri: uri,
+          body: body,
+          headers: headers,
+          credentials: credentials
+        }
       end
 
       def get?
