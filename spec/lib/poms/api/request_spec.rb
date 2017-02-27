@@ -18,30 +18,25 @@ module Poms
         expect(described_class.new(:post, 'uri')).to be_post
       end
 
-      it 'constructs get and post requests using custom constructor' do
-        expect(described_class.get('uri')).to be_get
-        expect(described_class.post('uri')).to be_post
-      end
-
       it 'can read header values' do
-        request = described_class.get('uri', nil, 'foo' => 'bar')
+        request = described_class.new(:get, 'uri', nil, 'foo' => 'bar')
         expect(request['foo']).to eql('bar')
         expect(request['other key']).to be_nil
       end
 
       it 'has an empty body by default' do
-        expect(described_class.get('uri').body).to be_empty
+        expect(described_class.new(:get, 'uri').body).to be_empty
       end
 
       it 'can write headers' do
-        request = described_class.get('uri')
+        request = described_class.new(:get, 'uri')
         expect {
           request['foo'] = 'bar'
         }.to change { request['foo'] }.from(nil).to('bar')
       end
 
       it 'can loop over all headers' do
-        request = described_class.get('uri', {}, 'foo' => 'bar')
+        request = described_class.new(:get, 'uri', {}, 'foo' => 'bar')
         expect { |b|
           request.each_header(&b)
         }.to yield_successive_args(%w(foo bar))

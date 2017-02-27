@@ -15,32 +15,6 @@ module Poms
         )
       end
 
-      it 'builds a GET request' do
-        request = described_class.prepare_get(uri)
-        expect(request).to be_get
-        expect(request.uri).to eql(uri)
-        expect(request.body).to be_empty
-      end
-
-      it 'builds a POST request' do
-        body = 'foo=bar'
-        request = described_class.prepare_post(uri, body)
-        expect(request).to be_post
-        expect(request.uri).to eql(uri)
-        expect(request.body).to eql(body)
-      end
-
-      it 'executes bare requests' do
-        stub_request(:get, 'https://example.com/some/uri').to_return(
-          body: 'stubbed response',
-          status: 200
-        )
-        response = described_class.execute(
-          described_class.prepare_get(uri)
-        )
-        expect(response.body).to eql('stubbed response')
-      end
-
       it 'uses #get to prepare and execute a GET request' do
         stub_request(:get, 'https://example.com/some/uri')
           .with(headers: { 'Origin' => 'my origin' })

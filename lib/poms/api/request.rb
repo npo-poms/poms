@@ -12,14 +12,6 @@ module Poms
 
       attr_reader :uri, :body
 
-      def self.get(*args)
-        new(:get, *args)
-      end
-
-      def self.post(*args)
-        new(:post, *args)
-      end
-
       def initialize(method, uri, body = nil, headers = {})
         @method = method.to_sym
         unless %i(get post).include?(@method)

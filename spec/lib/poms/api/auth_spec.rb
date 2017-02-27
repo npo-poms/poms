@@ -19,7 +19,7 @@ module Poms
       describe '.sign' do
         it 'signs requests' do
           headers = {}
-          request = Request.get(uri, nil, headers)
+          request = Request.new(:get, uri, nil, headers)
           signed_request = described_class.sign(request, credentials, timestamp)
 
           expect(signed_request['Origin']).to eql('my origin')
