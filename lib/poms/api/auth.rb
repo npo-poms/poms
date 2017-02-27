@@ -9,30 +9,27 @@ module Poms
     module Auth
       module_function
 
-      extend SingleForwardable
-
-      delegate %i(origin secret key) => :@credentials
-
       # @param request The prepared request
       # @param credentials The Poms API credentials
       # @param clock Defaults to current time, but can be provided as Time
       def sign(request, clock = Time.now)
-        @credentials = request.credentials
+        credentials = request.credentials
         timestamp = clock.rfc822
-        message = generate_message(request.uri, timestamp)
+        message = generate_message(request, timestamp)
+        auth = "NPO #{credentials.key}:#{encrypt(credentials.secret, message)}"
 
         request.merge(
           headers: request.headers.merge(
-            'Origin' => origin,
+            'Origin' => credentials.origin,
             'X-NPO-Date' => timestamp,
-            'Authorization' => "NPO #{key}:#{encrypt(message)}"
+            'Authorization' => auth
           )
         )
       end
 
       # Create a message for the Authorization header. This is an encrypted
       # stringconsisting of a message that is hashed with a shared secret.
-      def encrypt(message)
+      def encrypt(secret, message)
         sha256 = OpenSSL::Digest.new('sha256')
         digest = OpenSSL::HMAC.digest(sha256, secret, message)
         Base64.encode64(digest).strip
@@ -42,12 +39,12 @@ module Poms
       # documentation.
       # @param uri The Addressable::URI
       # @param timestamp An rfc822 formatted timestamp
-      def generate_message(uri, timestamp)
+      def generate_message(request, timestamp)
         [
-          "origin:#{origin}",
+          "origin:#{request.credentials.origin}",
           "x-npo-date:#{timestamp}",
-          "uri:#{uri.path}",
-          params_string(uri.query_values)
+          "uri:#{request.uri.path}",
+          params_string(request.uri.query_values)
         ].compact.join(',')
       end
 
