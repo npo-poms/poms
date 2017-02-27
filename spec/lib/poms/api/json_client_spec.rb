@@ -17,7 +17,12 @@ module Poms
       it 'formats outgoing POST requests as JSON' do
         stub_request(:post, 'https://example.com/some/uri')
           .to_return(body: '{}')
-        described_class.post(uri, { 'key' => 'value' }, credentials)
+        described_class.execute(Request.new(
+          method: :post,
+          uri: uri,
+          body: { 'key' => 'value' },
+          credentials: credentials
+        ))
         expect(WebMock).to have_requested(
           :post,
           'https://example.com/some/uri'
@@ -38,13 +43,22 @@ module Poms
           body: '{"foo":"bar"}',
           status: 200
         )
-        response = described_class.post(uri, { 'key' => 'value' }, credentials)
+        response = described_class.execute(Request.new(
+          method: :post,
+          uri: uri,
+          body: { 'key' => 'value' },
+          credentials: credentials
+        ))
         expect(response).to eql('foo' => 'bar')
       end
 
       it 'formats outgoing GET requests as JSON' do
         stub_request(:get, 'https://example.com/some/uri').to_return(body: '{}')
-        described_class.get(uri, credentials)
+        described_class.execute(Request.new(
+          method: :get,
+          uri: uri,
+          credentials: credentials
+        ))
         expect(WebMock).to have_requested(
           :get,
           'https://example.com/some/uri'
@@ -63,7 +77,11 @@ module Poms
           body: '{"foo":"bar"}',
           status: 200
         )
-        response = described_class.get(uri, credentials)
+        response = described_class.execute(Request.new(
+          method: :get,
+          uri: uri,
+          credentials: credentials
+        ))
         expect(response).to eql('foo' => 'bar')
       end
     end

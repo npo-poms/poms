@@ -12,29 +12,6 @@ module Poms
 
       module_function
 
-      def get(uri, credentials, headers = {})
-        execute(
-          Request.new(
-            method: :get,
-            uri: uri,
-            headers: headers,
-            credentials: credentials
-          )
-        )
-      end
-
-      def post(uri, body, credentials, headers = {})
-        execute(
-          Request.new(
-            method: :post,
-            uri: uri,
-            body: body,
-            headers: headers,
-            credentials: credentials
-          )
-        )
-      end
-
       def execute(request)
         r = Request.new(request.attributes.merge({
           body: request.body.to_json,

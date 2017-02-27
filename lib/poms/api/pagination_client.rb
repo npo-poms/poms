@@ -1,4 +1,5 @@
 require 'poms/api/json_client'
+require 'poms/api/request'
 
 module Poms
   module Api
@@ -9,13 +10,22 @@ module Poms
 
       def get(uri, credentials)
         execute(uri) do |page_uri|
-          Api::JsonClient.get(page_uri, credentials)
+          Api::JsonClient.execute(Api::Request.new(
+            method: :get,
+            uri: page_uri,
+            credentials: credentials
+          ))
         end
       end
 
       def post(uri, body, credentials)
         execute(uri) do |page_uri|
-          Api::JsonClient.post(page_uri, body, credentials)
+          Api::JsonClient.execute(Api::Request.new(
+            method: :post,
+            uri: page_uri,
+            body: body,
+            credentials: credentials
+          ))
         end
       end
 
