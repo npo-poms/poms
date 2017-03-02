@@ -14,10 +14,18 @@ module Poms
         )
       end
 
+      def execute(options = {})
+        described_class.execute(Request.new(
+          uri: uri,
+          body: { 'key' => 'value' },
+          credentials: credentials
+        ).merge(options))
+      end
+
       it 'formats outgoing POST requests as JSON' do
         stub_request(:post, 'https://example.com/some/uri')
           .to_return(body: '{}')
-        described_class.post(uri, { 'key' => 'value' }, credentials)
+        execute(method: :post)
         expect(WebMock).to have_requested(
           :post,
           'https://example.com/some/uri'
@@ -38,13 +46,12 @@ module Poms
           body: '{"foo":"bar"}',
           status: 200
         )
-        response = described_class.post(uri, { 'key' => 'value' }, credentials)
-        expect(response).to eql('foo' => 'bar')
+        expect(execute(method: :post)).to eql('foo' => 'bar')
       end
 
       it 'formats outgoing GET requests as JSON' do
         stub_request(:get, 'https://example.com/some/uri').to_return(body: '{}')
-        described_class.get(uri, credentials)
+        execute
         expect(WebMock).to have_requested(
           :get,
           'https://example.com/some/uri'
@@ -63,8 +70,7 @@ module Poms
           body: '{"foo":"bar"}',
           status: 200
         )
-        response = described_class.get(uri, credentials)
-        expect(response).to eql('foo' => 'bar')
+        expect(execute).to eql('foo' => 'bar')
       end
     end
   end

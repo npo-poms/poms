@@ -23,6 +23,8 @@ module Poms
           Net::ProtocolError
         ].freeze
 
+        module_function
+
         def execute(request_description)
           response = attempt_request(
             request_description.uri,
@@ -30,8 +32,6 @@ module Poms
           )
           Response.new(response.code, response.body, response.to_hash)
         end
-
-        private
 
         def attempt_request(uri, request)
           Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
@@ -41,13 +41,13 @@ module Poms
           end
         rescue *NET_HTTP_ERRORS => e
           raise Errors::HttpError,
-                "An error (#{e.class}) occured while processing your request."
+            "An error (#{e.class}) occured while processing your request."
         end
 
         def prepare_request(request_description)
           request = request_to_net_http_request(request_description)
           request.body = request_description.body.to_s
-          request_description.each_header do |key, value|
+          request_description.headers.each do |key, value|
             request[key] = value
           end
           request
@@ -63,6 +63,9 @@ module Poms
             raise ArgumentError, 'can only execute GET or POST requests'
           end
         end
+
+        private_class_method :attempt_request, :prepare_request,
+          :request_to_net_http_request
       end
     end
   end

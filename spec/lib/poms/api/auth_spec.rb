@@ -19,14 +19,18 @@ module Poms
       describe '.sign' do
         it 'signs requests' do
           headers = {}
-          request = Request.get(uri, nil, headers)
-          signed_request = described_class.sign(request, credentials, timestamp)
+          request = Request.new(
+            uri: uri,
+            headers: headers,
+            credentials: credentials
+          )
+          signed_request = described_class.sign(request, timestamp)
 
-          expect(signed_request['Origin']).to eql('my origin')
-          expect(signed_request['X-NPO-Date']).to eql(
+          expect(signed_request.headers['Origin']).to eql('my origin')
+          expect(signed_request.headers['X-NPO-Date']).to eql(
             'Tue, 19 Apr 2016 07:48:46 +0200'
           )
-          expect(signed_request['Authorization']).to eql(
+          expect(signed_request.headers['Authorization']).to eql(
             'NPO mykey:PfeMP5/G9NmyprlaCsxiGU2F8l85OWRbDOj+kLbvuFA='
           )
         end

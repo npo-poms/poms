@@ -6,28 +6,32 @@ module Poms
     # request, representing a combination of an HTTP method, URI, body and
     # headers.
     class Request
-      extend Forwardable
-      def_delegators :@headers, :[], :[]=
-      def_delegator :@headers, :each, :each_header
+      attr_reader :method, :uri, :credentials, :body, :headers
 
-      attr_reader :uri, :body
-
-      def self.get(*args)
-        new(:get, *args)
-      end
-
-      def self.post(*args)
-        new(:post, *args)
-      end
-
-      def initialize(method, uri, body = nil, headers = {})
-        @method = method.to_sym
-        unless %i(get post).include?(@method)
-          raise ArgumentError, 'method should be :get or :post'
-        end
+      def initialize(
+        uri:, method: :get, credentials: nil, body: nil, headers: {}
+      )
         @uri = uri
-        @body = body.to_s
-        @headers = headers.to_h
+        @method = method.to_sym
+        @body = body || ''
+        @headers = headers.to_h.freeze
+        @credentials = credentials
+        validate!
+        freeze
+      end
+
+      def merge(new_attributes)
+        self.class.new(attributes.merge(new_attributes))
+      end
+
+      def attributes
+        {
+          method: method,
+          uri: uri,
+          body: body,
+          headers: headers,
+          credentials: credentials
+        }
       end
 
       def get?
@@ -36,6 +40,14 @@ module Poms
 
       def post?
         @method == :post
+      end
+
+      private
+
+      def validate!
+        unless %i(get post).include?(@method)
+          raise ArgumentError, 'method should be :get or :post'
+        end
       end
     end
   end

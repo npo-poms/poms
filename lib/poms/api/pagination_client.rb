@@ -1,4 +1,5 @@
 require 'poms/api/json_client'
+require 'poms/api/request'
 
 module Poms
   module Api
@@ -7,29 +8,23 @@ module Poms
     module PaginationClient
       module_function
 
-      def get(uri, credentials)
-        execute(uri) do |page_uri|
-          Api::JsonClient.get(page_uri, credentials)
-        end
-      end
-
-      def post(uri, body, credentials)
-        execute(uri) do |page_uri|
-          Api::JsonClient.post(page_uri, body, credentials)
-        end
-      end
-
-      def execute(uri)
+      def execute(request)
         Enumerator.new do |yielder|
-          page = Page.new(uri)
+          page = Page.new(request.uri)
           loop do
-            page.execute { |page_uri| yield page_uri }
+            page.execute { |page_uri| client_execute(request, page_uri) }
             page.items.each { |item| yielder << item }
             raise StopIteration if page.final?
             page = page.next_page
           end
         end.lazy
       end
+
+      def client_execute(request, page_uri)
+        Api::JsonClient.execute(request.merge(uri: page_uri))
+      end
+
+      private_class_method :client_execute
 
       # Keep track of number of items and how many have been retrieved
       class Page

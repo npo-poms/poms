@@ -12,23 +12,12 @@ module Poms
 
       module_function
 
-      def get(uri, credentials, headers = {})
-        response = Client.get(
-          uri,
-          credentials,
-          DEFAULT_HEADERS.merge(headers)
+      def execute(request)
+        request = request.merge(
+          body: request.body.to_json,
+          headers: DEFAULT_HEADERS.merge(request.headers)
         )
-        JSON.parse(response.body)
-      end
-
-      def post(uri, body, credentials, headers = {})
-        response = Client.post(
-          uri,
-          body.to_json,
-          credentials,
-          DEFAULT_HEADERS.merge(headers)
-        )
-        JSON.parse(response.body)
+        JSON.parse(Client.execute(request).body)
       end
     end
   end
