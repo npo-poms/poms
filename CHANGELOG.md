@@ -3,6 +3,7 @@
 ## 2.2.0
 
 * Remove `Poms::Fields#rev` as it wasn't provided by the Poms data anyway.
+* Add helper methods for NICAM ratings.
 
 ## 2.1.3
 

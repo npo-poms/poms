@@ -98,6 +98,18 @@ module Poms
       Array(item['memberOf'])
     end
 
+    # Returns the NICAM age rating of the item or ALL if no age rating exists
+    def age_rating(item)
+      item.fetch('ageRating', 'ALL')
+    end
+
+    # Returns an array containing zero or more content ratings of the item
+    # Possible content ratings are:
+    # ANGST, DISCRIMINATIE, DRUGS_EN_ALCOHOL, GEWELD, GROF_TAALGEBRUIK and SEKS
+    def content_ratings(item)
+      item.fetch('contentRatings', [])
+    end
+
     # Returns an array of start and end times for the  scheduled events for
     # this item. It returns an empty array if no events are found. You can pass
     # in a block to filter the events on data that is not returned, like
