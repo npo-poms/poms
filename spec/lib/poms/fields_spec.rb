@@ -158,6 +158,29 @@ naar hun loods, maar is dat wel een goed idee?")
       end
     end
 
+    describe '.age_rating' do
+      it 'returns the age rating' do
+        expect(described_class.age_rating('ageRating' => '6')).to eql('6')
+        expect(described_class.age_rating('ageRating' => 'ALL')).to eql('ALL')
+      end
+
+      it 'returns ALL if no age rating is present' do
+        expect(described_class.age_rating({})).to eql('ALL')
+      end
+    end
+
+    describe '.content_ratings' do
+      it 'returns an array with the content ratings' do
+        poms_data = { 'contentRatings' => %w(ANGST GEWELD) }
+        expect(described_class.content_ratings(poms_data))
+          .to eql(%w(ANGST GEWELD))
+      end
+
+      it 'returns an empty array if no content rating is present' do
+        expect(described_class.content_ratings({})).to eql([])
+      end
+    end
+
     describe '.schedule_events' do
       it 'returns an empty array if there are no scheduled events' do
         expect(described_class.schedule_events({})).to eq([])
